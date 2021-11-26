@@ -10,6 +10,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public bool                             m_bDown                     = false;
     public Vector3                          m_OldMouseDownPos           = Vector3.zero;
     public Vector3                          m_OldMouseDragDirNormal     = Vector3.zero;
+    public Vector3                          m_CurMoveDirNormal          = Vector3.zero;
     public CPlayer                          m_MyPlayer                  = null;
     public Vector3[]                        m_AllPathPoint              = new Vector3[8];
     public int                              m_CurStandPointindex        = 0;
@@ -24,9 +25,8 @@ public class CPlayerMemoryShare : CActorMemoryShare
 
     public GameObject                       m_CollisionBox              = null;
     public GameObject                       m_TagBox                    = null;
-    public MeshRenderer                     m_MyMeshRenderer            = null;
-    public Material                         m_MyMainMaterial            = null;
-
+    public GameObject                       m_SearchlightRLObj          = null;
+    public GameObject                       m_SearchlightTDObj          = null;
 };
 
 public class CPlayer : CActor
@@ -42,9 +42,12 @@ public class CPlayer : CActor
     [SerializeField] protected GameObject m_CollisionBox = null;
     [SerializeField] protected GameObject m_TagBox = null;
 
+    [SerializeField] protected GameObject m_SearchlightRLObj = null;
+    [SerializeField] protected GameObject m_SearchlightTDObj = null;
+
     // ==================== SerializeField ===========================================
 
-
+    public override float DefSpeed { get { return 5.0f; } }
 
     public float AnimationVal
     {
@@ -81,8 +84,8 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_MyPlayer                    = this;
         m_MyPlayerMemoryShare.m_CollisionBox                = m_CollisionBox;
         m_MyPlayerMemoryShare.m_TagBox                      = m_TagBox;
-        m_MyPlayerMemoryShare.m_MyMeshRenderer              = this.GetComponentInChildren<MeshRenderer>();
-        m_MyPlayerMemoryShare.m_MyMainMaterial              = m_MyPlayerMemoryShare.m_MyMeshRenderer.material;
+        m_MyPlayerMemoryShare.m_SearchlightRLObj            = m_SearchlightRLObj;
+        m_MyPlayerMemoryShare.m_SearchlightTDObj            = m_SearchlightTDObj;
 
         base.CreateMemoryShare();
 
@@ -91,7 +94,7 @@ public class CPlayer : CActor
         m_MaxMoveDirSize = Screen.width > Screen.height ? (float)Screen.width : (float)Screen.height;
         m_MaxMoveDirSize = m_MaxMoveDirSize / 5.0f;
 
-
+        UpdateSearchLightDir();
     }
 
     // Start is called before the first frame update
@@ -229,6 +232,23 @@ public class CPlayer : CActor
 
         m_MyPlayerMemoryShare.m_MyTransform.forward = m_MyPlayerMemoryShare.m_OldMouseDragDirNormal;
       //  m_MyPlayerMemoryShare.m_MyRigidbody.velocity = m_MyPlayerMemoryShare.m_OldMouseDragDirNormal;
+    }
+
+    public void UpdateSearchLightDir()
+    {
+        Vector3 lTempRLForward = m_MyPlayerMemoryShare.m_MyTransform.position - m_MyPlayerMemoryShare.m_SearchlightRLObj.transform.position;
+        lTempRLForward.y = 0.0f;
+        lTempRLForward.Normalize();
+
+        m_MyPlayerMemoryShare.m_SearchlightRLObj.transform.forward = lTempRLForward;
+
+        Vector3 lTempTDupV3 = m_MyPlayerMemoryShare.m_MyTransform.position - m_MyPlayerMemoryShare.m_SearchlightTDObj.transform.position;
+        lTempTDupV3.x = lTempTDupV3.z;
+        lTempTDupV3.z = 0.0f;
+        lTempTDupV3.Normalize();
+
+        float lTempUpAngle = Vector2.Angle(Vector2.up, lTempTDupV3);
+        m_MyPlayerMemoryShare.m_SearchlightTDObj.transform.localRotation = Quaternion.Euler(90.0f + -lTempUpAngle, 0.0f, 0.0f);
     }
 
     // ===================== UniRx ======================

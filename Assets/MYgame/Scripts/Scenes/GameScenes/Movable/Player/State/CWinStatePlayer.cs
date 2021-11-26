@@ -16,14 +16,6 @@ public class CWinStatePlayer : CPlayerStateBase
 
     protected override void InState()
     {
-        EnabledCollisionTag(false);
-
-        //StaticGlobalDel.SetMaterialRenderingMode(m_MyPlayerMemoryShare.m_MyMainMaterial, RenderingMode.Transparent);
-        m_MyPlayerMemoryShare.m_MyRigidbody.drag = 1000.0f;
-        m_MyPlayerMemoryShare.m_MyMainMaterial.DOFade(0.0f, EmissionColor, 1.0f).onComplete = ()=> 
-        {
-            m_MyPlayerMemoryShare.m_MyMovable.gameObject.SetActive(false);
-        };
     }
 
     protected override void updataState()
