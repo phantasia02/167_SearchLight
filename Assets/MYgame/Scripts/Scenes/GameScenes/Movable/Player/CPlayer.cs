@@ -31,6 +31,15 @@ public class CPlayerMemoryShare : CActorMemoryShare
 
 public class CPlayer : CActor
 {
+    public const float CsLightDisMaxX               = 4.0f;
+    public const float CsLightDisMaxZ               = 11.0f;
+    public const float CsLightDisMinZ               = -3.0f;
+    public const float CsLightDisOverallRatioZ      = CsLightDisMaxZ - CsLightDisMinZ;
+    public const float CsLightScaleMaxZ             = 0.1f;
+    public const float CsLightScaleMinZ             = 0.03333333f;
+    public const float CsLightScaleOverallRatioZ    = CsLightScaleMaxZ - CsLightScaleMinZ;
+
+
     public override EMovableType MyMovableType() { return EMovableType.ePlayer; }
 
     protected float m_MaxMoveDirSize = 5.0f;
@@ -42,8 +51,9 @@ public class CPlayer : CActor
     [SerializeField] protected GameObject m_CollisionBox = null;
     [SerializeField] protected GameObject m_TagBox = null;
 
-    [SerializeField] protected GameObject m_SearchlightRLObj = null;
-    [SerializeField] protected GameObject m_SearchlightTDObj = null;
+    [SerializeField] protected GameObject   m_SearchlightRLObj  = null;
+    [SerializeField] protected GameObject   m_SearchlightTDObj  = null;
+    [SerializeField] protected Transform    m_LightTDObj        = null;
 
     // ==================== SerializeField ===========================================
 
@@ -69,7 +79,7 @@ public class CPlayer : CActor
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStatePlayer(this));
 
-
+        
         m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateBase(this));
 
@@ -249,6 +259,11 @@ public class CPlayer : CActor
 
         float lTempUpAngle = Vector2.Angle(Vector2.up, lTempTDupV3);
         m_MyPlayerMemoryShare.m_SearchlightTDObj.transform.localRotation = Quaternion.Euler(90.0f + -lTempUpAngle, 0.0f, 0.0f);
+
+        float lTempDisRatioZ = (this.transform.position.z - CsLightDisMinZ) / CsLightDisOverallRatioZ;
+        Vector3 lTemplocalScale = m_LightTDObj.localScale;
+        lTemplocalScale.z = lTempDisRatioZ * CsLightScaleOverallRatioZ + CsLightScaleMinZ;
+        m_LightTDObj.localScale = lTemplocalScale;
     }
 
     // ===================== UniRx ======================
