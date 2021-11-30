@@ -47,7 +47,8 @@ public class CGameManager : MonoBehaviour
 
     // ==================== All ObjData  ===========================================
 
-    protected CGameObjBasListData[] m_AllGameObjBas = new CGameObjBasListData[(int)CGameObjBas.EObjType.eMax];
+    protected CGameObjBasListData[]     m_AllGameObjBas     = new CGameObjBasListData[(int)CGameObjBas.EObjType.eMax];
+    protected CMovableBaseListData[]    m_AllMovableBase    = new CMovableBaseListData[(int)CMovableBase.EMovableType.eMax];
 
     // ==================== All ObjData ===========================================
 

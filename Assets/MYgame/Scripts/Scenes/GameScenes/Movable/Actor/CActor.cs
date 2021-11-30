@@ -16,6 +16,7 @@ public class CActorMemoryShare : CMemoryShareBase
 
 public abstract class CActor : CMovableBase
 {
+    public override EMovableType MyMovableType() { return  EMovableType.eActor; }
     protected CActorMemoryShare m_MyActorMemoryShare = null;
 
     // ==================== SerializeField ===========================================

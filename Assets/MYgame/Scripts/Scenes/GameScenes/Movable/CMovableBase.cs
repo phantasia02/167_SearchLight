@@ -8,7 +8,10 @@ using UniRx;
 using UnityEditor;
 #endif
 
-
+public class CMovableBaseListData
+{
+    public List<CMovableBase> m_MovableBaseListData = new List<CMovableBase>();
+}
 
 public class CMemoryShareBase
 {
@@ -46,7 +49,7 @@ public abstract class CMovableBase : CGameObjBas
 
     public enum EMovableType
     {
-        ePlayer             = 0,
+        eActor             = 0,
         eMax
     };
 
