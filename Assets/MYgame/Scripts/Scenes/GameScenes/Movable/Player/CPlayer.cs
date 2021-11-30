@@ -36,7 +36,7 @@ public class CPlayer : CActor
     public const float CsLightDisMinZ               = -3.0f;
     public const float CsLightDisOverallRatioZ      = CsLightDisMaxZ - CsLightDisMinZ;
     public const float CsLightScaleMaxZ             = 0.09f;
-    public const float CsLightScaleMinZ             = 0.03333333f;
+    public const float CsLightScaleMinZ             = 0.04f;
     public const float CsLightScaleOverallRatioZ    = CsLightScaleMaxZ - CsLightScaleMinZ;
 
 
