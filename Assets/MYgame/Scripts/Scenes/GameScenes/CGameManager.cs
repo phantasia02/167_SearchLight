@@ -45,6 +45,13 @@ public class CGameManager : MonoBehaviour
     [SerializeField] protected GameObject m_OverObjAnima    = null;
     // ==================== SerializeField ===========================================
 
+    // ==================== All ObjData  ===========================================
+
+    protected CGameObjBasListData[] m_AllGameObjBas = new CGameObjBasListData[(int)CGameObjBas.EObjType.eMax];
+
+    // ==================== All ObjData ===========================================
+
+
     protected bool isApplicationQuitting = false;
     public bool GetisApplicationQuitting { get { return isApplicationQuitting; } }
 
@@ -78,13 +85,14 @@ public class CGameManager : MonoBehaviour
         GameObject lTempCameraObj = GameObject.FindGameObjectWithTag("MainCamera");
         if (lTempCameraObj != null)
             m_Camera = lTempCameraObj.GetComponent<Camera>();
+
+        for (int i = 0; i < m_AllGameObjBas.Length; i++)
+            m_AllGameObjBas[i] = new CGameObjBasListData();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
-
         Observable.EveryUpdate().First(_ => Input.GetMouseButtonDown(0)).Subscribe(
         OnNext =>
         {
@@ -290,5 +298,31 @@ public class CGameManager : MonoBehaviour
     public void SetLoseUI()
     {
         SetState(EState.eGameOver);
+    }
+
+    public void AddGameObjBasListData(CGameObjBas addGameObjBas)
+    {
+        if (addGameObjBas == null)
+            return;
+
+        int lTempTypeIndex = (int)addGameObjBas.ObjType();
+        addGameObjBas.GameObjBasIndex = m_AllGameObjBas[lTempTypeIndex].m_GameObjBasListData.Count;
+        m_AllGameObjBas[lTempTypeIndex].m_GameObjBasListData.Add(addGameObjBas);
+    }
+
+    public void RemoveGameObjBasListData(CGameObjBas addGameObjBas)
+    {
+        if (isApplicationQuitting)
+            return;
+
+        if (addGameObjBas == null)
+            return;
+
+        int lTempTypeIndex = (int)addGameObjBas.ObjType();
+        List<CGameObjBas> lTempGameObjBasList = m_AllGameObjBas[lTempTypeIndex].m_GameObjBasListData;
+
+        lTempGameObjBasList.Remove(addGameObjBas);
+        for (int i = 0; i < lTempGameObjBasList.Count; i++)
+            lTempGameObjBasList[i].GameObjBasIndex = i;
     }
 }

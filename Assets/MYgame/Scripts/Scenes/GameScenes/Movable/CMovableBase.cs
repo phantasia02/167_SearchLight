@@ -46,9 +46,7 @@ public abstract class CMovableBase : CGameObjBas
 
     public enum EMovableType
     {
-        eNull               = 0,
-        ePlayer             = 1,
-    
+        ePlayer             = 0,
         eMax
     };
 

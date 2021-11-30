@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class CGameObjBasListData
+{
+    public List<CGameObjBas> m_GameObjBasListData = new List<CGameObjBas>();
+}
+
 public abstract class CGameObjBas : MonoBehaviour
 {
     public enum EObjType
@@ -14,6 +19,13 @@ public abstract class CGameObjBas : MonoBehaviour
     protected Transform m_OriginalParent = null;
     protected CGameManager m_MyGameManager = null;
 
+    protected int m_GameObjBasIndex = -1;
+    public int GameObjBasIndex
+    {
+        set { m_GameObjBasIndex = value; }
+        get { return m_GameObjBasIndex; }
+    }
+
     protected virtual void Awake()
     {
         m_MyGameManager = GetComponentInParent<CGameManager>();
@@ -22,12 +34,13 @@ public abstract class CGameObjBas : MonoBehaviour
             m_MyGameManager = GameObject.FindObjectOfType<CGameManager>();
 
         m_OriginalParent = gameObject.transform.parent;
+        
     }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        
+        m_MyGameManager.AddGameObjBasListData(this);
     }
 
     public virtual void Init()
@@ -41,5 +54,8 @@ public abstract class CGameObjBas : MonoBehaviour
         
     }
 
-
+    private void OnDestroy()
+    {
+        m_MyGameManager.RemoveGameObjBasListData(this);
+    }
 }
