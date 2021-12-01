@@ -180,8 +180,6 @@ public abstract class CMovableBase : CGameObjBas
     {
         m_MyMemoryShare = new CMemoryShareBase();
 
-
-
         SetBaseMemoryShare();
     }
 
@@ -251,20 +249,20 @@ public abstract class CMovableBase : CGameObjBas
     // Start is called before the first frame update
     protected override void Start()
     {
-       // ShowEndFx(true);
+        m_MyGameManager.AddMovableBaseListData(this);
+        base.Start();
+    }
+
+    protected override void OnDestroy()
+    {
+        m_MyGameManager.RemoveMovableBaseListData(this);
+        base.OnDestroy();
     }
 
     public override void Init()
     {
         base.Init();
     }
-
-    //public void SetStateIndex(StaticGlobalDel.EMovableState state, int index)
-    //{
-    //    DataState lTempDataState = m_AllState[(int)state];
-    //    if (state != StaticGlobalDel.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[index] != null)
-    //        lTempDataState.index = index;
-    //}
 
     // Update is called once per frame
     protected override void Update()
@@ -303,16 +301,6 @@ public abstract class CMovableBase : CGameObjBas
             
         }
     }
-
-    //public Vector3 PickRandomPoint()
-    //{
-    //    var point = Random.insideUnitSphere * CRadius;
-
-    //    point.y = 0;
-    //    point += transform.position;
-    //    return point;
-    //}
-
 
     protected virtual void LateUpdate()
     {

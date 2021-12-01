@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class CActorBaseListData
+{
+    public List<CActor> m_ActorBaseListData = new List<CActor>();
+}
+
 public class CActorMemoryShare : CMemoryShareBase
 {
     public CActor       m_Target            = null;
@@ -16,6 +21,20 @@ public class CActorMemoryShare : CMemoryShareBase
 
 public abstract class CActor : CMovableBase
 {
+    public enum EActorType
+    {
+        ePlayer = 0,
+        eMax
+    };
+
+    protected int m_ActorBasIndex = -1;
+    public int ActorBasIndex
+    {
+        set { m_ActorBasIndex = value; }
+        get { return m_ActorBasIndex; }
+    }
+
+    abstract public EActorType MyActorType();
     public override EMovableType MyMovableType() { return  EMovableType.eActor; }
     protected CActorMemoryShare m_MyActorMemoryShare = null;
 
@@ -70,7 +89,14 @@ public abstract class CActor : CMovableBase
 
     protected override void Start()
     {
+        m_MyGameManager.AddActorBaseListData(this);
         base.Start();
+    }
+
+    protected override void OnDestroy()
+    {
+        m_MyGameManager.RemoveActorBaseListData(this);
+        base.OnDestroy();
     }
 
     public void EnabledRagdoll(bool enabled)

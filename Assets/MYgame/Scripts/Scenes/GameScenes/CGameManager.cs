@@ -49,6 +49,7 @@ public class CGameManager : MonoBehaviour
 
     protected CGameObjBasListData[]     m_AllGameObjBas     = new CGameObjBasListData[(int)CGameObjBas.EObjType.eMax];
     protected CMovableBaseListData[]    m_AllMovableBase    = new CMovableBaseListData[(int)CMovableBase.EMovableType.eMax];
+    protected CActorBaseListData[]      m_AllActorBase      = new CActorBaseListData[(int)CActor.EActorType.eMax];
 
     // ==================== All ObjData ===========================================
 
@@ -89,6 +90,9 @@ public class CGameManager : MonoBehaviour
 
         for (int i = 0; i < m_AllGameObjBas.Length; i++)
             m_AllGameObjBas[i] = new CGameObjBasListData();
+
+        for (int i = 0; i < m_AllMovableBase.Length; i++)
+            m_AllMovableBase[i] = new CMovableBaseListData();
     }
 
     // Start is called before the first frame update
@@ -354,5 +358,31 @@ public class CGameManager : MonoBehaviour
         lTempMovableBaseList.Remove(removeMovableBase);
         for (int i = 0; i < lTempMovableBaseList.Count; i++)
             lTempMovableBaseList[i].MovableBasIndex = i;
+    }
+
+    public void AddActorBaseListData(CActor addActorBase)
+    {
+        if (addActorBase == null)
+            return;
+
+        int lTempTypeIndex = (int)addActorBase.MyActorType();
+        addActorBase.ActorBasIndex = m_AllActorBase[lTempTypeIndex].m_ActorBaseListData.Count;
+        m_AllActorBase[lTempTypeIndex].m_ActorBaseListData.Add(addActorBase);
+    }
+
+    public void RemoveActorBaseListData(CActor removeActorBase)
+    {
+        if (isApplicationQuitting)
+            return;
+
+        if (removeActorBase == null)
+            return;
+
+        int lTempTypeIndex = (int)removeActorBase.MyActorType();
+        List<CActor> lTempActorBaseList = m_AllActorBase[lTempTypeIndex].m_ActorBaseListData;
+
+        lTempActorBaseList.Remove(removeActorBase);
+        for (int i = 0; i < lTempActorBaseList.Count; i++)
+            lTempActorBaseList[i].ActorBasIndex = i;
     }
 }

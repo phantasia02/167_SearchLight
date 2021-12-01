@@ -54,7 +54,7 @@ public abstract class CGameObjBas : MonoBehaviour
         
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         m_MyGameManager.RemoveGameObjBasListData(this);
     }
