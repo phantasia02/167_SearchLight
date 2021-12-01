@@ -20,10 +20,10 @@ public class CMoveStatePlayer : CPlayerStateBase
     {
         UpdateSpeed();
 
-        m_MyPlayerMemoryShare.m_MyTransform.Translate(new Vector3(0.0f, 0.0f, Time.deltaTime * m_MyPlayerMemoryShare.m_TotleSpeed.Value));
+        m_MyPlayerMemoryShare.m_PlayCtrlLight.Translate(new Vector3(0.0f, 0.0f, Time.deltaTime * m_MyPlayerMemoryShare.m_TotleSpeed.Value));
 
 
-        Vector3 lTempposition = m_MyPlayerMemoryShare.m_MyTransform.position;
+        Vector3 lTempposition = m_MyPlayerMemoryShare.m_PlayCtrlLight.position;
         if (lTempposition.x < -CPlayer.CsLightDisMaxX)
             lTempposition.x = -CPlayer.CsLightDisMaxX;
 
@@ -36,7 +36,7 @@ public class CMoveStatePlayer : CPlayerStateBase
         if (lTempposition.z < CPlayer.CsLightDisMinZ)
             lTempposition.z = CPlayer.CsLightDisMinZ;
 
-        m_MyPlayerMemoryShare.m_MyTransform.position = lTempposition;
+        m_MyPlayerMemoryShare.m_PlayCtrlLight.position = lTempposition;
 
         m_MyPlayerMemoryShare.m_MyPlayer.UpdateSearchLightDir();
     }

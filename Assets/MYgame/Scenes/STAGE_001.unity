@@ -1434,7 +1434,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1540281730}
-  - component: {fileID: 1540281729}
   m_Layer: 0
   m_Name: PlayerLight
   m_TagString: Untagged
@@ -1442,25 +1441,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1540281729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1540281728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 025bc2d84ab633e44879831db3b396bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MyCollider: {fileID: 0}
-  m_AllObj: {fileID: 0}
-  m_CollisionBox: {fileID: 0}
-  m_TagBox: {fileID: 0}
-  m_SearchlightRLObj: {fileID: 1578567974}
-  m_SearchlightTDObj: {fileID: 8896132949454396166}
-  m_LightTDObj: {fileID: 1609082125}
 --- !u!4 &1540281730
 Transform:
   m_ObjectHideFlags: 0
@@ -1486,7 +1466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1578567975}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PlayerSearchlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2085,6 +2065,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2186210410425649675}
+  - component: {fileID: 1521418865070756018}
   m_Layer: 0
   m_Name: custom_model_fortress
   m_TagString: Untagged
@@ -2092,6 +2073,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1521418865070756018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521418865070756017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025bc2d84ab633e44879831db3b396bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MyCollider: {fileID: 0}
+  m_AllObj: {fileID: 0}
+  m_CollisionBox: {fileID: 0}
+  m_TagBox: {fileID: 0}
+  m_SearchlightRLObj: {fileID: 1578567974}
+  m_SearchlightTDObj: {fileID: 8896132949454396166}
+  m_LightTDObj: {fileID: 1609082125}
+  m_PlayCtrlLight: {fileID: 1540281730}
 --- !u!23 &1669567362517721516
 MeshRenderer:
   m_ObjectHideFlags: 0

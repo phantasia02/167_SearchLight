@@ -303,6 +303,9 @@ public class CGameManager : MonoBehaviour
 
     public void AddGameObjBasListData(CGameObjBas addGameObjBas)
     {
+        if (isApplicationQuitting)
+            return;
+
         if (addGameObjBas == null)
             return;
 
@@ -325,5 +328,31 @@ public class CGameManager : MonoBehaviour
         lTempGameObjBasList.Remove(addGameObjBas);
         for (int i = 0; i < lTempGameObjBasList.Count; i++)
             lTempGameObjBasList[i].GameObjBasIndex = i;
+    }
+
+    public void AddMovableBaseListData(CMovableBase addMovableBase)
+    {
+        if (addMovableBase == null)
+            return;
+
+        int lTempTypeIndex = (int)addMovableBase.MyMovableType();
+        addMovableBase.MovableBasIndex = m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData.Count;
+        m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData.Add(addMovableBase);
+    }
+
+    public void RemoveMovableBaseListData(CMovableBase removeMovableBase)
+    {
+        if (isApplicationQuitting)
+            return;
+
+        if (removeMovableBase == null)
+            return;
+
+        int lTempTypeIndex = (int)removeMovableBase.ObjType();
+        List<CMovableBase> lTempMovableBaseList = m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData;
+
+        lTempMovableBaseList.Remove(removeMovableBase);
+        for (int i = 0; i < lTempMovableBaseList.Count; i++)
+            lTempMovableBaseList[i].MovableBasIndex = i;
     }
 }

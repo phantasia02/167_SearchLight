@@ -139,6 +139,14 @@ public abstract class CMovableBase : CGameObjBas
     public float TotleSpeedRatio { get { return m_MyMemoryShare.m_TotleSpeed.Value / StaticGlobalDel.g_DefMovableTotleSpeed; } }
 
     abstract public EMovableType MyMovableType();
+    
+    protected int m_MovableBasIndex = -1;
+    public int MovableBasIndex
+    {
+        set { m_MovableBasIndex = value; }
+        get { return m_MovableBasIndex; }
+    }
+
     protected bool m_AwakeOK = false;
     protected virtual bool AutoAwake() { return true; }
 

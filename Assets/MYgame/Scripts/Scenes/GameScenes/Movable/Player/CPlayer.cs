@@ -27,6 +27,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public GameObject                       m_TagBox                    = null;
     public GameObject                       m_SearchlightRLObj          = null;
     public GameObject                       m_SearchlightTDObj          = null;
+    public Transform                        m_PlayCtrlLight             = null;
 };
 
 public class CPlayer : CActor
@@ -54,6 +55,7 @@ public class CPlayer : CActor
     [SerializeField] protected GameObject   m_SearchlightRLObj  = null;
     [SerializeField] protected GameObject   m_SearchlightTDObj  = null;
     [SerializeField] protected Transform    m_LightTDObj        = null;
+    [SerializeField] protected Transform    m_PlayCtrlLight     = null;
 
     // ==================== SerializeField ===========================================
 
@@ -96,6 +98,7 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_TagBox                      = m_TagBox;
         m_MyPlayerMemoryShare.m_SearchlightRLObj            = m_SearchlightRLObj;
         m_MyPlayerMemoryShare.m_SearchlightTDObj            = m_SearchlightTDObj;
+        m_MyPlayerMemoryShare.m_PlayCtrlLight               = m_PlayCtrlLight;
 
         base.CreateMemoryShare();
 
@@ -240,19 +243,19 @@ public class CPlayer : CActor
         if (m_MyPlayerMemoryShare.m_OldMouseDragDirNormal == Vector3.zero)
             return;
 
-        m_MyPlayerMemoryShare.m_MyTransform.forward = m_MyPlayerMemoryShare.m_OldMouseDragDirNormal;
+        m_MyPlayerMemoryShare.m_PlayCtrlLight.forward = m_MyPlayerMemoryShare.m_OldMouseDragDirNormal;
       //  m_MyPlayerMemoryShare.m_MyRigidbody.velocity = m_MyPlayerMemoryShare.m_OldMouseDragDirNormal;
     }
 
     public void UpdateSearchLightDir()
     {
-        Vector3 lTempRLForward = m_MyPlayerMemoryShare.m_MyTransform.position - m_MyPlayerMemoryShare.m_SearchlightRLObj.transform.position;
+        Vector3 lTempRLForward = m_MyPlayerMemoryShare.m_PlayCtrlLight.position - m_MyPlayerMemoryShare.m_SearchlightRLObj.transform.position;
         lTempRLForward.y = 0.0f;
         lTempRLForward.Normalize();
 
         m_MyPlayerMemoryShare.m_SearchlightRLObj.transform.forward = lTempRLForward;
 
-        Vector3 lTempTDupV3 = m_MyPlayerMemoryShare.m_MyTransform.position - m_MyPlayerMemoryShare.m_SearchlightTDObj.transform.position;
+        Vector3 lTempTDupV3 = m_MyPlayerMemoryShare.m_PlayCtrlLight.position - m_MyPlayerMemoryShare.m_SearchlightTDObj.transform.position;
         lTempTDupV3.x = lTempTDupV3.z;
         lTempTDupV3.z = 0.0f;
         lTempTDupV3.Normalize();
@@ -260,7 +263,7 @@ public class CPlayer : CActor
         float lTempUpAngle = Vector2.Angle(Vector2.up, lTempTDupV3);
         m_MyPlayerMemoryShare.m_SearchlightTDObj.transform.localRotation = Quaternion.Euler(90.0f + -lTempUpAngle, 0.0f, 0.0f);
 
-        float lTempDisRatioZ = (this.transform.position.z - CsLightDisMinZ) / CsLightDisOverallRatioZ;
+        float lTempDisRatioZ = (m_MyPlayerMemoryShare.m_PlayCtrlLight.position.z - CsLightDisMinZ) / CsLightDisOverallRatioZ;
         Vector3 lTemplocalScale = m_LightTDObj.localScale;
         lTemplocalScale.z = lTempDisRatioZ * CsLightScaleOverallRatioZ + CsLightScaleMinZ;
         m_LightTDObj.localScale = lTemplocalScale;
