@@ -232,7 +232,7 @@ public class CPlayer : CActor
         //if (lTempScreenDragProportion >= 0.01f)
         // {
         ChangState = StaticGlobalDel.EMovableState.eMove;
-        m_OldMouseDragDir += lTempMouseDrag * 2.0f;
+        m_OldMouseDragDir += lTempMouseDrag * 5.0f;
         m_OldMouseDragDir.y = 0.0f;
 
         m_OldMouseDragDir = Vector3.ClampMagnitude(m_OldMouseDragDir, m_MaxMoveDirSize);

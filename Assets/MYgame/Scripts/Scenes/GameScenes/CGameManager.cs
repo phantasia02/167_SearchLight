@@ -93,6 +93,9 @@ public class CGameManager : MonoBehaviour
 
         for (int i = 0; i < m_AllMovableBase.Length; i++)
             m_AllMovableBase[i] = new CMovableBaseListData();
+
+        for (int i = 0; i < m_AllActorBase.Length; i++)
+            m_AllActorBase[i] = new CActorBaseListData();
     }
 
     // Start is called before the first frame update

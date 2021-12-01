@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CEnemyBaseMemoryShare : CActorMemoryShare
 {
-
     public CEnemyBase m_MyEnemyBase = null;
 };
 

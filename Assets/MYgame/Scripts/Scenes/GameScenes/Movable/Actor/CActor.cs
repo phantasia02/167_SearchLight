@@ -23,7 +23,8 @@ public abstract class CActor : CMovableBase
 {
     public enum EActorType
     {
-        ePlayer = 0,
+        ePlayer     = 0,
+        eEnemyRifle = 1,
         eMax
     };
 
