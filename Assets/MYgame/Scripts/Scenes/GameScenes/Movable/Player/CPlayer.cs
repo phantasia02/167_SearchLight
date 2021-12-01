@@ -56,19 +56,12 @@ public class CPlayer : CActor
     [SerializeField] protected GameObject   m_SearchlightTDObj  = null;
     [SerializeField] protected Transform    m_LightTDObj        = null;
     [SerializeField] protected Transform    m_PlayCtrlLight     = null;
-
+    public Transform PlayCtrlLight{get { return m_MyPlayerMemoryShare.m_PlayCtrlLight; }}
     // ==================== SerializeField ===========================================
 
     public override float DefSpeed { get { return 5.0f; } }
 
-    public float AnimationVal
-    {
-        set {
-                float lTempValue = Mathf.Clamp(value, 0.0f, 1.0f);
-                m_MyPlayerMemoryShare.m_AnimationVal.Value = lTempValue;
-            }
-        get { return m_MyPlayerMemoryShare.m_AnimationVal.Value; }
-    }
+
 
 
     protected Vector3 m_OldMouseDragDir = Vector3.zero;

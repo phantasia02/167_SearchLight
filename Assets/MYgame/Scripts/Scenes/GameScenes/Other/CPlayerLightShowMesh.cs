@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testCode : MonoBehaviour
+public class CPlayerLightShowMesh : MonoBehaviour
 {
     // ==================== SerializeField ===========================================
 
-    [SerializeField] protected Transform m_Player = null;
-    [SerializeField] protected Renderer m_MyMeshRenderer = null;
+    //[SerializeField] protected Transform m_Player = null;
+    
 
     // ==================== SerializeField ===========================================
     static readonly int PlayerPos = Shader.PropertyToID("_PlayerLightPos");
     static readonly int PlayerPosfloatID = Shader.PropertyToID("_PlayerLight2");
 
+    public Transform m_PlayerLight = null;
+    public Transform PlayerLight { set { m_PlayerLight = value; } }
+
+    protected Renderer m_MyMeshRenderer = null;
     Material m_MyMain = null;
 
     MaterialPropertyBlock mpb;
@@ -28,21 +32,19 @@ public class testCode : MonoBehaviour
 
     private void Awake()
     {
-        m_MyMain = m_MyMeshRenderer.material;
+        m_MyMeshRenderer = this.GetComponent<Renderer>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        Mpb.SetVector(PlayerPos, m_Player.position);
-     
+        Mpb.SetVector(PlayerPos, m_PlayerLight.position);
         m_MyMeshRenderer.SetPropertyBlock(Mpb);
         // m_MyMain.
     }
