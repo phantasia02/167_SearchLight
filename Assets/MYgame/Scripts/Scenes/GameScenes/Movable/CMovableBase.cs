@@ -77,24 +77,9 @@ public abstract class CMovableBase : CGameObjBas
 
     protected StaticGlobalDel.EMovableState m_ChangState = StaticGlobalDel.EMovableState.eMax;
     public StaticGlobalDel.EMovableState ChangState => m_ChangState;
-    //{
-    //    set
-    //    {
-    //        if (LockChangState != StaticGlobalDel.EMovableState.eMax && LockChangState != value)
-    //            return;
-
-    //        m_ChangState = value;
-    //    }
-    //    get { return m_ChangState; }
-    //}
 
     protected int m_ChangStateinndex = -1;
     public int ChangStateinndex => m_ChangStateinndex;
-    //public int ChangStateinndex
-    //{
-    //    set{m_ChangStateinndex = value;}
-    //    get { return m_ChangStateinndex; }
-    //}
 
     public virtual void SetChangState(StaticGlobalDel.EMovableState state, int changindex = -1)
     {
@@ -149,6 +134,8 @@ public abstract class CMovableBase : CGameObjBas
         set { m_SameStatusUpdate = value; }
         get { return m_SameStatusUpdate; }
     }
+
+    //protected DataState[] m_AllState = new DataState[(int)StaticGlobalDel.EMovableState.eMax];
 
     // ==================== SerializeField ===========================================
 
