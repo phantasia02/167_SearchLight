@@ -319,6 +319,7 @@ public class CGameManager : MonoBehaviour
         int lTempTypeIndex = (int)addGameObjBas.ObjType();
         addGameObjBas.GameObjBasIndex = m_AllGameObjBas[lTempTypeIndex].m_GameObjBasListData.Count;
         m_AllGameObjBas[lTempTypeIndex].m_GameObjBasListData.Add(addGameObjBas);
+        m_AllGameObjBas[lTempTypeIndex].m_GameObjBasHashtable.Add(addGameObjBas.GetInstanceID(), addGameObjBas);
     }
 
     public void RemoveGameObjBasListData(CGameObjBas addGameObjBas)
@@ -335,6 +336,8 @@ public class CGameManager : MonoBehaviour
         lTempGameObjBasList.Remove(addGameObjBas);
         for (int i = 0; i < lTempGameObjBasList.Count; i++)
             lTempGameObjBasList[i].GameObjBasIndex = i;
+
+        m_AllGameObjBas[lTempTypeIndex].m_GameObjBasHashtable.Remove(addGameObjBas.GetInstanceID());
     }
 
     public void AddMovableBaseListData(CMovableBase addMovableBase)
@@ -343,7 +346,7 @@ public class CGameManager : MonoBehaviour
             return;
 
         int lTempTypeIndex = (int)addMovableBase.MyMovableType();
-        addMovableBase.MovableBasIndex = m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData.Count;
+        //addMovableBase.MovableBasIndex = m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData.Count;
         m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData.Add(addMovableBase);
     }
 
@@ -359,8 +362,8 @@ public class CGameManager : MonoBehaviour
         List<CMovableBase> lTempMovableBaseList = m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData;
 
         lTempMovableBaseList.Remove(removeMovableBase);
-        for (int i = 0; i < lTempMovableBaseList.Count; i++)
-            lTempMovableBaseList[i].MovableBasIndex = i;
+        //for (int i = 0; i < lTempMovableBaseList.Count; i++)
+        //    lTempMovableBaseList[i].MovableBasIndex = i;
     }
 
     public void AddActorBaseListData(CActor addActorBase)
@@ -369,7 +372,7 @@ public class CGameManager : MonoBehaviour
             return;
 
         int lTempTypeIndex = (int)addActorBase.MyActorType();
-        addActorBase.ActorBasIndex = m_AllActorBase[lTempTypeIndex].m_ActorBaseListData.Count;
+        //addActorBase.ActorBasIndex = m_AllActorBase[lTempTypeIndex].m_ActorBaseListData.Count;
         m_AllActorBase[lTempTypeIndex].m_ActorBaseListData.Add(addActorBase);
     }
 
@@ -385,7 +388,7 @@ public class CGameManager : MonoBehaviour
         List<CActor> lTempActorBaseList = m_AllActorBase[lTempTypeIndex].m_ActorBaseListData;
 
         lTempActorBaseList.Remove(removeActorBase);
-        for (int i = 0; i < lTempActorBaseList.Count; i++)
-            lTempActorBaseList[i].ActorBasIndex = i;
+        //for (int i = 0; i < lTempActorBaseList.Count; i++)
+        //    lTempActorBaseList[i].ActorBasIndex = i;
     }
 }

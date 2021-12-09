@@ -28,12 +28,12 @@ public abstract class CActor : CMovableBase
         eMax
     };
 
-    protected int m_ActorBasIndex = -1;
-    public int ActorBasIndex
-    {
-        set { m_ActorBasIndex = value; }
-        get { return m_ActorBasIndex; }
-    }
+    //protected int m_ActorBasIndex = -1;
+    //public int ActorBasIndex
+    //{
+    //    set { m_ActorBasIndex = value; }
+    //    get { return m_ActorBasIndex; }
+    //}
 
     abstract public EActorType MyActorType();
     public override EMovableType MyMovableType() { return  EMovableType.eActor; }

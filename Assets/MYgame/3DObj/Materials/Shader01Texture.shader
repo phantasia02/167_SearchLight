@@ -80,12 +80,12 @@ Shader "Unlit/Shader01Texture"
 
 				float3 PlayPos = float3(_PlayerLightPos.x, 0, _PlayerLightPos.z);
 
-				float lTempRatio = 1 - (distance(PlayPos, i.vertexWord) / 2.0);
+				float lTempRatio = 1 - (distance(PlayPos, i.vertexWord) / 1.5);
 				lTempRatio = lTempRatio - 0.5;
 				float lTemp2 = clamp(lTempRatio, 0.0, 1.0);
 				float lTempAlpha = lTemp2 > 0 ? 1 : 0;
 
-				return float4(col.rgb, lTempAlpha);
+				return float4(col.rgb, lTempAlpha * col.a);
 			}
 			ENDCG
 		}

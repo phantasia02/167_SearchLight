@@ -33,7 +33,7 @@ public static class StaticGlobalDel
     public enum ELayerIndex
     {
         eFloor              = 6,
-        eLightObj           = 7,
+        eNotLightObj        = 7,
 
         eMax
     }
@@ -70,7 +70,7 @@ public static class StaticGlobalDel
     //public const string TagFloor                = "TagFloor";
 
     public const int g_FloorMask                    = 1 << (int)ELayerIndex.eFloor;
-    public const int g_LightObjMask                 = 1 << (int)ELayerIndex.eLightObj;
+    public const int g_NotLightObjMask              = 1 << (int)ELayerIndex.eNotLightObj;
 
 
     public const int g_MaxFever         = 100;

@@ -224,7 +224,7 @@ public class CPlayer : CActor
         //  float lTempScreenDragProportion = lTempMouseDrag.magnitude / m_MinScreenSize;
         //if (lTempScreenDragProportion >= 0.01f)
         // {
-        ChangState = StaticGlobalDel.EMovableState.eMove;
+        SetChangState(StaticGlobalDel.EMovableState.eMove);
         m_OldMouseDragDir += lTempMouseDrag * 5.0f;
         m_OldMouseDragDir.y = 0.0f;
 

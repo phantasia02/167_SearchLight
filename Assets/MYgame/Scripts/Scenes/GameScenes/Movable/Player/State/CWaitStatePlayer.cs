@@ -30,7 +30,7 @@ public class CWaitStatePlayer : CPlayerStateBase
     public override void MouseDrag()
     {
         m_MyPlayerMemoryShare.m_MyPlayer.UpdateDrag();
-        m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eMove;
+        m_MyPlayerMemoryShare.m_MyMovable.SetChangState(StaticGlobalDel.EMovableState.eMove); 
     }
 
 }

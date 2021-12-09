@@ -76,25 +76,51 @@ public abstract class CMovableBase : CGameObjBas
     public StaticGlobalDel.EMovableState OldState { get { return m_OldState; } }
 
     protected StaticGlobalDel.EMovableState m_ChangState = StaticGlobalDel.EMovableState.eMax;
-    public virtual StaticGlobalDel.EMovableState ChangState
-    {
-        set
-        {
-            if (LockChangState != StaticGlobalDel.EMovableState.eMax && LockChangState != value)
-                return;
+    public StaticGlobalDel.EMovableState ChangState => m_ChangState;
+    //{
+    //    set
+    //    {
+    //        if (LockChangState != StaticGlobalDel.EMovableState.eMax && LockChangState != value)
+    //            return;
 
-            m_ChangState = value;
-        }
-        get { return m_ChangState; }
-    }
+    //        m_ChangState = value;
+    //    }
+    //    get { return m_ChangState; }
+    //}
 
     protected int m_ChangStateinndex = -1;
-    public int ChangStateinndex
-    {
-        set{m_ChangStateinndex = value;}
-        get { return m_ChangStateinndex; }
-    }
+    public int ChangStateinndex => m_ChangStateinndex;
+    //public int ChangStateinndex
+    //{
+    //    set{m_ChangStateinndex = value;}
+    //    get { return m_ChangStateinndex; }
+    //}
 
+    public void SetChangState(StaticGlobalDel.EMovableState state, int changindex = -1)
+    {
+        if (LockChangState != StaticGlobalDel.EMovableState.eMax && LockChangState != state)
+            return;
+
+        if (changindex != -1)
+        {
+            DataState lTempChangDataState = m_AllState[(int)state];
+            if (lTempChangDataState.AllThisState.Count <= changindex)
+                return;
+
+            int CurPriority = 0;
+            if (m_ChangState != StaticGlobalDel.EMovableState.eMax)
+            {
+                DataState lTempCurDataState = m_AllState[(int)m_ChangState];
+                CurPriority = lTempCurDataState.AllThisState[lTempCurDataState.index].Priority;
+            }
+
+            if (CurPriority > lTempChangDataState.AllThisState[changindex].Priority)
+                return;
+        }
+
+        m_ChangState = state;
+        m_ChangStateinndex = changindex;
+    }
 
     protected StaticGlobalDel.EMovableState m_NextFramChangState = StaticGlobalDel.EMovableState.eMax;
     public StaticGlobalDel.EMovableState NextFramChangState
@@ -140,12 +166,12 @@ public abstract class CMovableBase : CGameObjBas
 
     abstract public EMovableType MyMovableType();
     
-    protected int m_MovableBasIndex = -1;
-    public int MovableBasIndex
-    {
-        set { m_MovableBasIndex = value; }
-        get { return m_MovableBasIndex; }
-    }
+    //protected int m_MovableBasIndex = -1;
+    //public int MovableBasIndex
+    //{
+    //    set { m_MovableBasIndex = value; }
+    //    get { return m_MovableBasIndex; }
+    //}
 
     protected bool m_AwakeOK = false;
     protected virtual bool AutoAwake() { return true; }
@@ -234,6 +260,9 @@ public abstract class CMovableBase : CGameObjBas
                     break;
                 case StaticGlobalDel.EMovableState.eFinish:
                     m_AllState[i].AllThisState.Add(new CFinishStateBase(this));
+                    break;
+                case StaticGlobalDel.EMovableState.eHit:
+                    m_AllState[i].AllThisState.Add(new CHitStateBase(this));
                     break;
             }
         }

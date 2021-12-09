@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.UI;
 
 
 public class CEnemyBaseMemoryShare : CActorMemoryShare
@@ -10,6 +9,7 @@ public class CEnemyBaseMemoryShare : CActorMemoryShare
     public CEnemyBase                   m_MyEnemyBase               = null;
     public Transform                    m_PlayerLight               = null;
     public CPlayerLightShowMesh[]       m_AllPlayerLightShowMesh    = null;
+    public Image[]                      m_AllEmoticons              = null;
 };
 
 public abstract class CEnemyBase : CActor
@@ -18,15 +18,22 @@ public abstract class CEnemyBase : CActor
 
 
     // ==================== SerializeField ===========================================
-    [SerializeField] protected Renderer     m_MyBodeMeshRenderer = null;
-    [SerializeField] protected Renderer     m_MyArmsMeshRenderer = null;
+    [SerializeField] protected Image[]      m_AllEmoticons          = null;
 
     // ==================== SerializeField ===========================================
 
-
     protected override void AddInitState()
     {
-     
+        m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStateEnemyBase(this));
+
+        m_AllState[(int)StaticGlobalDel.EMovableState.eHit].AllThisState.Add(new CSurprisStateEnemyBase(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eHit].AllThisState.Add(new CHitStateEnemyBase(this));
+
+
+        //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));
+        //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateBase(this));
+
+        //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
     }
 
     protected override void CreateMemoryShare()
@@ -35,6 +42,8 @@ public abstract class CEnemyBase : CActor
         m_MyMemoryShare = m_MyEnemyBaseMemoryShare;
 
         m_MyEnemyBaseMemoryShare.m_MyEnemyBase = this;
+
+       // this.transform.FindChild();
 
         base.CreateMemoryShare();
     }

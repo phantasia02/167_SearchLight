@@ -53,6 +53,6 @@ public class CMoveStatePlayer : CPlayerStateBase
     }
     public override void MouseUp()
     {
-        m_MyPlayerMemoryShare.m_MyPlayer.ChangState = StaticGlobalDel.EMovableState.eWait;
+        m_MyPlayerMemoryShare.m_MyPlayer.SetChangState(StaticGlobalDel.EMovableState.eWait);
     }
 }

@@ -11,7 +11,7 @@ public abstract class CMovableStatePototype
     protected CGameManager m_MyGameManager = null;
     protected CMemoryShareBase m_MyMemoryShare = null;
 
-
+    public virtual int Priority => 0;
     abstract public StaticGlobalDel.EMovableState StateType();
     protected float m_StateTime = 0.0f;
     protected float m_StateUnscaledTime = 0.0f;

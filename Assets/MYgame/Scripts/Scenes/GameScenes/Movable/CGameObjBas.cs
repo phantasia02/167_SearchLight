@@ -5,6 +5,7 @@ using UnityEngine;
 public class CGameObjBasListData
 {
     public List<CGameObjBas> m_GameObjBasListData = new List<CGameObjBas>();
+    public Hashtable m_GameObjBasHashtable = new Hashtable();
 }
 
 public abstract class CGameObjBas : MonoBehaviour
