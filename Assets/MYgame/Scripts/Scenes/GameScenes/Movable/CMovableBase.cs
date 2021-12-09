@@ -96,7 +96,7 @@ public abstract class CMovableBase : CGameObjBas
     //    get { return m_ChangStateinndex; }
     //}
 
-    public void SetChangState(StaticGlobalDel.EMovableState state, int changindex = -1)
+    public virtual void SetChangState(StaticGlobalDel.EMovableState state, int changindex = -1)
     {
         if (LockChangState != StaticGlobalDel.EMovableState.eMax && LockChangState != state)
             return;

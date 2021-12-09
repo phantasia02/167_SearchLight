@@ -39,6 +39,7 @@ public class CMoveStatePlayer : CPlayerStateBase
         m_MyPlayerMemoryShare.m_PlayCtrlLight.position = lTempposition;
 
         m_MyPlayerMemoryShare.m_MyPlayer.UpdateSearchLightDir();
+        CheckIrradiateEnemy();
     }
 
     protected override void OutState()

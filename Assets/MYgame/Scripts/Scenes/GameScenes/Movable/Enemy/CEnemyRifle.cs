@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CEnemyRifle : CEnemyBase
 {
-    public override EActorType MyActorType() { return EActorType.eEnemyRifle; }
+    public override EEnemyType MyEnemyType() { return EEnemyType.eEnemyRifle; }
 
     protected override void AddInitState()
     {
-   
+        base.AddInitState();
     }
 
 }

@@ -48,8 +48,16 @@ public class CGameManager : MonoBehaviour
     // ==================== All ObjData  ===========================================
 
     protected CGameObjBasListData[]     m_AllGameObjBas     = new CGameObjBasListData[(int)CGameObjBas.EObjType.eMax];
+    public CGameObjBasListData GetTypeGameObjBaseListData(CGameObjBas.EObjType type) { return m_AllGameObjBas[(int)type]; }
+
     protected CMovableBaseListData[]    m_AllMovableBase    = new CMovableBaseListData[(int)CMovableBase.EMovableType.eMax];
+    public CMovableBaseListData GetTypeMovableBaseListData(CMovableBase.EMovableType type) { return m_AllMovableBase[(int)type]; }
+
     protected CActorBaseListData[]      m_AllActorBase      = new CActorBaseListData[(int)CActor.EActorType.eMax];
+    public CActorBaseListData GetTypeActorBaseListData(CActor.EActorType type) { return m_AllActorBase[(int)type]; }
+
+    protected CEnemyBaseListData[] m_AllEnemyBase = new CEnemyBaseListData[(int)CEnemyBase.EEnemyType.eMax];
+    public CEnemyBaseListData GetTypeEnemyBaseListData(CEnemyBase.EEnemyType type) { return m_AllEnemyBase[(int)type]; }
 
     // ==================== All ObjData ===========================================
 
@@ -96,6 +104,9 @@ public class CGameManager : MonoBehaviour
 
         for (int i = 0; i < m_AllActorBase.Length; i++)
             m_AllActorBase[i] = new CActorBaseListData();
+
+        for (int i = 0; i < m_AllEnemyBase.Length; i++)
+            m_AllEnemyBase[i] = new CEnemyBaseListData();
     }
 
     // Start is called before the first frame update
@@ -308,6 +319,8 @@ public class CGameManager : MonoBehaviour
         SetState(EState.eGameOver);
     }
 
+    // ==================== All ObjData  ===========================================
+
     public void AddGameObjBasListData(CGameObjBas addGameObjBas)
     {
         if (isApplicationQuitting)
@@ -346,7 +359,6 @@ public class CGameManager : MonoBehaviour
             return;
 
         int lTempTypeIndex = (int)addMovableBase.MyMovableType();
-        //addMovableBase.MovableBasIndex = m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData.Count;
         m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData.Add(addMovableBase);
     }
 
@@ -360,10 +372,7 @@ public class CGameManager : MonoBehaviour
 
         int lTempTypeIndex = (int)removeMovableBase.ObjType();
         List<CMovableBase> lTempMovableBaseList = m_AllMovableBase[lTempTypeIndex].m_MovableBaseListData;
-
         lTempMovableBaseList.Remove(removeMovableBase);
-        //for (int i = 0; i < lTempMovableBaseList.Count; i++)
-        //    lTempMovableBaseList[i].MovableBasIndex = i;
     }
 
     public void AddActorBaseListData(CActor addActorBase)
@@ -372,7 +381,6 @@ public class CGameManager : MonoBehaviour
             return;
 
         int lTempTypeIndex = (int)addActorBase.MyActorType();
-        //addActorBase.ActorBasIndex = m_AllActorBase[lTempTypeIndex].m_ActorBaseListData.Count;
         m_AllActorBase[lTempTypeIndex].m_ActorBaseListData.Add(addActorBase);
     }
 
@@ -386,9 +394,30 @@ public class CGameManager : MonoBehaviour
 
         int lTempTypeIndex = (int)removeActorBase.MyActorType();
         List<CActor> lTempActorBaseList = m_AllActorBase[lTempTypeIndex].m_ActorBaseListData;
-
         lTempActorBaseList.Remove(removeActorBase);
-        //for (int i = 0; i < lTempActorBaseList.Count; i++)
-        //    lTempActorBaseList[i].ActorBasIndex = i;
     }
+
+    public void AddEnemyBaseListData(CEnemyBase addEnemyBase)
+    {
+        if (addEnemyBase == null)
+            return;
+
+        int lTempTypeIndex = (int)addEnemyBase.MyEnemyType();
+        m_AllEnemyBase[lTempTypeIndex].m_EnemyBaseListData.Add(addEnemyBase);
+    }
+
+    public void RemoveEnemyBaseListData(CEnemyBase removeEnemyBase)
+    {
+        if (isApplicationQuitting)
+            return;
+
+        if (removeEnemyBase == null)
+            return;
+
+        int lTempTypeIndex = (int)removeEnemyBase.MyEnemyType();
+        List<CEnemyBase> lTempEnemyBaseList = m_AllEnemyBase[lTempTypeIndex].m_EnemyBaseListData;
+        lTempEnemyBaseList.Remove(removeEnemyBase);
+    }
+
+    // ==================== All ObjData  ===========================================
 }

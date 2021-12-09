@@ -13,7 +13,9 @@ public class CSurprisStateEnemyBase : CEnemyStateBase
 
     protected override void InState()
     {
+        m_MyEnemyBaseMemoryShare.m_WasFound = true;
 
+        m_MyEnemyBaseMemoryShare.m_AllEmoticons[0].gameObject.SetActive(true);
     }
 
     protected override void updataState()

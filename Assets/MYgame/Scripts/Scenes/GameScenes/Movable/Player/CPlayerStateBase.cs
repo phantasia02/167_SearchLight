@@ -30,5 +30,22 @@ public abstract class CPlayerStateBase : CStateActor
         }
     }
 
+    public void CheckIrradiateEnemy()
+    {
+        //List<CActor>
+        CActorBaseListData lTempActorBaseListData = m_MyGameManager.GetTypeActorBaseListData(CActor.EActorType.eEnemy);
+        Vector3 lTempPlayCtrlLightToEnemyV3 = Vector3.zero;
+        CEnemyBase lTempEnemyBase = null;
 
+        for (int i = 0; i < lTempActorBaseListData.m_ActorBaseListData.Count; i++)
+        {
+            lTempEnemyBase = (CEnemyBase)lTempActorBaseListData.m_ActorBaseListData[i];
+            lTempPlayCtrlLightToEnemyV3 = m_MyPlayerMemoryShare.m_PlayCtrlLight.position - lTempEnemyBase.transform.position;
+            lTempPlayCtrlLightToEnemyV3.y = 0.0f;
+            if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 1.0f)
+                lTempEnemyBase.SetChangState(StaticGlobalDel.EMovableState.eHit);
+
+        }
+
+    }
 }
