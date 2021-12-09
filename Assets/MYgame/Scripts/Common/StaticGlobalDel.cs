@@ -13,23 +13,6 @@ public static class StaticGlobalDel
         eMax
     }
 
-
-    public enum EMovableState
-    {
-        eNull           = 0,
-        eWait           = 1,
-        eDrag           = 2,
-        eMove           = 3,
-        eAtk            = 4,
-        eJump           = 5,
-        eJumpDown       = 6,
-        eHit            = 7,
-        eWin            = 8,
-        eDeath          = 9,
-        eFinish         = 10,
-        eMax
-    }
-
     public enum ELayerIndex
     {
         eFloor              = 6,

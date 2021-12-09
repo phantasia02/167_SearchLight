@@ -7,7 +7,7 @@ using UnityEngine;
 public class CMoveStateBase : CMovableStatePototype
 {
 
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eMove; }
+    public override EMovableState StateType() { return EMovableState.eMove; }
 
     public CMoveStateBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

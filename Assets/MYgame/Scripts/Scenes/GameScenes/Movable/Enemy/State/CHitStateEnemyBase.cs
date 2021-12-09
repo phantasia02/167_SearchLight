@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CHitStateEnemyBase : CEnemyStateBase
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eHit; }
+    public override EMovableState StateType() { return EMovableState.eHit; }
 
     public CHitStateEnemyBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CWaitStateBase : CMovableStatePototype
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eWait; }
+    public override EMovableState StateType() { return EMovableState.eWait; }
 
     public CWaitStateBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

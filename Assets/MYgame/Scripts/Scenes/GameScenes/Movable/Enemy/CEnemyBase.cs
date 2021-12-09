@@ -28,9 +28,9 @@ public abstract class CEnemyBase : CActor
     protected CEnemyBaseMemoryShare m_MyEnemyBaseMemoryShare = null;
     public bool WasFound {get => m_MyEnemyBaseMemoryShare.m_WasFound;}
 
-    public override void SetChangState(StaticGlobalDel.EMovableState state, int changindex = -1)
+    public override void SetChangState(CMovableStatePototype.EMovableState state, int changindex = -1)
     {
-        if (state == StaticGlobalDel.EMovableState.eHit && WasFound)
+        if (state == CMovableStatePototype.EMovableState.eHit && WasFound)
             return;
 
         base.SetChangState(state, changindex);
@@ -46,10 +46,10 @@ public abstract class CEnemyBase : CActor
 
     protected override void AddInitState()
     {
-        m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStateEnemyBase(this));
+        m_AllState[(int)CMovableStatePototype.EMovableState.eWait].AllThisState.Add(new CWaitStateEnemyBase(this));
 
-        m_AllState[(int)StaticGlobalDel.EMovableState.eHit].AllThisState.Add(new CSurprisStateEnemyBase(this));
-        m_AllState[(int)StaticGlobalDel.EMovableState.eHit].AllThisState.Add(new CHitStateEnemyBase(this));
+        m_AllState[(int)CMovableStatePototype.EMovableState.eHit].AllThisState.Add(new CSurprisStateEnemyBase(this));
+        m_AllState[(int)CMovableStatePototype.EMovableState.eHit].AllThisState.Add(new CHitStateEnemyBase(this));
 
 
         //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));

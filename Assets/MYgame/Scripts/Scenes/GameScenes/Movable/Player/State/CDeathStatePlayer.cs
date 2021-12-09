@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CDeathStatePlayer : CPlayerStateBase
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eDeath; }
+    public override EMovableState StateType() { return EMovableState.eDeath; }
 
     public CDeathStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

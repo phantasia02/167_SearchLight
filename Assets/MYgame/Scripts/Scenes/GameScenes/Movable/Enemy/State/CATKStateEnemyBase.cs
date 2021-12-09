@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CATKStateEnemyBase : CEnemyStateBase
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eAtk; }
+    public override EMovableState StateType() { return EMovableState.eAtk; }
 
     public CATKStateEnemyBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

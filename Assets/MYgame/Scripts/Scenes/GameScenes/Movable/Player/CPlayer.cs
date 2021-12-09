@@ -71,14 +71,14 @@ public class CPlayer : CActor
 
     protected override void AddInitState()
     {
-        m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
-        m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStatePlayer(this));
+        m_AllState[(int)CMovableStatePototype.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
+        m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CMoveStatePlayer(this));
 
         
-        m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));
-        m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateBase(this));
+        m_AllState[(int)CMovableStatePototype.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));
+        m_AllState[(int)CMovableStatePototype.EMovableState.eDeath].AllThisState.Add(new CDeathStateBase(this));
 
-        m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
+        m_AllState[(int)CMovableStatePototype.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
     }
 
     protected override void CreateMemoryShare()
@@ -107,7 +107,7 @@ public class CPlayer : CActor
     protected override void Start()
     {
         base.Start();
-        SetCurState(StaticGlobalDel.EMovableState.eWait);
+        SetCurState(CMovableStatePototype.EMovableState.eWait);
 
         //UpdateAnimationVal().Subscribe(_ => {
         //    UpdateAnimationChangVal();
@@ -161,7 +161,7 @@ public class CPlayer : CActor
         //}
 
         DataState lTempDataState = m_AllState[(int)CurState];
-        if (m_CurState != StaticGlobalDel.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
+        if (m_CurState != CMovableStatePototype.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
             lTempDataState.AllThisState[lTempDataState.index].MouseDown();
 
         m_MyPlayerMemoryShare.m_bDown = true;
@@ -176,7 +176,7 @@ public class CPlayer : CActor
             return;
 
         DataState lTempDataState = m_AllState[(int)CurState];
-        if (m_CurState != StaticGlobalDel.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
+        if (m_CurState != CMovableStatePototype.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
             lTempDataState.AllThisState[lTempDataState.index].MouseDrag();
 
         m_MyPlayerMemoryShare.m_OldMouseDownPos = Input.mousePosition;
@@ -187,7 +187,7 @@ public class CPlayer : CActor
         if (m_MyPlayerMemoryShare.m_bDown)
         {
             DataState lTempDataState = m_AllState[(int)CurState];
-            if (m_CurState != StaticGlobalDel.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
+            if (m_CurState != CMovableStatePototype.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
                 lTempDataState.AllThisState[lTempDataState.index].MouseUp();
 
             m_MyPlayerMemoryShare.m_bDown = false;
@@ -224,7 +224,7 @@ public class CPlayer : CActor
         //  float lTempScreenDragProportion = lTempMouseDrag.magnitude / m_MinScreenSize;
         //if (lTempScreenDragProportion >= 0.01f)
         // {
-        SetChangState(StaticGlobalDel.EMovableState.eMove);
+        SetChangState(CMovableStatePototype.EMovableState.eMove);
         m_OldMouseDragDir += lTempMouseDrag * 5.0f;
         m_OldMouseDragDir.y = 0.0f;
 

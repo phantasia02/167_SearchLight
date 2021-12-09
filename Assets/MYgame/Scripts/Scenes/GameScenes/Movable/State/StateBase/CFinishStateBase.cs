@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CFinishStateBase : CMovableStatePototype
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eFinish; }
+    public override EMovableState StateType() { return EMovableState.eFinish; }
 
     public CFinishStateBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

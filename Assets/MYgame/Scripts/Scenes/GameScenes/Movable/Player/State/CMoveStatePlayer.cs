@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CMoveStatePlayer : CPlayerStateBase
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eMove; }
+    public override EMovableState StateType() { return EMovableState.eMove; }
 
     public CMoveStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -54,6 +54,6 @@ public class CMoveStatePlayer : CPlayerStateBase
     }
     public override void MouseUp()
     {
-        m_MyPlayerMemoryShare.m_MyPlayer.SetChangState(StaticGlobalDel.EMovableState.eWait);
+        m_MyPlayerMemoryShare.m_MyPlayer.SetChangState(EMovableState.eWait);
     }
 }

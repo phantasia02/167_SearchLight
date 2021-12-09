@@ -7,7 +7,7 @@ public class CWinStatePlayer : CPlayerStateBase
 {
     static readonly int EmissionColor = Shader.PropertyToID("_BaseColor");
 
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eWin; }
+    public override EMovableState StateType() { return EMovableState.eWin; }
 
     public CWinStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

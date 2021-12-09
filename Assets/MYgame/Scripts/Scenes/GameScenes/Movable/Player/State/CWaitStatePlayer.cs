@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CWaitStatePlayer : CPlayerStateBase
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eWait; }
+    public override EMovableState StateType() { return EMovableState.eWait; }
 
     public CWaitStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -30,7 +30,7 @@ public class CWaitStatePlayer : CPlayerStateBase
     public override void MouseDrag()
     {
         m_MyPlayerMemoryShare.m_MyPlayer.UpdateDrag();
-        m_MyPlayerMemoryShare.m_MyMovable.SetChangState(StaticGlobalDel.EMovableState.eMove); 
+        m_MyPlayerMemoryShare.m_MyMovable.SetChangState(EMovableState.eMove); 
     }
 
 }

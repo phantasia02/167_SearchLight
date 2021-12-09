@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class CSurprisStateEnemyBase : CEnemyStateBase
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eHit; }
+    public override EMovableState StateType() { return EMovableState.eHit; }
 
     public CSurprisStateEnemyBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

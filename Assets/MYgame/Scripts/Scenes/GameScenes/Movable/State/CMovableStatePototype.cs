@@ -6,13 +6,28 @@ public abstract class CMovableStateData{}
 
 public abstract class CMovableStatePototype
 {
+    public enum EMovableState
+    {
+        eNull       = 0,
+        eWait       = 1,
+        eDrag       = 2,
+        eMove       = 3,
+        eAtk        = 4,
+        eJump       = 5,
+        eJumpDown   = 6,
+        eHit        = 7,
+        eWin        = 8,
+        eDeath      = 9,
+        eFinish     = 10,
+        eMax
+    }
 
     protected CMovableBase m_MyMovable = null;
     protected CGameManager m_MyGameManager = null;
     protected CMemoryShareBase m_MyMemoryShare = null;
 
     public virtual int Priority => 0;
-    abstract public StaticGlobalDel.EMovableState StateType();
+    abstract public EMovableState StateType();
     protected float m_StateTime = 0.0f;
     protected float m_StateUnscaledTime = 0.0f;
     protected int m_StateCount = 0;

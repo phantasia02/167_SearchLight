@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CDragStateBase : CMovableStatePototype
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eDrag; }
+    public override EMovableState StateType() { return EMovableState.eDrag; }
 
     public CDragStateBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

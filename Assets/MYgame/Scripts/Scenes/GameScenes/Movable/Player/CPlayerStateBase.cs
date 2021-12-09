@@ -43,7 +43,7 @@ public abstract class CPlayerStateBase : CStateActor
             lTempPlayCtrlLightToEnemyV3 = m_MyPlayerMemoryShare.m_PlayCtrlLight.position - lTempEnemyBase.transform.position;
             lTempPlayCtrlLightToEnemyV3.y = 0.0f;
             if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 1.0f)
-                lTempEnemyBase.SetChangState(StaticGlobalDel.EMovableState.eHit);
+                lTempEnemyBase.SetChangState(EMovableState.eHit);
 
         }
 

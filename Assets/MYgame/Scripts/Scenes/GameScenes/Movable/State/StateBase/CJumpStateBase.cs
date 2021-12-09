@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CJumpStateBase : CMovableStatePototype
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eJump; }
+    public override EMovableState StateType() { return EMovableState.eJump; }
 
     public CJumpStateBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

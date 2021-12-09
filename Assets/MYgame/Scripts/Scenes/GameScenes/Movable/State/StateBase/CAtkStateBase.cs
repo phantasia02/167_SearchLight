@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CAtkStateBase : CMovableStatePototype
 {
-    public override StaticGlobalDel.EMovableState StateType() { return StaticGlobalDel.EMovableState.eAtk; }
+    public override EMovableState StateType() { return EMovableState.eAtk; }
 
     public CAtkStateBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
