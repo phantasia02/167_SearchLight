@@ -135,7 +135,10 @@ public abstract class CMovableBase : CGameObjBas
         get { return m_SameStatusUpdate; }
     }
 
-    //protected DataState[] m_AllState = new DataState[(int)StaticGlobalDel.EMovableState.eMax];
+    protected List<CMovableBuffPototype> m_CurAllBuff = new List<CMovableBuffPototype>();
+
+    protected DelCreateBuff[] m_NullDelCreateFunc = new DelCreateBuff[(int)CMovableBuffPototype.EMovableBuff.eMax];
+    protected DelCreateBuff[] m_AllCreateList = new DelCreateBuff[(int)CMovableBuffPototype.EMovableBuff.eMax];
 
     // ==================== SerializeField ===========================================
 
@@ -167,6 +170,8 @@ public abstract class CMovableBase : CGameObjBas
 
     protected override void Awake()
     {
+        m_NullDelCreateFunc[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => { return new CSurprisBuffBase(this); };
+
         base.Awake();
 
         if (AutoAwake())
@@ -194,6 +199,9 @@ public abstract class CMovableBase : CGameObjBas
         m_MyMemoryShare = new CMemoryShareBase();
 
         SetBaseMemoryShare();
+
+        //for (int i = 0; i < )
+        //new CSurprisBuffBase(this)
     }
 
     protected virtual void AddInitState()
@@ -257,10 +265,19 @@ public abstract class CMovableBase : CGameObjBas
         m_MyMemoryShare.m_AllState = m_AllState;
     }
 
+    
+
     protected void AwakeOK()
     {
         AwakeEndSetNullState();
+
+        for (int i = 0; i < m_AllCreateList.Length; i++)
+        {
+            if (m_AllCreateList[i] == null)
+                m_AllCreateList[i] = m_NullDelCreateFunc[i];
+        }
     }
+
 
     // Start is called before the first frame update
     protected override void Start()
@@ -295,6 +312,9 @@ public abstract class CMovableBase : CGameObjBas
         if (m_CurState != CMovableStatePototype.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
         {
             lTempDataState.AllThisState[lTempDataState.index].updataMovableState();
+
+            foreach (CMovableBuffPototype CAB in m_CurAllBuff)
+                CAB.updataMovableState();
         }
 
         ChangStateFunc();
@@ -408,6 +428,30 @@ public abstract class CMovableBase : CGameObjBas
                 lTempDataState.AllThisState[lTempDataState.index].updataMovableState();
         }
     }
+
+    public virtual void AddBuff(CMovableBuffPototype.EMovableBuff pamAddBuff)
+    {
+        foreach (CMovableBuffPototype CAB in m_CurAllBuff)
+        {
+            if (CAB.BuffType() == pamAddBuff)
+                return;
+        }
+
+        CMovableBuffPototype lTempCreaterBuff = m_AllCreateList[(int)pamAddBuff]();
+        lTempCreaterBuff.InMovableState();
+
+        m_CurAllBuff.Add(lTempCreaterBuff);
+    }
+
+    public virtual void RemoveBuff(CMovableBuffPototype pamremoveBuff)
+    {
+        bool lTempRemoveOK = m_CurAllBuff.Remove(pamremoveBuff);
+        if (!lTempRemoveOK)
+            return;
+
+        pamremoveBuff.RemoveMovableBuff();
+    }
+    
 
     public void DestroyThis()
     {

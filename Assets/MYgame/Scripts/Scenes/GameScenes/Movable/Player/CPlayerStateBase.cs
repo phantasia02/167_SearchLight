@@ -42,8 +42,11 @@ public abstract class CPlayerStateBase : CStateActor
             lTempEnemyBase = (CEnemyBase)lTempActorBaseListData.m_ActorBaseListData[i];
             lTempPlayCtrlLightToEnemyV3 = m_MyPlayerMemoryShare.m_PlayCtrlLight.position - lTempEnemyBase.transform.position;
             lTempPlayCtrlLightToEnemyV3.y = 0.0f;
+            //if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 1.0f)
+            //    lTempEnemyBase.SetChangState(EMovableState.eHit);
+
             if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 1.0f)
-                lTempEnemyBase.SetChangState(EMovableState.eHit);
+                lTempEnemyBase.AddBuff( CMovableBuffPototype.EMovableBuff.eSurpris);
 
         }
 
