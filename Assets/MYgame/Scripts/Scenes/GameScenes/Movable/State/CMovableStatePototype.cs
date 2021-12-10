@@ -28,6 +28,7 @@ public abstract class CMovableStatePototype
 
     public virtual int Priority => 0;
     abstract public EMovableState StateType();
+
     protected float m_StateTime = 0.0f;
     protected float m_StateUnscaledTime = 0.0f;
     protected int m_StateCount = 0;
