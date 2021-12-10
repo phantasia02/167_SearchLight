@@ -313,8 +313,8 @@ public abstract class CMovableBase : CGameObjBas
         {
             lTempDataState.AllThisState[lTempDataState.index].updataMovableState();
 
-            foreach (CMovableBuffPototype CAB in m_CurAllBuff)
-                CAB.updataMovableState();
+            for (int i = 0; i < m_CurAllBuff.Count; i++)
+                m_CurAllBuff[i].updataMovableState();
         }
 
         ChangStateFunc();
@@ -438,8 +438,10 @@ public abstract class CMovableBase : CGameObjBas
         }
 
         CMovableBuffPototype lTempCreaterBuff = m_AllCreateList[(int)pamAddBuff]();
-        lTempCreaterBuff.InMovableState();
+        if (lTempCreaterBuff == null)
+            return;
 
+        lTempCreaterBuff.InMovableState();
         m_CurAllBuff.Add(lTempCreaterBuff);
     }
 

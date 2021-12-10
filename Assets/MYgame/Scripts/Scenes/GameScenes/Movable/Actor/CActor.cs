@@ -76,6 +76,7 @@ public abstract class CActor : CMovableBase
     {
         m_MyActorMemoryShare = (CActorMemoryShare)m_MyMemoryShare;
         m_MyActorMemoryShare.m_AllObj = m_AllObj;
+        m_MyActorMemoryShare.m_MyActor = this;
 
         SetBaseMemoryShare();
 

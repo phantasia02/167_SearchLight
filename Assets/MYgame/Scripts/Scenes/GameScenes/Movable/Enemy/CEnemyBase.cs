@@ -57,7 +57,13 @@ public abstract class CEnemyBase : CActor
         //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateBase(this));
 
         //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
-        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => { return new CEnemySurprisBuff(this); };
+        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => 
+        {
+            if (m_MyEnemyBaseMemoryShare.m_WasFound)
+                return null;
+
+            return new CEnemySurprisBuff(this);
+        };
     }
 
     protected override void CreateMemoryShare()
