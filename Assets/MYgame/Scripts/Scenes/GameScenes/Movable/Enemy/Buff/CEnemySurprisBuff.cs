@@ -6,8 +6,8 @@ using DG.Tweening;
 public class CEnemySurprisBuff : CEnemyBuffBase
 {
     public override EMovableBuff BuffType() { return EMovableBuff.eSurpris; }
-    public const float m_EndTime = 0.5f;
-    public const float m_SizeScale = 1.5f;
+
+    public Animator m_SurprisAnimator = null;
 
     public CEnemySurprisBuff(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -19,20 +19,20 @@ public class CEnemySurprisBuff : CEnemyBuffBase
         m_MyEnemyBaseMemoryShare.m_WasFound = true;
         m_MyEnemyBaseMemoryShare.m_AllEmoticons[0].gameObject.SetActive(true);
 
-        RectTransform lTempRectTransform = m_MyEnemyBaseMemoryShare.m_AllEmoticons[0].rectTransform;
-        lTempRectTransform.localScale = new Vector3(m_SizeScale, 0.0f, m_SizeScale);
-        lTempRectTransform.DOScale(Vector3.one * m_SizeScale, m_EndTime).SetEase(Ease.OutBounce);
-        lTempRectTransform.DOJump(m_MyEnemyBaseMemoryShare.m_AllEmoticons[0].gameObject.transform.position, 1.0f, 1, m_EndTime);
+        m_SurprisAnimator = m_MyEnemyBaseMemoryShare.m_AllEmoticons[0].gameObject.GetComponent<Animator>();
+        m_SurprisAnimator.enabled = true;
     }
 
     protected override void updataState()
     {
-        if (MomentinTime(m_EndTime + 1.0f))
+        if (MomentinTime(1.5f))
             m_MyEnemyBaseMemoryShare.m_MyActor.RemoveBuff(this);
     }
 
     protected override void RemoveBuff()
     {
+        m_SurprisAnimator.Rebind();
+        m_SurprisAnimator.enabled = false;
         m_MyEnemyBaseMemoryShare.m_AllEmoticons[0].gameObject.SetActive(false);
     }
 }
