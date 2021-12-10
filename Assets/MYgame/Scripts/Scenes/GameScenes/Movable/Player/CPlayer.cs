@@ -28,10 +28,18 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public GameObject                       m_SearchlightRLObj          = null;
     public GameObject                       m_SearchlightTDObj          = null;
     public Transform                        m_PlayCtrlLight             = null;
+    public Transform[]                      m_RLFort                    = new Transform[(int)CPlayer.EFortRL.EMax];
 };
 
 public class CPlayer : CActor
 {
+    public enum EFortRL
+    {
+        ERFort = 0,
+        ELFort = 1,
+        EMax
+    }
+
     public const float CsLightDisMaxX               = 4.0f;
     public const float CsLightDisMaxZ               = 11.0f;
     public const float CsLightDisMinZ               = -3.0f;
@@ -56,13 +64,11 @@ public class CPlayer : CActor
     [SerializeField] protected GameObject   m_SearchlightTDObj  = null;
     [SerializeField] protected Transform    m_LightTDObj        = null;
     [SerializeField] protected Transform    m_PlayCtrlLight     = null;
+    [SerializeField] protected Transform[]  m_RLFort            = null;
     public Transform PlayCtrlLight{get { return m_MyPlayerMemoryShare.m_PlayCtrlLight; }}
     // ==================== SerializeField ===========================================
 
     public override float DefSpeed { get { return 5.0f; } }
-
-
-
 
     protected Vector3 m_OldMouseDragDir = Vector3.zero;
 
@@ -86,12 +92,13 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare = new CPlayerMemoryShare();
         m_MyMemoryShare = m_MyPlayerMemoryShare;
 
-        m_MyPlayerMemoryShare.m_MyPlayer                    = this;
-        m_MyPlayerMemoryShare.m_CollisionBox                = m_CollisionBox;
-        m_MyPlayerMemoryShare.m_TagBox                      = m_TagBox;
-        m_MyPlayerMemoryShare.m_SearchlightRLObj            = m_SearchlightRLObj;
-        m_MyPlayerMemoryShare.m_SearchlightTDObj            = m_SearchlightTDObj;
-        m_MyPlayerMemoryShare.m_PlayCtrlLight               = m_PlayCtrlLight;
+        m_MyPlayerMemoryShare.m_MyPlayer               = this;
+        m_MyPlayerMemoryShare.m_CollisionBox           = m_CollisionBox;
+        m_MyPlayerMemoryShare.m_TagBox                 = m_TagBox;
+        m_MyPlayerMemoryShare.m_SearchlightRLObj       = m_SearchlightRLObj;
+        m_MyPlayerMemoryShare.m_SearchlightTDObj       = m_SearchlightTDObj;
+        m_MyPlayerMemoryShare.m_PlayCtrlLight          = m_PlayCtrlLight;
+        m_MyPlayerMemoryShare.m_RLFort                 = m_RLFort;
 
         base.CreateMemoryShare();
 
