@@ -90,5 +90,8 @@ public abstract class CEnemyBase : CActor
 
         foreach (CPlayerLightShowMesh CPLSM in m_MyEnemyBaseMemoryShare.m_AllPlayerLightShowMesh)
             CPLSM.PlayerLight = m_MyGameManager.Player.PlayCtrlLight;
+
+        this.SetChangState(CMovableStatePototype.EMovableState.eWait);
     }
+
 }
