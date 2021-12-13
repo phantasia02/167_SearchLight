@@ -16,6 +16,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
     public enum EOtherObj
     {
         eBulletFlyObj       = 0,
+        eSpark              = 1,
         eMax,
     };
 

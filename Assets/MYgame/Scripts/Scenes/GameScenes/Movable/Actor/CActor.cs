@@ -84,7 +84,7 @@ public abstract class CActor : CMovableBase
         if (AnimatorStateCtl != null)
         {
             m_MyActorMemoryShare.m_MyActorCollider = AnimatorStateCtl.GetComponentsInChildren<Collider>(true);
-            m_MyActorMemoryShare.m_MyActorRigidbody = this.GetComponentsInChildren<Rigidbody>(true);
+            m_MyActorMemoryShare.m_MyActorRigidbody = AnimatorStateCtl.GetComponentsInChildren<Rigidbody>(true);
         }
 
         Transform lTempTag = this.transform.Find("Tag");

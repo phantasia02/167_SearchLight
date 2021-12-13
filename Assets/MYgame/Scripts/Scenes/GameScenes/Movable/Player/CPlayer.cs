@@ -279,11 +279,8 @@ public class CPlayer : CActor
             lTempRLForward.Normalize();
 
             Quaternion rot = Quaternion.LookRotation(lTempRLForward * -1.0f);
-            if (i == (int)EFortRL.ERFort)
-                rot *= Quaternion.Euler(-90.0f, 0.0f, 0.0f);
-            else
-                rot *= Quaternion.Euler(90.0f, 0.0f, 0.0f);
 
+            rot *= Quaternion.Euler(-90.0f, 0.0f, 0.0f);
             m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_Fort.rotation = rot;
         }
     }

@@ -67,6 +67,13 @@ public abstract class CPlayerStateBase : CStateActor
                     lTempBulletFlyObjTransform.position = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.position;
                     lTempBulletFlyObjTransform.forward = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.forward;
 
+
+                    Transform lTempSparkTransform = StaticGlobalDel.NewOtherObjAddParentShow(m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint, CGGameSceneData.EOtherObj.eSpark);
+                    lTempSparkTransform.parent = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint;
+                    lTempSparkTransform.localPosition = Vector3.zero;
+                    lTempSparkTransform.up = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.forward;
+                    lTempSparkTransform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+
                     CBulletFlyObj lTempBulletFlyObj = lTempBulletFlyObjTransform.GetComponent<CBulletFlyObj>();
                     lTempBulletFlyObj.Target = lTempEnemyBase.transform;
                     lTempBulletFlyObj.SetChangState(EMovableState.eMove);
