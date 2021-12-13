@@ -20,10 +20,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public Collider                         m_SwordeCollider            = null;
     public UniRx.ReactiveProperty<float>    m_AnimationVal              = new ReactiveProperty<float>(0.5f);
     public float                            m_AddSpeedSecond            = 5.0f;
-
-    public bool                             m_UpdateUI                  = false;
    // public UniRx.ReactiveProperty<int>      m_UpdateFeverScore          = new ReactiveProperty<int>(StaticGlobalDel.g_InitScoreFever);
-    public int                              m_EndIndex                  = 0;
 
     public GameObject                       m_CollisionBox              = null;
     public GameObject                       m_TagBox                    = null;
@@ -31,6 +28,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public GameObject                       m_SearchlightTDObj          = null;
     public Transform                        m_PlayCtrlLight             = null;
     public CPlayer.PlayerFortData[]         m_AllPlayerFortData         = new CPlayer.PlayerFortData[(int)CPlayer.EFortRL.EMax];
+   // public float                            m_LauncherSpeed             = 0.2f;
 };
 
 public class CPlayer : CActor

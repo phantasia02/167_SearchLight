@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public abstract class CPlayerStateBase : CStateActor
 {
@@ -53,20 +54,36 @@ public abstract class CPlayerStateBase : CStateActor
             }
         }
 
-        if (lTempCheckIrradiateEnemy)
+        if (lTempCheckIrradiateEnemy && !lTempEnemyBase.WasFound)
         {
             lTempEnemyBase.AddBuff(CMovableBuffPototype.EMovableBuff.eSurpris);
-            for (int i = 0; i < m_MyPlayerMemoryShare.m_AllPlayerFortData.Length; i++)
-            {
-                Transform lTempBulletFlyObjTransform = StaticGlobalDel.NewOtherObjAddParentShow(m_MyMemoryShare.m_MyMovable.transform, CGGameSceneData.EOtherObj.eBulletFlyObj);
-                lTempBulletFlyObjTransform.parent = m_MyGameManager.AllBulletParent;
-                lTempBulletFlyObjTransform.position = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.position;
-                lTempBulletFlyObjTransform.forward = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.forward;
 
-                CBulletFlyObj lTempBulletFlyObj = lTempBulletFlyObjTransform.GetComponent<CBulletFlyObj>();
-                lTempBulletFlyObj.Target = lTempEnemyBase.transform;
-                lTempBulletFlyObj.SetChangState(EMovableState.eMove);
+            void Launcher()
+            {
+                for (int i = 0; i < m_MyPlayerMemoryShare.m_AllPlayerFortData.Length; i++)
+                {
+                    Transform lTempBulletFlyObjTransform = StaticGlobalDel.NewOtherObjAddParentShow(m_MyMemoryShare.m_MyMovable.transform, CGGameSceneData.EOtherObj.eBulletFlyObj);
+                    lTempBulletFlyObjTransform.parent = m_MyGameManager.AllBulletParent;
+                    lTempBulletFlyObjTransform.position = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.position;
+                    lTempBulletFlyObjTransform.forward = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.forward;
+
+                    CBulletFlyObj lTempBulletFlyObj = lTempBulletFlyObjTransform.GetComponent<CBulletFlyObj>();
+                    lTempBulletFlyObj.Target = lTempEnemyBase.transform;
+                    lTempBulletFlyObj.SetChangState(EMovableState.eMove);
+                }
             }
+
+
+            Sequence TempSequence = DOTween.Sequence();
+            TempSequence.AppendCallback(Launcher);
+            TempSequence.AppendInterval(0.2f);
+            TempSequence.AppendCallback(Launcher);
+            TempSequence.AppendInterval(0.2f);
+            TempSequence.AppendCallback(Launcher);
+            TempSequence.AppendInterval(0.2f);
+            TempSequence.AppendCallback(Launcher);
+            TempSequence.AppendInterval(0.2f);
+            TempSequence.AppendCallback(Launcher);
         }
 
     }

@@ -36,11 +36,8 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
 
     public override void OnTriggerEnter(Collider other)
     {
-
-        Debug.Log("TTTTTTTTTTaAAAAAAAAAAAAA 00000000000000000");
         if (other.tag == StaticGlobalDel.TagEnemy)
         {
-            Debug.Log("TTTTTTTTTTaAAAAAAAAAAAAA");
             GameObject.Destroy(m_MyBulletFlyObjMemoryShare.m_MyMovable);
         }
     }
