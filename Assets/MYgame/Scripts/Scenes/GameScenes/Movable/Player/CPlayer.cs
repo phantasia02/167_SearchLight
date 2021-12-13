@@ -267,6 +267,22 @@ public class CPlayer : CActor
         Vector3 lTemplocalScale = m_LightTDObj.localScale;
         lTemplocalScale.z = lTempDisRatioZ * CsLightScaleOverallRatioZ + CsLightScaleMinZ;
         m_LightTDObj.localScale = lTemplocalScale;
+
+
+        for (int i = 0; i < m_MyPlayerMemoryShare.m_RLFort.Length; i++)
+        {
+            lTempRLForward = m_MyPlayerMemoryShare.m_PlayCtrlLight.position - m_MyPlayerMemoryShare.m_RLFort[i].position;
+            lTempRLForward.y = 0.0f;
+            lTempRLForward.Normalize();
+
+            Quaternion rot = Quaternion.LookRotation(lTempRLForward * -1.0f);
+            if (i == (int)EFortRL.ERFort)
+                rot *= Quaternion.Euler(-90.0f, 0.0f, 0.0f);
+            else
+                rot *= Quaternion.Euler(90.0f, 0.0f, 0.0f);
+
+            m_MyPlayerMemoryShare.m_RLFort[i].rotation = rot;
+        }
     }
 
     // ===================== UniRx ======================
