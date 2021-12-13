@@ -15,8 +15,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
 
     public enum EOtherObj
     {
-        eNpcCharacter       = 0,
-        eFragments          = 1,
+        eBulletFlyObj       = 0,
         eMax,
     };
 

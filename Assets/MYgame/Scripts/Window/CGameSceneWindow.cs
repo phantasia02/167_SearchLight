@@ -54,11 +54,6 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
         CGameManager lTempGameManager = this.GetComponentInParent<CGameManager>();
         if (lTempGameManager == null)
             return;
-
-        CGGameSceneData lTempGameSceneData = CGGameSceneData.SharedInstance;
-        if (lTempGameSceneData == null)
-            return;
-
     }
 
     // Start is called before the first frame update

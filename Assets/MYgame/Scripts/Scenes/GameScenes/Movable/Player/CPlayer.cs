@@ -5,6 +5,8 @@ using Cinemachine;
 using DG.Tweening;
 using UniRx;
 
+
+
 public class CPlayerMemoryShare : CActorMemoryShare
 {
     public bool                             m_bDown                     = false;
@@ -28,7 +30,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public GameObject                       m_SearchlightRLObj          = null;
     public GameObject                       m_SearchlightTDObj          = null;
     public Transform                        m_PlayCtrlLight             = null;
-    public Transform[]                      m_RLFort                    = new Transform[(int)CPlayer.EFortRL.EMax];
+    public CPlayer.PlayerFortData[]         m_AllPlayerFortData         = new CPlayer.PlayerFortData[(int)CPlayer.EFortRL.EMax];
 };
 
 public class CPlayer : CActor
@@ -38,6 +40,13 @@ public class CPlayer : CActor
         ERFort = 0,
         ELFort = 1,
         EMax
+    }
+
+    [System.Serializable]
+    public class PlayerFortData
+    {
+        public Transform m_Fort = null;
+        public Transform m_LauncherPoint = null;
     }
 
     public const float CsLightDisMaxX               = 4.0f;
@@ -64,7 +73,7 @@ public class CPlayer : CActor
     [SerializeField] protected GameObject   m_SearchlightTDObj  = null;
     [SerializeField] protected Transform    m_LightTDObj        = null;
     [SerializeField] protected Transform    m_PlayCtrlLight     = null;
-    [SerializeField] protected Transform[]  m_RLFort            = null;
+    [SerializeField] protected PlayerFortData[]  m_RLFortData            = null;
     public Transform PlayCtrlLight{get { return m_MyPlayerMemoryShare.m_PlayCtrlLight; }}
     // ==================== SerializeField ===========================================
 
@@ -92,13 +101,14 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare = new CPlayerMemoryShare();
         m_MyMemoryShare = m_MyPlayerMemoryShare;
 
-        m_MyPlayerMemoryShare.m_MyPlayer               = this;
-        m_MyPlayerMemoryShare.m_CollisionBox           = m_CollisionBox;
-        m_MyPlayerMemoryShare.m_TagBox                 = m_TagBox;
-        m_MyPlayerMemoryShare.m_SearchlightRLObj       = m_SearchlightRLObj;
-        m_MyPlayerMemoryShare.m_SearchlightTDObj       = m_SearchlightTDObj;
-        m_MyPlayerMemoryShare.m_PlayCtrlLight          = m_PlayCtrlLight;
-        m_MyPlayerMemoryShare.m_RLFort                 = m_RLFort;
+        m_MyPlayerMemoryShare.m_MyPlayer                = this;
+        m_MyPlayerMemoryShare.m_CollisionBox            = m_CollisionBox;
+        m_MyPlayerMemoryShare.m_TagBox                  = m_TagBox;
+        m_MyPlayerMemoryShare.m_SearchlightRLObj        = m_SearchlightRLObj;
+        m_MyPlayerMemoryShare.m_SearchlightTDObj        = m_SearchlightTDObj;
+        m_MyPlayerMemoryShare.m_PlayCtrlLight           = m_PlayCtrlLight;
+        m_MyPlayerMemoryShare.m_AllPlayerFortData       = m_RLFortData;
+
 
         base.CreateMemoryShare();
 
@@ -202,11 +212,6 @@ public class CPlayer : CActor
         }
     }
 
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-    }
-
     public void GameOver()
     {
      //   float lTempResultPercent = 1.0f - (float)m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent;
@@ -269,9 +274,9 @@ public class CPlayer : CActor
         m_LightTDObj.localScale = lTemplocalScale;
 
 
-        for (int i = 0; i < m_MyPlayerMemoryShare.m_RLFort.Length; i++)
+        for (int i = 0; i < m_MyPlayerMemoryShare.m_AllPlayerFortData.Length; i++)
         {
-            lTempRLForward = m_MyPlayerMemoryShare.m_PlayCtrlLight.position - m_MyPlayerMemoryShare.m_RLFort[i].position;
+            lTempRLForward = m_MyPlayerMemoryShare.m_PlayCtrlLight.position - m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_Fort.position;
             lTempRLForward.y = 0.0f;
             lTempRLForward.Normalize();
 
@@ -281,7 +286,7 @@ public class CPlayer : CActor
             else
                 rot *= Quaternion.Euler(90.0f, 0.0f, 0.0f);
 
-            m_MyPlayerMemoryShare.m_RLFort[i].rotation = rot;
+            m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_Fort.rotation = rot;
         }
     }
 

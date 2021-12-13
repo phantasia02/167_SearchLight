@@ -36,6 +36,7 @@ public abstract class CPlayerStateBase : CStateActor
         CActorBaseListData lTempActorBaseListData = m_MyGameManager.GetTypeActorBaseListData(CActor.EActorType.eEnemy);
         Vector3 lTempPlayCtrlLightToEnemyV3 = Vector3.zero;
         CEnemyBase lTempEnemyBase = null;
+        bool lTempCheckIrradiateEnemy = false;
 
         for (int i = 0; i < lTempActorBaseListData.m_ActorBaseListData.Count; i++)
         {
@@ -46,8 +47,26 @@ public abstract class CPlayerStateBase : CStateActor
             //    lTempEnemyBase.SetChangState(EMovableState.eHit);
 
             if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 1.0f)
-                lTempEnemyBase.AddBuff( CMovableBuffPototype.EMovableBuff.eSurpris);
+            {
+                lTempCheckIrradiateEnemy = true;
+                break;
+            }
+        }
 
+        if (lTempCheckIrradiateEnemy)
+        {
+            lTempEnemyBase.AddBuff(CMovableBuffPototype.EMovableBuff.eSurpris);
+            for (int i = 0; i < m_MyPlayerMemoryShare.m_AllPlayerFortData.Length; i++)
+            {
+                Transform lTempBulletFlyObjTransform = StaticGlobalDel.NewOtherObjAddParentShow(m_MyMemoryShare.m_MyMovable.transform, CGGameSceneData.EOtherObj.eBulletFlyObj);
+                lTempBulletFlyObjTransform.parent = m_MyGameManager.AllBulletParent;
+                lTempBulletFlyObjTransform.position = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.position;
+                lTempBulletFlyObjTransform.forward = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.forward;
+
+                CBulletFlyObj lTempBulletFlyObj = lTempBulletFlyObjTransform.GetComponent<CBulletFlyObj>();
+                lTempBulletFlyObj.Target = lTempEnemyBase.transform;
+                lTempBulletFlyObj.SetChangState(EMovableState.eMove);
+            }
         }
 
     }

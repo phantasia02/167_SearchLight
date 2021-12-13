@@ -16,6 +16,7 @@ public class CActorMemoryShare : CMemoryShareBase
     public GameObject   m_AllObj            = null;
     public Rigidbody[]  m_MyActorRigidbody  = null;
     public Collider[]   m_MyActorCollider   = null;
+    public Collider[]   m_MyActorTag        = null;
     public bool         m_EnabledRagdoll    = false;
 };
 
@@ -83,9 +84,13 @@ public abstract class CActor : CMovableBase
         if (AnimatorStateCtl != null)
         {
             m_MyActorMemoryShare.m_MyActorCollider = AnimatorStateCtl.GetComponentsInChildren<Collider>(true);
-            m_MyActorMemoryShare.m_MyActorRigidbody = AnimatorStateCtl.GetComponentsInChildren<Rigidbody>(true);
+            m_MyActorMemoryShare.m_MyActorRigidbody = this.GetComponentsInChildren<Rigidbody>(true);
         }
-        EnabledRagdoll(false);
+
+        Transform lTempTag = this.transform.Find("Tag");
+        if (lTempTag != null)
+            m_MyActorMemoryShare.m_MyActorTag = lTempTag.GetComponentsInChildren<Collider>();
+
     }
 
 
@@ -116,6 +121,9 @@ public abstract class CActor : CMovableBase
             rb.isKinematic = !enabled;
 
         foreach (Collider cr in m_MyActorMemoryShare.m_MyActorCollider)
+            cr.enabled = enabled;
+
+        foreach (Collider cr in m_MyActorMemoryShare.m_MyActorTag)
             cr.enabled = enabled;
     }
 

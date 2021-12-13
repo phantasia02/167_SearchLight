@@ -40,11 +40,15 @@ public class CMoveStatePlayer : CPlayerStateBase
 
         m_MyPlayerMemoryShare.m_MyPlayer.UpdateSearchLightDir();
         CheckIrradiateEnemy();
+
+
     }
 
     protected override void OutState()
     {
+        //m_MyPlayerMemoryShare.m_MyMovable.
 
+       // StaticGlobalDel.NewOtherObjAddParentShow
     }
 
     public override void MouseDown() { }

@@ -49,7 +49,8 @@ public abstract class CMovableBase : CGameObjBas
 
     public enum EMovableType
     {
-        eActor             = 0,
+        eActor              = 0,
+        eBulletFlyObj       = 1,
         eMax
     };
 

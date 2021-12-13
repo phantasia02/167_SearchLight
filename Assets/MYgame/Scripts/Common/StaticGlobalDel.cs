@@ -40,17 +40,9 @@ public static class StaticGlobalDel
 
     public const string TagDoorPost             = "DoorPost";
     public const string TagFloor                = "Floor";
-    public const string TagPlayer               = "TagPlayer";
-    public const string TagNPC                  = "TagNPC";
-    public const string TagCar                  = "TagCar";
-    //public const string TagCarCollider          = "TagCarCollider";
-    //public const string TagPlayerRogueGroup     = "PlayerRogueGroupTag";
-    //public const string TagEndResult            = "EndResult";
-    //public const string TagPlayerRogue          = "TagPlayerRogue";
-    //public const string TagEnemy                = "TagEnemy";
-    //public const string TagShowEnemy            = "ShowEnemy";
-    //public const string TagTrafficLightGroup    = "TagTrafficLightGroup";
-    //public const string TagFloor                = "TagFloor";
+    public const string TagEnemy                = "Enemy";
+    public const string TagBullet               = "Bullet";
+
 
     public const int g_FloorMask                    = 1 << (int)ELayerIndex.eFloor;
     public const int g_NotLightObjMask              = 1 << (int)ELayerIndex.eNotLightObj;
@@ -84,6 +76,15 @@ public static class StaticGlobalDel
         lTempFx.transform.position = ParentTransform.position;
 
         return lTempFx.transform;
+    }
+
+    public static Transform NewOtherObjAddParentShow(this Transform ParentTransform, CGGameSceneData.EOtherObj OtherObjtype)
+    {
+        CGGameSceneData lTempGGameSceneData = CGGameSceneData.SharedInstance;
+        GameObject lTempOtherObj = GameObject.Instantiate(lTempGGameSceneData.m_AllOtherObj[(int)OtherObjtype], ParentTransform);
+        lTempOtherObj.transform.position = ParentTransform.position;
+
+        return lTempOtherObj.transform;
     }
 
     public static void SetMaterialRenderingMode(this Material material, RenderingMode renderingMode)

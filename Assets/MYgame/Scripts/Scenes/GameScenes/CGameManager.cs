@@ -32,17 +32,16 @@ public class CGameManager : MonoBehaviour
     protected CPlayer m_Player = null;
     public CPlayer Player { get { return m_Player; } }
     // ==================== SerializeField ===========================================
-    [SerializeField] protected CStageType m_StageTypeData = null;
-    public CStageType StageTypeData { get { return m_StageTypeData; } }
+    [SerializeField] protected CStageData m_MyStageData = null;
+    public CStageData MyStageData { get { return m_MyStageData; } }
 
     //[SerializeField] GameObject m_WinCamera = null;
     //public GameObject WinCamera { get { return m_WinCamera; } }
-
-    [SerializeField] protected int m_AnswerIndex = 0;
-    public int AnswerIndex { get { return m_AnswerIndex; } }
     [Header("Result OBJ")]
     [SerializeField] protected GameObject m_WinObjAnima     = null;
     [SerializeField] protected GameObject m_OverObjAnima    = null;
+    [SerializeField] protected Transform m_AllBulletParent  = null;
+    public Transform AllBulletParent => m_AllBulletParent;
     // ==================== SerializeField ===========================================
 
     // ==================== All ObjData  ===========================================
@@ -91,6 +90,8 @@ public class CGameManager : MonoBehaviour
             m_MyResultUI.NextButton.onClick.AddListener(OnNext);
             m_MyResultUI.OverButton.onClick.AddListener(OnReset);
         }
+
+        m_AllBulletParent = this.transform.Find("AllBulletParent");
 
         GameObject lTempCameraObj = GameObject.FindGameObjectWithTag("MainCamera");
         if (lTempCameraObj != null)

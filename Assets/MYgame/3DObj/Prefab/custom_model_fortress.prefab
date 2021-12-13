@@ -138,9 +138,11 @@ MonoBehaviour:
   m_SearchlightTDObj: {fileID: 7301524955143763970}
   m_LightTDObj: {fileID: 4974577436499221735}
   m_PlayCtrlLight: {fileID: 7574786068751912464}
-  m_RLFort:
-  - {fileID: 1926555372528621451}
-  - {fileID: 2499453593802624437}
+  m_RLFortData:
+  - m_Fort: {fileID: 1926555372528621451}
+    m_LauncherPoint: {fileID: 4648491569711886688}
+  - m_Fort: {fileID: 2499453593802624437}
+    m_LauncherPoint: {fileID: 3079654765149585832}
 --- !u!1 &1271440022503445470
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +171,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.022624359, z: 0.015966425}
   m_LocalScale: {x: 0.9999999, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4648491569711886688}
   m_Father: {fileID: 1926555372528621451}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,6 +306,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1878998576587246590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4648491569711886688}
+  m_Layer: 0
+  m_Name: LauncherPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4648491569711886688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878998576587246590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1640520328116683713}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2171108347758635554
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +684,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.022624359, z: 0.015966425}
   m_LocalScale: {x: 0.9999999, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3079654765149585832}
   m_Father: {fileID: 2499453593802624437}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -869,6 +903,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7566021977157802354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3079654765149585832}
+  m_Layer: 0
+  m_Name: LauncherPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3079654765149585832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7566021977157802354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8914928876793737116}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7593442877294673153
 GameObject:
   m_ObjectHideFlags: 0
