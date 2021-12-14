@@ -78,11 +78,14 @@ public abstract class CActor : CMovableBase
         m_MyActorMemoryShare = (CActorMemoryShare)m_MyMemoryShare;
         m_MyActorMemoryShare.m_AllObj = m_AllObj;
         m_MyActorMemoryShare.m_MyActor = this;
-
+      
         SetBaseMemoryShare();
+
+        AnimatorStateCtl = this.GetComponentInChildren<CAnimatorStateCtl>();
 
         if (AnimatorStateCtl != null)
         {
+            AnimatorStateCtl.Init();
             m_MyActorMemoryShare.m_MyActorCollider = AnimatorStateCtl.GetComponentsInChildren<Collider>(true);
             m_MyActorMemoryShare.m_MyActorRigidbody = AnimatorStateCtl.GetComponentsInChildren<Rigidbody>(true);
         }
@@ -91,6 +94,8 @@ public abstract class CActor : CMovableBase
         if (lTempTag != null)
             m_MyActorMemoryShare.m_MyActorTag = lTempTag.GetComponentsInChildren<Collider>();
 
+
+        EnabledRagdoll(false);
     }
 
 
@@ -114,17 +119,28 @@ public abstract class CActor : CMovableBase
         if (m_AnimatorStateCtl.m_ThisAnimator != null)
             m_AnimatorStateCtl.m_ThisAnimator.enabled = !enabled;
 
-        m_MyActorMemoryShare.m_MyCollider.enabled = !enabled;
+        if (m_MyActorMemoryShare.m_MyCollider != null)
+            m_MyActorMemoryShare.m_MyCollider.enabled = !enabled;
+
         m_MyActorMemoryShare.m_EnabledRagdoll = enabled;
 
-        foreach (Rigidbody rb in m_MyActorMemoryShare.m_MyActorRigidbody)
-            rb.isKinematic = !enabled;
+        if (m_MyActorMemoryShare.m_MyActorRigidbody != null)
+        {
+            foreach (Rigidbody rb in m_MyActorMemoryShare.m_MyActorRigidbody)
+                rb.isKinematic = !enabled;
+        }
 
-        foreach (Collider cr in m_MyActorMemoryShare.m_MyActorCollider)
-            cr.enabled = enabled;
-
-        foreach (Collider cr in m_MyActorMemoryShare.m_MyActorTag)
-            cr.enabled = enabled;
+        if (m_MyActorMemoryShare.m_MyActorCollider != null)
+        {
+            foreach (Collider cr in m_MyActorMemoryShare.m_MyActorCollider)
+                cr.isTrigger = !enabled;
+        }
+        //cr.enabled = enabled;
+        if (m_MyActorMemoryShare.m_MyActorTag != null)
+        {
+            foreach (Collider cr in m_MyActorMemoryShare.m_MyActorTag)
+                cr.enabled = enabled;
+        }
     }
 
     public void AddRagdolldForce(Vector3 Force)
@@ -142,11 +158,9 @@ public abstract class CActor : CMovableBase
             rb.AddForceAtPosition(Force, pos);
     }
 
-    public void AddRagdolldForce(float explosionForce, Vector3 explosionPosition)
+    public void AddRagdolldForce(float explosionForce, Vector3 explosionPosition, float Radius)
     {
         foreach (Rigidbody rb in m_MyActorMemoryShare.m_MyActorRigidbody)
-        {
-            rb.AddExplosionForce(explosionForce, explosionPosition, 2.0f);
-        }
+            rb.AddExplosionForce(explosionForce, explosionPosition, Radius);
     }
 }

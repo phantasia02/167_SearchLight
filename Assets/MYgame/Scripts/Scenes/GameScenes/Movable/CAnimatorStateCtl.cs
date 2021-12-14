@@ -103,6 +103,14 @@ public class CAnimatorStateCtl : MonoBehaviour
 
     protected void Awake()
     {
+        Init();
+    }
+
+    public void Init()
+    {
+        if (m_ThisAnimator != null)
+            return;
+
         m_ThisAnimator = gameObject.GetComponent<Animator>();
         m_MyActorBase = gameObject.GetComponentInParent<CActor>();
 
@@ -111,13 +119,13 @@ public class CAnimatorStateCtl : MonoBehaviour
 
         if (m_ThisAnimator)
         {
-            m_AllAnimatorData[(int)EState.eIdle]        = m_AllIdleAnima;
-            m_AllAnimatorData[(int)EState.eRun]         = m_AllRunAnima;
-            m_AllAnimatorData[(int)EState.eDeath]       = m_AllDeathAnima;
-            m_AllAnimatorData[(int)EState.eWin]         = m_AllWinAnima;
-            m_AllAnimatorData[(int)EState.eHit]         = m_AllHitAnima;
-            m_AllAnimatorData[(int)EState.eJump]        = m_AllJumpAnima;
-            m_AllAnimatorData[(int)EState.eAtk]         = m_AllAtkAnima;
+            m_AllAnimatorData[(int)EState.eIdle] = m_AllIdleAnima;
+            m_AllAnimatorData[(int)EState.eRun] = m_AllRunAnima;
+            m_AllAnimatorData[(int)EState.eDeath] = m_AllDeathAnima;
+            m_AllAnimatorData[(int)EState.eWin] = m_AllWinAnima;
+            m_AllAnimatorData[(int)EState.eHit] = m_AllHitAnima;
+            m_AllAnimatorData[(int)EState.eJump] = m_AllJumpAnima;
+            m_AllAnimatorData[(int)EState.eAtk] = m_AllAtkAnima;
 
             for (int i = 0; i < m_AllAnimatorData.Length; i++)
             {
@@ -126,7 +134,6 @@ public class CAnimatorStateCtl : MonoBehaviour
 
                 m_StateIndividualIndex[i] = 0;
             }
-
         }
     }
 

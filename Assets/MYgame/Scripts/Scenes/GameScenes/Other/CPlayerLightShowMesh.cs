@@ -46,6 +46,5 @@ public class CPlayerLightShowMesh : MonoBehaviour
     {
         Mpb.SetVector(PlayerPos, m_PlayerLight.position);
         m_MyMeshRenderer.SetPropertyBlock(Mpb);
-        // m_MyMain.
     }
 }

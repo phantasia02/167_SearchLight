@@ -21,7 +21,9 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
         if (m_MyBulletFlyObjMemoryShare.m_Target == null)
             Debug.LogError("Null m_Target ");
 
-        Vector3 lTempDir = m_MyBulletFlyObjMemoryShare.m_Target.position - m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.position;
+        Vector3 lTempTargetPos = m_MyBulletFlyObjMemoryShare.m_Target.position;
+        lTempTargetPos.y += 0.5f;
+        Vector3 lTempDir = lTempTargetPos - m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.position;
         //lTempDir.y = 0.0f;
         lTempDir.Normalize();
 
@@ -36,9 +38,9 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == StaticGlobalDel.TagEnemy)
+        if (other.tag == StaticGlobalDel.TagEnemy || other.tag == StaticGlobalDel.TagFloor)
         {
-            GameObject.Destroy(m_MyBulletFlyObjMemoryShare.m_MyMovable);
+            GameObject.Destroy(m_MyBulletFlyObjMemoryShare.m_MyMovable.gameObject);
         }
     }
 }

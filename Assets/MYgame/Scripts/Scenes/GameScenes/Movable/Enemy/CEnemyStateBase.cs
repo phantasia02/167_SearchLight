@@ -28,4 +28,23 @@ public abstract class CEnemyStateBase : CStateActor
         //        m_MyMemoryShare.m_TotleSpeed.Value = m_MyMemoryShare.m_TargetTotleSpeed;
         //}
     }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == StaticGlobalDel.TagBullet)
+        {
+            m_MyEnemyBaseMemoryShare.m_MyActor.EnabledRagdoll(true);
+
+            Vector3 lBulletFlyObjToEnemy = m_MyEnemyBaseMemoryShare.m_MyMovable.transform.position - other.transform.position;
+            lBulletFlyObjToEnemy.Normalize();
+            Vector3 lTempV3 = other.transform.position;
+            lTempV3.y = -1.0f;
+            lTempV3.z -= lBulletFlyObjToEnemy.z * 2.0f;
+            lTempV3.x -= lBulletFlyObjToEnemy.x * 2.0f;
+            m_MyEnemyBaseMemoryShare.m_MyActor.AddRagdolldForce(100.0f, lTempV3, 50.0f);
+
+            m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState( EMovableState.eDeath);
+            //GameObject.Destroy(m_MyBulletFlyObjMemoryShare.m_MyMovable);
+        }
+    }
 }
