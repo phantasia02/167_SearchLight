@@ -49,8 +49,9 @@ public abstract class CEnemyBase : CActor
     {
         m_AllState[(int)CMovableStatePototype.EMovableState.eWait].AllThisState.Add(new CWaitStateEnemyBase(this));
 
-        m_AllState[(int)CMovableStatePototype.EMovableState.eHit].AllThisState.Add(new CSurprisStateEnemyBase(this));
         m_AllState[(int)CMovableStatePototype.EMovableState.eHit].AllThisState.Add(new CHitStateEnemyBase(this));
+
+        m_AllState[(int)CMovableStatePototype.EMovableState.eDeath].AllThisState.Add(new CDeathStateEnemyBase(this));
 
 
         //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));
@@ -59,9 +60,6 @@ public abstract class CEnemyBase : CActor
         //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
         m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => 
         {
-            if (m_MyEnemyBaseMemoryShare.m_WasFound)
-                return null;
-
             return new CEnemySurprisBuff(this);
         };
     }

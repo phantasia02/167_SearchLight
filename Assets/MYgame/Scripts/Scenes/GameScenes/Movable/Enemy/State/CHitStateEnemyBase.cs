@@ -13,7 +13,8 @@ public class CHitStateEnemyBase : CEnemyStateBase
 
     protected override void InState()
     {
-
+        m_MyEnemyBaseMemoryShare.m_WasFound = true;
+        m_MyEnemyBaseMemoryShare.m_MyActor.AddBuff(CMovableBuffPototype.EMovableBuff.eSurpris);
     }
 
     protected override void updataState()
@@ -23,6 +24,6 @@ public class CHitStateEnemyBase : CEnemyStateBase
 
     protected override void OutState()
     {
-
+        m_MyEnemyBaseMemoryShare.m_WasFound = false;
     }
 }

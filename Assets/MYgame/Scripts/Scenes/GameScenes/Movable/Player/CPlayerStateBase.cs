@@ -17,6 +17,11 @@ public abstract class CPlayerStateBase : CStateActor
     {
     }
 
+    protected override void updataState()
+    {
+        base.updataState();
+    }
+
 
     public void UpdateSpeed()
     {
@@ -47,51 +52,54 @@ public abstract class CPlayerStateBase : CStateActor
             //if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 1.0f)
             //    lTempEnemyBase.SetChangState(EMovableState.eHit);
 
-            if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 1.0f)
+            if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 0.5f)
             {
-                lTempCheckIrradiateEnemy = true;
-                break;
-            }
-        }
-
-        if (lTempCheckIrradiateEnemy && !lTempEnemyBase.WasFound)
-        {
-            lTempEnemyBase.AddBuff(CMovableBuffPototype.EMovableBuff.eSurpris);
-
-            void Launcher()
-            {
-                for (int i = 0; i < m_MyPlayerMemoryShare.m_AllPlayerFortData.Length; i++)
+                if (!lTempEnemyBase.WasFound)
                 {
-                    Transform lTempBulletFlyObjTransform = StaticGlobalDel.NewOtherObjAddParentShow(m_MyMemoryShare.m_MyMovable.transform, CGGameSceneData.EOtherObj.eBulletFlyObj);
-                    lTempBulletFlyObjTransform.parent = m_MyGameManager.AllBulletParent;
-                    lTempBulletFlyObjTransform.position = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.position;
-                    lTempBulletFlyObjTransform.forward = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.forward;
-
-
-                    Transform lTempSparkTransform = StaticGlobalDel.NewOtherObjAddParentShow(m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint, CGGameSceneData.EOtherObj.eSpark);
-                    lTempSparkTransform.parent = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint;
-                    lTempSparkTransform.localPosition = Vector3.zero;
-                    lTempSparkTransform.up = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.forward;
-                    lTempSparkTransform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-
-                    CBulletFlyObj lTempBulletFlyObj = lTempBulletFlyObjTransform.GetComponent<CBulletFlyObj>();
-                    lTempBulletFlyObj.Target = lTempEnemyBase.transform;
-                    lTempBulletFlyObj.SetChangState(EMovableState.eMove);
+                    lTempEnemyBase.SetChangState( EMovableState.eHit);
+                    m_MyPlayerMemoryShare.m_TargetBuffer = lTempEnemyBase;
+                    lTempCheckIrradiateEnemy = true;
+                    m_MyPlayerMemoryShare.m_MyMovable.SetChangState(EMovableState.eAtk);
+                    break;
                 }
             }
-
-
-            Sequence TempSequence = DOTween.Sequence();
-            TempSequence.AppendCallback(Launcher);
-            TempSequence.AppendInterval(0.2f);
-            TempSequence.AppendCallback(Launcher);
-            TempSequence.AppendInterval(0.2f);
-            TempSequence.AppendCallback(Launcher);
-            TempSequence.AppendInterval(0.2f);
-            TempSequence.AppendCallback(Launcher);
-            TempSequence.AppendInterval(0.2f);
-            TempSequence.AppendCallback(Launcher);
         }
+
+        //if (lTempCheckIrradiateEnemy && !lTempEnemyBase.WasFound)
+        //{
+        //    lTempEnemyBase.AddBuff(CMovableBuffPototype.EMovableBuff.eSurpris);
+
+        //    void Launcher()
+        //    {
+        //        for (int i = 0; i < m_MyPlayerMemoryShare.m_AllPlayerFortData.Length; i++)
+        //        {
+        //            Transform lTempBulletFlyObjTransform = StaticGlobalDel.NewOtherObjAddParentShow(m_MyMemoryShare.m_MyMovable.transform, CGGameSceneData.EOtherObj.eBulletFlyObj);
+        //            lTempBulletFlyObjTransform.parent = m_MyGameManager.AllBulletParent;
+        //            lTempBulletFlyObjTransform.position = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.position;
+        //            lTempBulletFlyObjTransform.forward = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.forward;
+
+        //            Transform lTempSparkTransform = StaticGlobalDel.NewOtherObjAddParentShow(m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint, CGGameSceneData.EOtherObj.eSpark);
+        //            lTempSparkTransform.parent = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint;
+        //            lTempSparkTransform.localPosition = Vector3.zero;
+        //            lTempSparkTransform.up = m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_LauncherPoint.forward;
+        //            lTempSparkTransform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+
+        //            CBulletFlyObj lTempBulletFlyObj = lTempBulletFlyObjTransform.GetComponent<CBulletFlyObj>();
+        //            lTempBulletFlyObj.Target = lTempEnemyBase.transform;
+        //            lTempBulletFlyObj.SetChangState(EMovableState.eMove);
+        //        }
+        //    }
+
+
+        //    Sequence TempSequence = DOTween.Sequence();
+        //    TempSequence.AppendCallback(Launcher);
+        //    TempSequence.AppendInterval(0.2f);
+        //    TempSequence.AppendCallback(Launcher);
+        //    TempSequence.AppendInterval(0.2f);
+        //    TempSequence.AppendCallback(Launcher);
+        //    TempSequence.AppendInterval(0.2f);
+        //    TempSequence.AppendCallback(Launcher);
+        //}
 
     }
 }

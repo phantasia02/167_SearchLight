@@ -6,7 +6,7 @@ using DG.Tweening;
 public class CEnemySurprisBuff : CEnemyBuffBase
 {
     public override EMovableBuff BuffType() { return EMovableBuff.eSurpris; }
-
+    public override float BuffMaxTime() { return 1.5f; }
     public Animator m_SurprisAnimator = null;
 
     public CEnemySurprisBuff(CMovableBase pamMovableBase) : base(pamMovableBase)
@@ -16,7 +16,6 @@ public class CEnemySurprisBuff : CEnemyBuffBase
 
     protected override void AddBuff()
     {
-        m_MyEnemyBaseMemoryShare.m_WasFound = true;
         m_MyEnemyBaseMemoryShare.m_AllEmoticons[0].gameObject.SetActive(true);
 
         m_SurprisAnimator = m_MyEnemyBaseMemoryShare.m_AllEmoticons[0].gameObject.GetComponent<Animator>();
@@ -25,8 +24,8 @@ public class CEnemySurprisBuff : CEnemyBuffBase
 
     protected override void updataState()
     {
-        if (MomentinTime(1.5f))
-            m_MyEnemyBaseMemoryShare.m_MyActor.RemoveBuff(this);
+        //if (MomentinTime(1.5f))
+        //    m_MyEnemyBaseMemoryShare.m_MyActor.RemoveBuff(this);
     }
 
     protected override void RemoveBuff()

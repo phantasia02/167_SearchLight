@@ -28,7 +28,9 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public GameObject                       m_SearchlightTDObj          = null;
     public Transform                        m_PlayCtrlLight             = null;
     public CPlayer.PlayerFortData[]         m_AllPlayerFortData         = new CPlayer.PlayerFortData[(int)CPlayer.EFortRL.EMax];
-   // public float                            m_LauncherSpeed             = 0.2f;
+    public CEnemyBase                       m_TargetBuffer              = null;
+    
+    // public float                            m_LauncherSpeed             = 0.2f;
 };
 
 public class CPlayer : CActor
@@ -92,6 +94,8 @@ public class CPlayer : CActor
         m_AllState[(int)CMovableStatePototype.EMovableState.eDeath].AllThisState.Add(new CDeathStateBase(this));
 
         m_AllState[(int)CMovableStatePototype.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
+
+        m_AllState[(int)CMovableStatePototype.EMovableState.eAtk].AllThisState.Add(new CATKStatePlayer(this));
     }
 
     protected override void CreateMemoryShare()

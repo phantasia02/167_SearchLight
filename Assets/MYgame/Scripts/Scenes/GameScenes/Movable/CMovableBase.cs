@@ -454,18 +454,32 @@ public abstract class CMovableBase : CGameObjBas
 
         pamremoveBuff.RemoveMovableBuff();
     }
-    
 
-    public void DestroyThis()
+    public virtual void ERemoveBuff(CMovableBuffPototype.EMovableBuff pamAddBuff)
     {
-        StartCoroutine(StartCoroutineDestroyThis());
+        foreach (CMovableBuffPototype CAB in m_CurAllBuff)
+        {
+            if (CAB.BuffType() == pamAddBuff)
+            {
+                m_CurAllBuff.Remove(CAB);
+                CAB.RemoveMovableBuff();
+                return;
+            }
+        }
     }
 
-
-    IEnumerator StartCoroutineDestroyThis()
+    public void DestroyObj(){StartCoroutine(StartCoroutineDestroyObj());}
+    IEnumerator StartCoroutineDestroyObj()
     {
         yield return new WaitForEndOfFrame();
         Destroy(this.gameObject);
+    }
+
+    public void DestroyScript() { StartCoroutine(StartCoroutineDestroyScript()); }
+    IEnumerator StartCoroutineDestroyScript()
+    {
+        yield return new WaitForEndOfFrame();
+        Destroy(this);
     }
 
     public virtual void TouchBouncingBed(Collider other)
