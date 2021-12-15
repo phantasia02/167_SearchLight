@@ -28,6 +28,7 @@ public class CAnimatorStateCtl : MonoBehaviour
         eHit         = 4,
         eJump        = 5,
         eAtk         = 6,
+        eFlee        = 7,
         eMax
     }
 
@@ -77,6 +78,9 @@ public class CAnimatorStateCtl : MonoBehaviour
 
     [VarRename(new string[] { "Atk0", "Atk1", "Atk2" })]
     [SerializeField] public cAnimatorData[] m_AllAtkAnima = new cAnimatorData[1];
+    // Flee
+    [VarRename(new string[] { "Flee0", "Flee1", "Flee2" })]
+    [SerializeField] public cAnimatorData[] m_AllFleeAnima = new cAnimatorData[1];
 
     bool m_PlayingEnd = false;
     public bool PlayingEnd{get { return m_PlayingEnd; }}
@@ -119,13 +123,14 @@ public class CAnimatorStateCtl : MonoBehaviour
 
         if (m_ThisAnimator)
         {
-            m_AllAnimatorData[(int)EState.eIdle] = m_AllIdleAnima;
-            m_AllAnimatorData[(int)EState.eRun] = m_AllRunAnima;
-            m_AllAnimatorData[(int)EState.eDeath] = m_AllDeathAnima;
-            m_AllAnimatorData[(int)EState.eWin] = m_AllWinAnima;
-            m_AllAnimatorData[(int)EState.eHit] = m_AllHitAnima;
-            m_AllAnimatorData[(int)EState.eJump] = m_AllJumpAnima;
-            m_AllAnimatorData[(int)EState.eAtk] = m_AllAtkAnima;
+            m_AllAnimatorData[(int)EState.eIdle]    = m_AllIdleAnima;
+            m_AllAnimatorData[(int)EState.eRun]     = m_AllRunAnima;
+            m_AllAnimatorData[(int)EState.eDeath]   = m_AllDeathAnima;
+            m_AllAnimatorData[(int)EState.eWin]     = m_AllWinAnima;
+            m_AllAnimatorData[(int)EState.eHit]     = m_AllHitAnima;
+            m_AllAnimatorData[(int)EState.eJump]    = m_AllJumpAnima;
+            m_AllAnimatorData[(int)EState.eAtk]     = m_AllAtkAnima;
+            m_AllAnimatorData[(int)EState.eFlee]    = m_AllFleeAnima;
 
             for (int i = 0; i < m_AllAnimatorData.Length; i++)
             {
