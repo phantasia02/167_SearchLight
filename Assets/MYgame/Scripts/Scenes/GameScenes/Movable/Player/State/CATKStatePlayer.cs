@@ -22,7 +22,7 @@ public class CATKStatePlayer : CPlayerStateBase
         if (m_MyPlayerMemoryShare.m_TargetBuffer == null)
             return;
 
-        if (MomentinTime(0.8f))
+        if (MomentinTime(0.3f))
         {
             void Launcher()
             {

@@ -4,10 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class CEnemyBaseListData
 {
     public List<CEnemyBase> m_EnemyBaseListData = new List<CEnemyBase>();
 }
+
+[System.Serializable]
+public class CEnemyBaseRendererMat
+{
+    public Renderer m_RendererObj = null;
+    public Material m_DeathMat = null;
+    public Material m_NormalMat = null;
+}
+
 
 public class CEnemyBaseMemoryShare : CActorMemoryShare
 {
@@ -16,6 +26,7 @@ public class CEnemyBaseMemoryShare : CActorMemoryShare
     public CPlayerLightShowMesh[]       m_AllPlayerLightShowMesh    = null;
     public Image[]                      m_AllEmoticons              = null;
     public bool                         m_WasFound                  = false;
+    public List<CEnemyBaseRendererMat> m_AllChangRendererMat        = null;
 };
 
 public abstract class CEnemyBase : CActor
@@ -38,8 +49,8 @@ public abstract class CEnemyBase : CActor
     }
 
     // ==================== SerializeField ===========================================
-    [SerializeField] protected Image[]      m_AllEmoticons          = null;
-
+    [SerializeField] protected Image[]                          m_AllEmoticons          = null;
+    [SerializeField] protected List<CEnemyBaseRendererMat>      m_AllChangRendererMat   = new List<CEnemyBaseRendererMat>();
     // ==================== SerializeField ===========================================
 
     public override EActorType MyActorType() { return EActorType.eEnemy; }
@@ -69,8 +80,9 @@ public abstract class CEnemyBase : CActor
         m_MyEnemyBaseMemoryShare = new CEnemyBaseMemoryShare();
         m_MyMemoryShare = m_MyEnemyBaseMemoryShare;
 
-        m_MyEnemyBaseMemoryShare.m_MyEnemyBase = this;
-        m_MyEnemyBaseMemoryShare.m_AllEmoticons     = m_AllEmoticons;
+        m_MyEnemyBaseMemoryShare.m_MyEnemyBase          = this;
+        m_MyEnemyBaseMemoryShare.m_AllEmoticons         = m_AllEmoticons;
+        m_MyEnemyBaseMemoryShare.m_AllChangRendererMat  = m_AllChangRendererMat;
 
        // this.transform.FindChild();
 
