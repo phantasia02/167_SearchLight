@@ -2556,9 +2556,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2038138231049247128, guid: a772768ddd2f33d4297a70cc698b9bb6, type: 3}
+      propertyPath: m_AllOtherObj.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038138231049247128, guid: a772768ddd2f33d4297a70cc698b9bb6, type: 3}
       propertyPath: m_AllOtherObj.Array.data[1]
       value: 
       objectReference: {fileID: 1491359990764140, guid: fa74098a0cb08cb409fe6a3b164f2010, type: 3}
+    - target: {fileID: 2038138231049247128, guid: a772768ddd2f33d4297a70cc698b9bb6, type: 3}
+      propertyPath: m_AllOtherObj.Array.data[2]
+      value: 
+      objectReference: {fileID: 2401650315325358931, guid: 85d6eccbbc60a784c90341b013d7d5d8, type: 3}
     - target: {fileID: 5350464374810277997, guid: a772768ddd2f33d4297a70cc698b9bb6, type: 3}
       propertyPath: m_Name
       value: CGGameSceneData

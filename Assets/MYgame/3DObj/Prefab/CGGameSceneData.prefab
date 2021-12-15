@@ -46,4 +46,5 @@ MonoBehaviour:
   m_AllFX: []
   m_AllOtherObj:
   - {fileID: 8491079825844394989, guid: 1d70901139c1e364cb39034557a0b925, type: 3}
-  - {fileID: 1491359990764140, guid: 18c0a8b63ea8b4448a595b0c24c1384a, type: 3}
+  - {fileID: 1491359990764140, guid: fa74098a0cb08cb409fe6a3b164f2010, type: 3}
+  - {fileID: 2401650315325358931, guid: 85d6eccbbc60a784c90341b013d7d5d8, type: 3}

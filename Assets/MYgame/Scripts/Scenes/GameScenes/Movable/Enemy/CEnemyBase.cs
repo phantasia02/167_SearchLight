@@ -64,15 +64,16 @@ public abstract class CEnemyBase : CActor
 
         m_AllState[(int)CMovableStatePototype.EMovableState.eDeath].AllThisState.Add(new CDeathStateEnemyBase(this));
 
+        m_AllState[(int)CMovableStatePototype.EMovableState.eAtk].AllThisState.Add(new CATKStateEnemyBase(this));
+
+        m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CMoveStateEnemyBase(this));
+
 
         //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));
         //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateBase(this));
 
         //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
-        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => 
-        {
-            return new CEnemySurprisBuff(this);
-        };
+        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => {return new CEnemySurprisBuff(this);};
     }
 
     protected override void CreateMemoryShare()
@@ -101,7 +102,7 @@ public abstract class CEnemyBase : CActor
         foreach (CPlayerLightShowMesh CPLSM in m_MyEnemyBaseMemoryShare.m_AllPlayerLightShowMesh)
             CPLSM.PlayerLight = m_MyGameManager.Player.PlayCtrlLight;
 
-        this.SetChangState(CMovableStatePototype.EMovableState.eWait);
+        this.SetChangState(CMovableStatePototype.EMovableState.eMove);
     }
 
 }
