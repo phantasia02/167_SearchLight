@@ -14,6 +14,7 @@ public class CHitStateEnemyBase : CEnemyStateBase
     protected override void InState()
     {
         m_MyEnemyBaseMemoryShare.m_WasFound = true;
+        m_MyEnemyBaseMemoryShare.m_MyActor.transform.forward = Vector3.back;
         m_MyEnemyBaseMemoryShare.m_MyActor.AddBuff(CMovableBuffPototype.EMovableBuff.eSurpris);
     }
 
