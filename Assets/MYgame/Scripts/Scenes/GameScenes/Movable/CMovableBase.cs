@@ -20,6 +20,7 @@ public class CMemoryShareBase
     public UniRx.ReactiveProperty<float>    m_TotleSpeed            = new ReactiveProperty<float>(StaticGlobalDel.g_DefMovableTotleSpeed);
     public float                            m_TargetTotleSpeed      = StaticGlobalDel.g_DefMovableTotleSpeed;
     public float[]                          m_Buff                  = new float[(int)CMovableBase.ESpeedBuff.eMax];
+    public float                            m_StateTime             = 1.0f;
     public int                              m_NumericalImage        = 0;
     public CMovableBase                     m_MyMovable             = null;
     public Rigidbody                        m_MyRigidbody           = null;
@@ -259,6 +260,9 @@ public abstract class CMovableBase : CGameObjBas
                     break;
                 case CMovableStatePototype.EMovableState.eHit:
                     m_AllState[i].AllThisState.Add(new CHitStateBase(this));
+                    break;
+                case CMovableStatePototype.EMovableState.eFlee:
+                    m_AllState[i].AllThisState.Add(new CFleeStateBase(this));
                     break;
             }
         }

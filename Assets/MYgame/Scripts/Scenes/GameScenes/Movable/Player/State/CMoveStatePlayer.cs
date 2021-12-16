@@ -24,17 +24,17 @@ public class CMoveStatePlayer : CPlayerStateBase
 
 
         Vector3 lTempposition = m_MyPlayerMemoryShare.m_PlayCtrlLight.position;
-        if (lTempposition.x < -CPlayer.CsLightDisMaxX)
-            lTempposition.x = -CPlayer.CsLightDisMaxX;
+        if (lTempposition.x < -StaticGlobalDel.g_CsLightDisMaxX)
+            lTempposition.x = -StaticGlobalDel.g_CsLightDisMaxX;
 
-        if (lTempposition.x > CPlayer.CsLightDisMaxX)
-            lTempposition.x = CPlayer.CsLightDisMaxX;
+        if (lTempposition.x > StaticGlobalDel.g_CsLightDisMaxX)
+            lTempposition.x = StaticGlobalDel.g_CsLightDisMaxX;
+        
+        if (lTempposition.z > StaticGlobalDel.g_CsLightDisMaxZ)
+            lTempposition.z = StaticGlobalDel.g_CsLightDisMaxZ;
 
-        if (lTempposition.z > CPlayer.CsLightDisMaxZ)
-            lTempposition.z = CPlayer.CsLightDisMaxZ;
-
-        if (lTempposition.z < CPlayer.CsLightDisMinZ)
-            lTempposition.z = CPlayer.CsLightDisMinZ;
+        if (lTempposition.z < StaticGlobalDel.g_CsLightDisMinZ)
+            lTempposition.z = StaticGlobalDel.g_CsLightDisMinZ;
 
         m_MyPlayerMemoryShare.m_PlayCtrlLight.position = lTempposition;
 

@@ -29,6 +29,29 @@ public abstract class CEnemyStateBase : CStateActor
         //}
     }
 
+    public void ATKShowObj(CEnemyBase.EATKShowObj showType)
+    {
+
+        void showobj(SDataListGameObj allobj, bool show)
+        {
+            if (allobj != null)
+            {
+                for (int x = 0; x < allobj.m_ListObj.Count; x++)
+                    allobj.m_ListObj[x].SetActive(show);
+            }
+        }
+
+        SDataListGameObj lTempSDataListGameObj = null;
+        for (int i = 0; i < m_MyEnemyBaseMemoryShare.m_StateShowObj.Length; i++)
+        {
+            lTempSDataListGameObj = m_MyEnemyBaseMemoryShare.m_StateShowObj[i];
+            showobj(lTempSDataListGameObj, false);
+        }
+
+        lTempSDataListGameObj = m_MyEnemyBaseMemoryShare.m_StateShowObj[(int)showType];
+        showobj(lTempSDataListGameObj, true);
+    }
+
     public override void OnTriggerEnter(Collider other)
     {
         if (other.tag == StaticGlobalDel.TagBullet)
@@ -46,5 +69,12 @@ public abstract class CEnemyStateBase : CStateActor
             m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState( EMovableState.eDeath);
             //GameObject.Destroy(m_MyBulletFlyObjMemoryShare.m_MyMovable);
         }
+    }
+
+    public Vector3 ClampMovePos()
+    {
+
+
+        return Vector3.one;
     }
 }

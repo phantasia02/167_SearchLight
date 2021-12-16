@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SDataListGameObj
+{
+    public List<GameObject> m_ListObj = new List<GameObject>();
+}
+
 public static class StaticGlobalDel 
 {
     public enum EBoolState
@@ -63,6 +69,10 @@ public static class StaticGlobalDel
     public const float  g_fcbaseResolutionWHRatio       = g_fcbaseWidth / g_fcbaseHeight;
     public const float  g_fcbaseResolutionHWRatio       = g_fcbaseHeight / g_fcbaseWidth;
     public const float  g_TUA                           = Mathf.PI * 2.0f;
+
+    public const float  g_CsLightDisMaxX                = 4.0f;
+    public const float  g_CsLightDisMaxZ                = 11.0f;
+    public const float  g_CsLightDisMinZ                = -3.0f;
     // ============= Speed ====================
     public const float g_DefMovableTotleSpeed = 15.0f;
 

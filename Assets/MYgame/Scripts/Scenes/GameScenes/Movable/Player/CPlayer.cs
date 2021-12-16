@@ -49,10 +49,8 @@ public class CPlayer : CActor
         public Transform m_LauncherPoint = null;
     }
 
-    public const float CsLightDisMaxX               = 4.0f;
-    public const float CsLightDisMaxZ               = 11.0f;
-    public const float CsLightDisMinZ               = -3.0f;
-    public const float CsLightDisOverallRatioZ      = CsLightDisMaxZ - CsLightDisMinZ;
+
+    public const float CsLightDisOverallRatioZ      = StaticGlobalDel.g_CsLightDisMaxZ - StaticGlobalDel.g_CsLightDisMinZ;
     public const float CsLightScaleMaxZ             = 0.08f;
     public const float CsLightScaleMinZ             = 0.04f;
     public const float CsLightScaleOverallRatioZ    = CsLightScaleMaxZ - CsLightScaleMinZ;
@@ -271,7 +269,7 @@ public class CPlayer : CActor
         float lTempUpAngle = Vector2.Angle(Vector2.up, lTempTDupV3);
         m_MyPlayerMemoryShare.m_SearchlightTDObj.transform.localRotation = Quaternion.Euler(90.0f + -lTempUpAngle, 0.0f, 0.0f);
 
-        float lTempDisRatioZ = (m_MyPlayerMemoryShare.m_PlayCtrlLight.position.z - CsLightDisMinZ) / CsLightDisOverallRatioZ;
+        float lTempDisRatioZ = (m_MyPlayerMemoryShare.m_PlayCtrlLight.position.z - StaticGlobalDel.g_CsLightDisMinZ) / CsLightDisOverallRatioZ;
         Vector3 lTemplocalScale = m_LightTDObj.localScale;
         lTemplocalScale.z = lTempDisRatioZ * CsLightScaleOverallRatioZ + CsLightScaleMinZ;
         m_LightTDObj.localScale = lTemplocalScale;

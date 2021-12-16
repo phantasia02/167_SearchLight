@@ -18,7 +18,6 @@ public class CEnemyBaseRendererMat
     public Material m_NormalMat = null;
 }
 
-
 public class CEnemyBaseMemoryShare : CActorMemoryShare
 {
     public CEnemyBase                   m_MyEnemyBase               = null;
@@ -26,7 +25,9 @@ public class CEnemyBaseMemoryShare : CActorMemoryShare
     public CPlayerLightShowMesh[]       m_AllPlayerLightShowMesh    = null;
     public Image[]                      m_AllEmoticons              = null;
     public bool                         m_WasFound                  = false;
-    public List<CEnemyBaseRendererMat> m_AllChangRendererMat        = null;
+    public List<CEnemyBaseRendererMat>  m_AllChangRendererMat       = null;
+    public SDataListGameObj[]           m_StateShowObj              = null;
+
 };
 
 public abstract class CEnemyBase : CActor
@@ -34,6 +35,13 @@ public abstract class CEnemyBase : CActor
     public enum EEnemyType
     {
         eEnemyRifle = 0,
+        eMax
+    };
+
+    public enum EATKShowObj
+    {
+        eNotATKShow     = 0,
+        eATKShow        = 1,
         eMax
     };
 
@@ -51,7 +59,7 @@ public abstract class CEnemyBase : CActor
     // ==================== SerializeField ===========================================
     [SerializeField] protected Image[]                          m_AllEmoticons          = null;
     [SerializeField] protected List<CEnemyBaseRendererMat>      m_AllChangRendererMat   = new List<CEnemyBaseRendererMat>();
-    
+    [SerializeField] protected SDataListGameObj[]               m_StateShowObj          = null;
     // ==================== SerializeField ===========================================
 
     public override EActorType MyActorType() { return EActorType.eEnemy; }
@@ -85,6 +93,7 @@ public abstract class CEnemyBase : CActor
         m_MyEnemyBaseMemoryShare.m_MyEnemyBase          = this;
         m_MyEnemyBaseMemoryShare.m_AllEmoticons         = m_AllEmoticons;
         m_MyEnemyBaseMemoryShare.m_AllChangRendererMat  = m_AllChangRendererMat;
+        m_MyEnemyBaseMemoryShare.m_StateShowObj         = m_StateShowObj;
 
        // this.transform.FindChild();
 
