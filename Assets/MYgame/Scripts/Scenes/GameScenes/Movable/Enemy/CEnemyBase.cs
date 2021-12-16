@@ -51,6 +51,7 @@ public abstract class CEnemyBase : CActor
     // ==================== SerializeField ===========================================
     [SerializeField] protected Image[]                          m_AllEmoticons          = null;
     [SerializeField] protected List<CEnemyBaseRendererMat>      m_AllChangRendererMat   = new List<CEnemyBaseRendererMat>();
+    
     // ==================== SerializeField ===========================================
 
     public override EActorType MyActorType() { return EActorType.eEnemy; }
@@ -102,7 +103,7 @@ public abstract class CEnemyBase : CActor
         foreach (CPlayerLightShowMesh CPLSM in m_MyEnemyBaseMemoryShare.m_AllPlayerLightShowMesh)
             CPLSM.PlayerLight = m_MyGameManager.Player.PlayCtrlLight;
 
-        this.SetChangState(CMovableStatePototype.EMovableState.eMove);
+        this.SetChangState(CMovableStatePototype.EMovableState.eWait);
     }
 
 }

@@ -17,7 +17,6 @@ public class CPlayerLightShowMesh : MonoBehaviour
     public Transform PlayerLight { set { m_PlayerLight = value; } }
 
     protected Renderer m_MyMeshRenderer = null;
-    Material m_MyMain = null;
 
     MaterialPropertyBlock mpb;
     public MaterialPropertyBlock Mpb

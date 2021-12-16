@@ -116,15 +116,6 @@ public abstract class CMovableStatePototype
     public virtual void MouseDrag(){}
     public virtual void MouseUp(){}
 
-    //public void SetAnimationState(CAnimatorStateCtl.EState AniState, float Speed = 1.0f, int index = -1)
-    //{
-    //    if (m_MyMemoryShare.m_MyMovable.AnimatorStateCtl != null)
-    //    {
-    //        m_MyMemoryShare.m_MyMovable.AnimatorStateCtl.SetCurState(AniState, index);
-    //        m_MyMemoryShare.m_MyMovable.AnimatorStateCtl.AnimatorSpeed = Speed;
-    //    }
-    //}
-
     public bool FloatingToFloorChack()
     {
         return false;

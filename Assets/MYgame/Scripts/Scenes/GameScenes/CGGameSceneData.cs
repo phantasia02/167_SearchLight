@@ -17,6 +17,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
     {
         eBulletFlyObj       = 0,
         eSpark              = 1,
+        eEnemyATKEffect     = 2,
         eMax,
     };
 

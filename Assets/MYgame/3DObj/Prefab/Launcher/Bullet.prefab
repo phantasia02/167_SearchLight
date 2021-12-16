@@ -147,7 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8491079825844394990}
-  - component: {fileID: 2156593754657430374}
+  - component: {fileID: 3672573023178853465}
   - component: {fileID: 7871764739841778940}
   m_Layer: 0
   m_Name: Bullet
@@ -172,7 +172,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2156593754657430374
+--- !u!114 &3672573023178853465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8491079825844394989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3c95c13b3f17894f8dd747a9b539e53, type: 3}
+  m_Script: {fileID: 11500000, guid: 095add19e2161a4499fd1a26228d20eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MyCollider: {fileID: 0}
@@ -215,6 +215,10 @@ PrefabInstance:
     - target: {fileID: 8371327371153995333, guid: bfa7e23f614d75943872c9b53a5e7943, type: 3}
       propertyPath: m_Name
       value: BulletMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371327371153995333, guid: bfa7e23f614d75943872c9b53a5e7943, type: 3}
+      propertyPath: m_TagString
+      value: Bullet
       objectReference: {fileID: 0}
     - target: {fileID: 8371327371153995335, guid: bfa7e23f614d75943872c9b53a5e7943, type: 3}
       propertyPath: m_Enabled

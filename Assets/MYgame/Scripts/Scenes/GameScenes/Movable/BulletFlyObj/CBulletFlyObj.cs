@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CBulletFlyObjMemoryShare : CMemoryShareBase
 {
-    public CBulletFlyObj m_MyBulletFlyObj   = null;
-    public Transform m_Target               = null;
-
+    public CBulletFlyObj    m_MyBulletFlyObj    = null;
+    public Transform        m_Target            = null;
+    public CGameObjBas      m_Launcher          = null;
 };
 
 public class CBulletFlyObj : CMovableBase
@@ -16,13 +16,9 @@ public class CBulletFlyObj : CMovableBase
     protected CBulletFlyObjMemoryShare m_MyBulletFlyObjMemoryShare = null;
 
     public Transform Target{set => m_MyBulletFlyObjMemoryShare.m_Target = value;}
+    public CGameObjBas Launcher { set => m_MyBulletFlyObjMemoryShare.m_Launcher = value;}
 
     public override float DefSpeed { get { return 20.0f; } }
-
-    protected override void AddInitState()
-    {
-        m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CMoveStateBulletFlyObj(this));
-    }
 
     protected override void CreateMemoryShare()
     {

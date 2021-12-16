@@ -9,15 +9,16 @@ public class CActorBaseListData
 
 public class CActorMemoryShare : CMemoryShareBase
 {
-    public CActor       m_Target            = null;
-    public CActor       m_MyActor           = null;
-    public int          m_Hp                = 10;
-    public Vector3      m_DeathImpactDir    = Vector3.forward;
-    public GameObject   m_AllObj            = null;
-    public Rigidbody[]  m_MyActorRigidbody  = null;
-    public Collider[]   m_MyActorCollider   = null;
-    public Collider[]   m_MyActorTag        = null;
-    public bool         m_EnabledRagdoll    = false;
+    public CActor           m_Target            = null;
+    public CActor           m_MyActor           = null;
+    public int              m_Hp                = 10;
+    public Vector3          m_DeathImpactDir    = Vector3.forward;
+    public GameObject       m_AllObj            = null;
+    public Rigidbody[]      m_MyActorRigidbody  = null;
+    public Collider[]       m_MyActorCollider   = null;
+    public Collider[]       m_MyActorTag        = null;
+    public bool             m_EnabledRagdoll    = false;
+    public Transform[]      m_AllOtherTransform = new Transform[10];
 };
 
 public abstract class CActor : CMovableBase
@@ -45,6 +46,7 @@ public abstract class CActor : CMovableBase
     [SerializeField] protected GameObject m_AllObj = null;
 
     // ==================== SerializeField ===========================================
+    public void SetOtherTransform(Transform OtherTransform, int setindex) { m_MyActorMemoryShare.m_AllOtherTransform[setindex] = OtherTransform; }
 
     public virtual int TargetMask() { return 0; }
     public virtual int TargetIndex() { return 0; }
@@ -76,8 +78,8 @@ public abstract class CActor : CMovableBase
     protected override void CreateMemoryShare()
     {
         m_MyActorMemoryShare = (CActorMemoryShare)m_MyMemoryShare;
-        m_MyActorMemoryShare.m_AllObj = m_AllObj;
-        m_MyActorMemoryShare.m_MyActor = this;
+        m_MyActorMemoryShare.m_AllObj               = m_AllObj;
+        m_MyActorMemoryShare.m_MyActor              = this;
       
         SetBaseMemoryShare();
 
