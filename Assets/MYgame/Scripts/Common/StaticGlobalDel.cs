@@ -18,6 +18,7 @@ public static class StaticGlobalDel
         eFloor              = 6,
         eNotLightObj        = 7,
         eEnemy              = 8,
+        ePlayer             = 9,
 
         eMax
     }
@@ -39,15 +40,18 @@ public static class StaticGlobalDel
     }
 
 
+    public const string TagPlayer               = "Player";
     public const string TagDoorPost             = "DoorPost";
     public const string TagFloor                = "Floor";
     public const string TagEnemy                = "Enemy";
     public const string TagBullet               = "Bullet";
+    public const string TagEnemyBullet          = "EnemyBullet";
 
 
     public const int g_FloorMask                    = 1 << (int)ELayerIndex.eFloor;
     public const int g_NotLightObjMask              = 1 << (int)ELayerIndex.eNotLightObj;
     public const int g_EnemyMask                    = 1 << (int)ELayerIndex.eEnemy;
+    public const int g_ePlayerMask                  = 1 << (int)ELayerIndex.ePlayer;
 
 
     public const int g_MaxFever         = 100;

@@ -22,20 +22,18 @@ public class CATKStateEnemyBase : CEnemyStateBase
         m_RotateTween = m_MyEnemyBaseMemoryShare.m_MyMovable.transform.DOLookAt(m_MyGameManager.Player.SearchlightTDObj.transform.position, 0.5f, AxisConstraint.Y).SetEase( Ease.Linear);
         m_RotateTween.onComplete = () =>
         {
-            Vector3 LaunchtoPlayCtrlLight = m_MyGameManager.Player.SearchlightTDObj.transform.position - m_MyEnemyBaseMemoryShare.m_AllOtherTransform[0].position;
-            Vector3 LaunchtoPlayCtrlLightDir = LaunchtoPlayCtrlLight.normalized;
 
             Transform lLauncherPointTransform = m_MyEnemyBaseMemoryShare.m_AllOtherTransform[0];
             if (lLauncherPointTransform != null)
             {
                 Transform lTempEnemyATKEffect = StaticGlobalDel.NewOtherObjAddParentShow(lLauncherPointTransform, CGGameSceneData.EOtherObj.eEnemyATKEffect);
-                lTempEnemyATKEffect.parent = m_MyGameManager.AllBulletParent;
-                lTempEnemyATKEffect.forward = LaunchtoPlayCtrlLightDir;
-                lTempEnemyATKEffect.localScale = new Vector3(1.0f, 1.0f, LaunchtoPlayCtrlLight.magnitude);
+
+                Transform lTempSparkEffect = StaticGlobalDel.NewOtherObjAddParentShow(lLauncherPointTransform, CGGameSceneData.EOtherObj.eSpark);
+                lTempSparkEffect.up = lLauncherPointTransform.forward;
+                lTempSparkEffect.position = lLauncherPointTransform.position;
+                lTempSparkEffect.localScale = Vector3.one * 5.0f;
             }
         };
-
-
     }
 
     protected override void updataState()
