@@ -6,6 +6,7 @@ using DG.Tweening;
 public class CATKStatePlayer : CPlayerStateBase
 {
     public override EMovableState StateType() { return EMovableState.eAtk; }
+    public override int Priority => 5;
 
     public CATKStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -54,11 +55,15 @@ public class CATKStatePlayer : CPlayerStateBase
             TempSequence.AppendCallback(Launcher);
             TempSequence.AppendInterval(0.2f);
             TempSequence.AppendCallback(Launcher);
-            TempSequence.AppendCallback(() => { m_MyPlayerMemoryShare.m_MyMovable.SetChangState(EMovableState.eWait); });
+            TempSequence.AppendCallback(() => 
+            {
+                m_MyPlayerMemoryShare.m_MyMovable.LockChangState = EMovableState.eMax;
+                m_MyPlayerMemoryShare.m_MyMovable.SetChangState(EMovableState.eWait);
+            });
         }
         else
         {
-            Vector3 lSetPlayCtrlLightpos = Vector3.Lerp(m_MyPlayerMemoryShare.m_PlayCtrlLight.position, m_MyPlayerMemoryShare.m_TargetBuffer.transform.position, Time.deltaTime * 10.0f);
+            Vector3 lSetPlayCtrlLightpos = Vector3.Lerp(m_MyPlayerMemoryShare.m_PlayCtrlLight.position, m_MyPlayerMemoryShare.m_TargetBuffer.transform.position, Time.deltaTime * 5.0f);
             lSetPlayCtrlLightpos.y = m_MyPlayerMemoryShare.m_PlayCtrlLight.position.y;
             m_MyPlayerMemoryShare.m_PlayCtrlLight.position = lSetPlayCtrlLightpos;
         }
@@ -67,5 +72,6 @@ public class CATKStatePlayer : CPlayerStateBase
     protected override void OutState()
     {
         m_MyPlayerMemoryShare.m_TargetBuffer = null;
+        
     }
 }

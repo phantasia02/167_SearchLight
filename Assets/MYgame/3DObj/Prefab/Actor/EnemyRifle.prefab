@@ -15071,7 +15071,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d759267dadc1a1946970b9937e129bfb, type: 2}
+  - {fileID: 2100000, guid: 184a468fed12d934f8732c324cb3d512, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16856,6 +16856,7 @@ MonoBehaviour:
     - {fileID: 8925843754356553551}
   - m_ListObj:
     - {fileID: 7662861601295134677}
+  m_MyBodyDeformationSystem: {fileID: 3474200266855168862}
 --- !u!54 &3786122026203887394
 Rigidbody:
   m_ObjectHideFlags: 0

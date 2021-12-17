@@ -20,14 +20,18 @@ public class CEnemyBaseRendererMat
 
 public class CEnemyBaseMemoryShare : CActorMemoryShare
 {
-    public CEnemyBase                   m_MyEnemyBase               = null;
-    public Transform                    m_PlayerLight               = null;
-    public CPlayerLightShowMesh[]       m_AllPlayerLightShowMesh    = null;
-    public Image[]                      m_AllEmoticons              = null;
-    public bool                         m_WasFound                  = false;
-    public List<CEnemyBaseRendererMat>  m_AllChangRendererMat       = null;
-    public SDataListGameObj[]           m_StateShowObj              = null;
-
+    public CEnemyBase                                   m_MyEnemyBase               = null;
+    public Transform                                    m_PlayerLight               = null;
+    public CPlayerLightShowMesh[]                       m_AllPlayerLightShowMesh    = null;
+    public Image[]                                      m_AllEmoticons              = null;
+    public bool                                         m_WasFound                  = false;
+    public bool                                         m_hidden                    = true;
+    public List<CEnemyBaseRendererMat>                  m_AllChangRendererMat       = null;
+    public SDataListGameObj[]                           m_StateShowObj              = null;
+    public float                                        m_CurDiscoveryTime          = 0.0f;
+    public float                                        m_OldDiscoveryTime          = 0.0f;
+    public List<CMovableStatePototype.EMovableState>    m_MyRandomStateList         = new List<CMovableStatePototype.EMovableState>();
+    public Transform                                    m_MyBodyDeformationSystem   = null;
 };
 
 public abstract class CEnemyBase : CActor
@@ -47,9 +51,21 @@ public abstract class CEnemyBase : CActor
 
     protected CEnemyBaseMemoryShare m_MyEnemyBaseMemoryShare = null;
     public bool WasFound {get => m_MyEnemyBaseMemoryShare.m_WasFound;}
+    public bool Hidden { get => m_MyEnemyBaseMemoryShare.m_hidden; }
+    public void AddCurDiscoveryTime(float addTime)
+    {
+        m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime += addTime;
+        if (m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime >= 1.0f)
+            m_MyEnemyBaseMemoryShare.m_hidden = false;
+
+        if (m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime <= 0.0f)
+            m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime = 0.0f;
+    }
 
     public override void SetChangState(CMovableStatePototype.EMovableState state, int changindex = -1)
     {
+
+
         if (state == CMovableStatePototype.EMovableState.eHit && WasFound)
             return;
 

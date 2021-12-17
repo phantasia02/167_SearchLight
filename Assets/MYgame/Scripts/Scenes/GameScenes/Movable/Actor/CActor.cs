@@ -9,7 +9,6 @@ public class CActorBaseListData
 
 public class CActorMemoryShare : CMemoryShareBase
 {
-    public CActor           m_Target            = null;
     public CActor           m_MyActor           = null;
     public int              m_Hp                = 10;
     public Vector3          m_DeathImpactDir    = Vector3.forward;

@@ -71,10 +71,11 @@ public abstract class CEnemyStateBase : CStateActor
         }
     }
 
-    public Vector3 ClampMovePos()
+    public void UpdateDiscoveryTime()
     {
+        if (m_MyEnemyBaseMemoryShare.m_OldDiscoveryTime >= m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime)
+            m_MyEnemyBaseMemoryShare.m_MyEnemyBase.AddCurDiscoveryTime(-(Time.deltaTime * 0.5f));
 
-
-        return Vector3.one;
+        m_MyEnemyBaseMemoryShare.m_OldDiscoveryTime = m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime;
     }
 }

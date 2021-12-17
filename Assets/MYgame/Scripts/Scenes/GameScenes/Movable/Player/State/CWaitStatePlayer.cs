@@ -18,7 +18,7 @@ public class CWaitStatePlayer : CPlayerStateBase
 
     protected override void updataState()
     {
-
+        CheckIrradiateEnemy();
     }
 
     protected override void OutState()

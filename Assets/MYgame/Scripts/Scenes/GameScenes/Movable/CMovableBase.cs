@@ -85,6 +85,14 @@ public abstract class CMovableBase : CGameObjBas
 
     public virtual void SetChangState(CMovableStatePototype.EMovableState state, int changindex = -1)
     {
+        if (m_OldState == CMovableStatePototype.EMovableState.eHit)
+        {
+            if (state == CMovableStatePototype.EMovableState.eAtk || state == CMovableStatePototype.EMovableState.eMove)
+            {
+                int diughdasiuog = 0;
+            }
+        }
+
         if (LockChangState != CMovableStatePototype.EMovableState.eMax && LockChangState != state)
             return;
 

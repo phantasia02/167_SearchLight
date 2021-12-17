@@ -94,12 +94,12 @@ public abstract class CMovableStatePototype
 
     public bool MomentinTime(float time){return m_OldStateTime < time && m_StateTime >= time;}
 
-    public EMovableState RandomState(EMovableState[] RandomList)
+    public EMovableState RandomState(List<CMovableStatePototype.EMovableState> RandomList)
     {
         if (RandomList == null)
             return EMovableState.eMax;
 
-        return RandomList[Random.Range(0, RandomList.Length - 1)];
+        return RandomList[Random.Range(0, RandomList.Count)];
     }
 
     protected virtual void InState() {}

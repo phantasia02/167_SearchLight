@@ -5,17 +5,19 @@ using UnityEngine;
 public class CMoveStateEnemyBase : CEnemyStateBase
 {
     public override EMovableState StateType() { return EMovableState.eMove; }
-    public EMovableState[] MyRandomStateList = new EMovableState[2];
     protected Vector3 m_EndPoint = Vector3.zero;
 
     public CMoveStateEnemyBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
-        MyRandomStateList[0] = EMovableState.eAtk;
-        MyRandomStateList[1] = EMovableState.eWait;
+
     }
 
     protected override void InState()
     {
+        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
+        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eAtk);
+        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eWait);
+
         ATKShowObj(CEnemyBase.EATKShowObj.eNotATKShow);
         SetAnimationState( CAnimatorStateCtl.EState.eRun);
 
@@ -43,6 +45,8 @@ public class CMoveStateEnemyBase : CEnemyStateBase
 
     protected override void updataState()
     {
+        UpdateDiscoveryTime();
+
         Vector3 lTempDir = m_EndPoint - m_MyEnemyBaseMemoryShare.m_MyActor.transform.position;
         lTempDir.y = 0.0f;
         lTempDir.Normalize();
@@ -54,7 +58,7 @@ public class CMoveStateEnemyBase : CEnemyStateBase
         lTempCheck.y = 0.0f;
 
         if (lTempCheck.sqrMagnitude <= 0.1f)
-            m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(MyRandomStateList));
+            m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(m_MyEnemyBaseMemoryShare.m_MyRandomStateList));
     }
 
     protected override void OutState()
