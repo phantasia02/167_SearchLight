@@ -16,7 +16,7 @@ public class CATKStateEnemyBase : CEnemyStateBase
     protected override void InState()
     {
         m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
-        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
+       // m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
         m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eWait);
 
         ATKShowObj(CEnemyBase.EATKShowObj.eATKShow);
@@ -46,12 +46,22 @@ public class CATKStateEnemyBase : CEnemyStateBase
 
     public void AnimationATKCallBack(CAnimatorStateCtl.cAnimationCallBackPar Paramete)
     {
+        if (m_MyEnemyBaseMemoryShare.m_MyActor.ChangState != EMovableState.eMax)
+            return;
+
         if (Paramete.iIndex == 0)
         {
             Transform lLauncherPointTransform = m_MyEnemyBaseMemoryShare.m_AllOtherTransform[0];
             if (lLauncherPointTransform != null)
             {
                 Transform lTempEnemyATKEffect = StaticGlobalDel.NewOtherObjAddParentShow(lLauncherPointTransform, CGGameSceneData.EOtherObj.eEnemyATKEffect);
+                lTempEnemyATKEffect.parent = m_MyGameManager.AllBulletParent;
+                CBulletFlyObj lTempBulletFlyObj = lTempEnemyATKEffect.GetComponent<CBulletFlyObj>();
+                lTempBulletFlyObj.Launcher = m_MyEnemyBaseMemoryShare.m_MyMovable;
+                lTempBulletFlyObj.TargetTag = StaticGlobalDel.TagPlayer;
+                lTempBulletFlyObj.Target = m_MyGameManager.Player.SearchlightTDObj.transform;
+                lTempBulletFlyObj.SetChangState( EMovableState.eMove);
+
                 Transform lTempSparkEffect = StaticGlobalDel.NewOtherObjAddParentShow(lLauncherPointTransform, CGGameSceneData.EOtherObj.eSpark);
                 lTempSparkEffect.up = lLauncherPointTransform.forward;
                 lTempSparkEffect.position = lLauncherPointTransform.position;

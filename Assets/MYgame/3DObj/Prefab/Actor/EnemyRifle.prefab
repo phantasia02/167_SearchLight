@@ -3128,6 +3128,7 @@ GameObject:
   - component: {fileID: 7030986292804817147}
   - component: {fileID: 8035930691697108395}
   - component: {fileID: 4003574722401014205}
+  - component: {fileID: 4642919145684979328}
   m_Layer: 8
   m_Name: Head_M
   m_TagString: Enemy
@@ -3225,6 +3226,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4642919145684979328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879208482655331382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &882769607314826762
 GameObject:
   m_ObjectHideFlags: 0
@@ -3790,7 +3803,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5669d1c9115d2e6408ab6156767c05dc, type: 2}
+  - {fileID: 2100000, guid: 8446bcffd5c8f7341ae4d148602f7cf4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4279,6 +4292,7 @@ GameObject:
   - component: {fileID: 1852864331184319928}
   - component: {fileID: 139231326098484144}
   - component: {fileID: 7619006100500779852}
+  - component: {fileID: 525133213961102307}
   m_Layer: 8
   m_Name: Hip_L
   m_TagString: Enemy
@@ -4377,6 +4391,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &525133213961102307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244013720670815916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1247105524161765301
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,6 +4662,7 @@ GameObject:
   - component: {fileID: 1674705201676852345}
   - component: {fileID: 5315246324225735047}
   - component: {fileID: 2528644264789495232}
+  - component: {fileID: 649426596457477876}
   m_Layer: 8
   m_Name: Hip_R
   m_TagString: Enemy
@@ -4734,6 +4761,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &649426596457477876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342718039291056979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1385116031279799473
 GameObject:
   m_ObjectHideFlags: 0
@@ -5586,6 +5625,7 @@ GameObject:
   - component: {fileID: 7741554863853644554}
   - component: {fileID: 5394528226490713857}
   - component: {fileID: 4147212133370449590}
+  - component: {fileID: 8375815430390347515}
   m_Layer: 8
   m_Name: Knee_R
   m_TagString: Enemy
@@ -5684,6 +5724,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8375815430390347515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623468034847215392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1628266888227417751
 GameObject:
   m_ObjectHideFlags: 0
@@ -7200,6 +7252,7 @@ GameObject:
   - component: {fileID: 4788636852318782616}
   - component: {fileID: 6615620848584049709}
   - component: {fileID: 4587024534212447083}
+  - component: {fileID: 6369610196538430743}
   m_Layer: 8
   m_Name: Spine2_M
   m_TagString: Enemy
@@ -7297,6 +7350,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &6369610196538430743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2149596687328210430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2160095508502209923
 GameObject:
   m_ObjectHideFlags: 0
@@ -12561,6 +12626,7 @@ GameObject:
   - component: {fileID: 2030864637628894172}
   - component: {fileID: 6202502327010139348}
   - component: {fileID: 7752810002563345946}
+  - component: {fileID: 9006287150099970391}
   m_Layer: 8
   m_Name: Elbow_L
   m_TagString: Enemy
@@ -12659,6 +12725,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &9006287150099970391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992553035280337654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3993269123876313745
 GameObject:
   m_ObjectHideFlags: 0
@@ -16844,18 +16922,13 @@ MonoBehaviour:
   - m_RendererObj: {fileID: 7662861601293201685}
     m_DeathMat: {fileID: 2100000, guid: 3f24f59e72757264bb130bda5dbf5071, type: 2}
     m_NormalMat: {fileID: 2100000, guid: 900eac9cba0b1474a850eeae83339e10, type: 2}
-  - m_RendererObj: {fileID: 6405191490807074034}
-    m_DeathMat: {fileID: 2100000, guid: 8446bcffd5c8f7341ae4d148602f7cf4, type: 2}
-    m_NormalMat: {fileID: 2100000, guid: 5669d1c9115d2e6408ab6156767c05dc, type: 2}
-  - m_RendererObj: {fileID: 4744319645210393776}
-    m_DeathMat: {fileID: 2100000, guid: 8446bcffd5c8f7341ae4d148602f7cf4, type: 2}
-    m_NormalMat: {fileID: 2100000, guid: 5669d1c9115d2e6408ab6156767c05dc, type: 2}
   m_StateShowObj:
   - m_ListObj:
     - {fileID: 1110371638353167693}
     - {fileID: 8925843754356553551}
   - m_ListObj:
     - {fileID: 7662861601295134677}
+  m_MyTargetBodys: {fileID: 5046908987318689734}
   m_MyBodyDeformationSystem: {fileID: 3474200266855168862}
 --- !u!54 &3786122026203887394
 Rigidbody:
@@ -19340,6 +19413,7 @@ GameObject:
   - component: {fileID: 5621119161978228912}
   - component: {fileID: 6775227414378186315}
   - component: {fileID: 1516930195436563192}
+  - component: {fileID: 7995187542254251944}
   m_Layer: 8
   m_Name: Shoulder_R
   m_TagString: Enemy
@@ -19438,6 +19512,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7995187542254251944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6281173134863983104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6283020391181580953
 GameObject:
   m_ObjectHideFlags: 0
@@ -20222,6 +20308,7 @@ GameObject:
   - component: {fileID: 5571272235709032488}
   - component: {fileID: 6288553604171326083}
   - component: {fileID: 838703491997706901}
+  - component: {fileID: 8120302720421674382}
   m_Layer: 8
   m_Name: Shoulder_L
   m_TagString: Enemy
@@ -20320,6 +20407,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8120302720421674382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6681529365218431289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6682103914336888486
 GameObject:
   m_ObjectHideFlags: 0
@@ -21848,6 +21947,7 @@ GameObject:
   - component: {fileID: 2697646968101347111}
   - component: {fileID: 1394233261281165306}
   - component: {fileID: 8807764873623806267}
+  - component: {fileID: 163468372615021952}
   m_Layer: 8
   m_Name: Elbow_R
   m_TagString: Enemy
@@ -21946,6 +22046,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &163468372615021952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159921492331666378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7171510808146114439
 GameObject:
   m_ObjectHideFlags: 0
@@ -25088,6 +25200,7 @@ GameObject:
   - component: {fileID: 1569890164506021547}
   - component: {fileID: 9212962584713629804}
   - component: {fileID: 5850783298164622194}
+  - component: {fileID: 4929378458312634668}
   m_Layer: 8
   m_Name: Knee_L
   m_TagString: Enemy
@@ -25186,6 +25299,18 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4929378458312634668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183852230832033421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8200221874070642592
 GameObject:
   m_ObjectHideFlags: 0
@@ -27341,7 +27466,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5669d1c9115d2e6408ab6156767c05dc, type: 2}
+  - {fileID: 2100000, guid: 8446bcffd5c8f7341ae4d148602f7cf4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28157,14 +28282,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2da63f1de39184c8abaa26a18d49e30b, type: 3}
---- !u!23 &7662861601293201685 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5645212007746666495, guid: 2da63f1de39184c8abaa26a18d49e30b, type: 3}
-  m_PrefabInstance: {fileID: 2594115645957050090}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7662861601294971893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5645212007749090591, guid: 2da63f1de39184c8abaa26a18d49e30b, type: 3}
+  m_PrefabInstance: {fileID: 2594115645957050090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7662861601293201685 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5645212007746666495, guid: 2da63f1de39184c8abaa26a18d49e30b, type: 3}
   m_PrefabInstance: {fileID: 2594115645957050090}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7662861601295134677 stripped

@@ -7,6 +7,7 @@ public class CBulletFlyObjMemoryShare : CMemoryShareBase
     public CBulletFlyObj    m_MyBulletFlyObj    = null;
     public Transform        m_Target            = null;
     public CGameObjBas      m_Launcher          = null;
+    public string           m_TargetTag         = "";
 };
 
 public class CBulletFlyObj : CMovableBase
@@ -16,9 +17,15 @@ public class CBulletFlyObj : CMovableBase
     protected CBulletFlyObjMemoryShare m_MyBulletFlyObjMemoryShare = null;
 
     public Transform Target{set => m_MyBulletFlyObjMemoryShare.m_Target = value;}
+    public string TargetTag { set => m_MyBulletFlyObjMemoryShare.m_TargetTag = value;}
     public CGameObjBas Launcher { set => m_MyBulletFlyObjMemoryShare.m_Launcher = value;}
 
     public override float DefSpeed { get { return 20.0f; } }
+
+    protected override void AddInitState()
+    {
+        m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CMoveStateBulletFlyObj(this));
+    }
 
     protected override void CreateMemoryShare()
     {
@@ -35,4 +42,9 @@ public class CBulletFlyObj : CMovableBase
         base.Start();
     }
 
+    public void SetChildTag(string settag)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+             transform.GetChild(i).tag = settag;
+    }
 }

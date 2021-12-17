@@ -5,6 +5,7 @@ using UnityEngine;
 public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
 {
     public override EMovableState StateType() { return EMovableState.eMove; }
+   // float m_TargetYAddMove = 0.0f;
 
     public CMoveStateBulletFlyObj(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -13,7 +14,10 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
 
     protected override void InState()
     {
-
+        //if (m_MyBulletFlyObjMemoryShare.m_Launcher.ObjType() == CGameObjBas.EObjType.eEnemy)
+        //    m_TargetYAddMove = 0.0f;
+        //else if (m_MyBulletFlyObjMemoryShare.m_Launcher.ObjType() == CGameObjBas.EObjType.ePlayer)
+        //    m_TargetYAddMove = 2.0f;
     }
 
     protected override void updataState()
@@ -22,7 +26,7 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
             Debug.LogError("Null m_Target ");
 
         Vector3 lTempTargetPos = m_MyBulletFlyObjMemoryShare.m_Target.position;
-        lTempTargetPos.y += 0.5f;
+       // lTempTargetPos.y += m_TargetYAddMove;
         Vector3 lTempDir = lTempTargetPos - m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.position;
         //lTempDir.y = 0.0f;
         lTempDir.Normalize();
@@ -38,8 +42,19 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == StaticGlobalDel.TagEnemy || other.tag == StaticGlobalDel.TagFloor)
+        if (other.tag == m_MyBulletFlyObjMemoryShare.m_TargetTag || other.tag == StaticGlobalDel.TagFloor)
         {
+            //if (m_MyBulletFlyObjMemoryShare.m_TargetTag == StaticGlobalDel.TagPlayer)
+            //{
+
+            //}
+
+            Transform lTempSparkEffect = StaticGlobalDel.NewOtherObjAddParentShow(m_MyBulletFlyObjMemoryShare.m_MyMovable.transform, CGGameSceneData.EOtherObj.eSpark);
+            lTempSparkEffect.parent = null;
+            lTempSparkEffect.up = -m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.forward;
+            lTempSparkEffect.position = m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.position;
+            lTempSparkEffect.localScale = Vector3.one * 5.0f;
+
             GameObject.Destroy(m_MyBulletFlyObjMemoryShare.m_MyMovable.gameObject);
         }
     }

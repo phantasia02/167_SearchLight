@@ -15,7 +15,7 @@ public class CWaitStateEnemyBase : CEnemyStateBase
     {
         m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
         m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eAtk);
-        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
+      //  m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
 
         SetAnimationState(CAnimatorStateCtl.EState.eIdle);
         m_MyEnemyBaseMemoryShare.m_StateTime = Random.Range(1.0f, 2.0f);

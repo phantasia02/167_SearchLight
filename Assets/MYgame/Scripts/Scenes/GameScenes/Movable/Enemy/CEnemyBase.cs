@@ -76,9 +76,14 @@ public abstract class CEnemyBase : CActor
     [SerializeField] protected Image[]                          m_AllEmoticons          = null;
     [SerializeField] protected List<CEnemyBaseRendererMat>      m_AllChangRendererMat   = new List<CEnemyBaseRendererMat>();
     [SerializeField] protected SDataListGameObj[]               m_StateShowObj          = null;
+
+    [SerializeField] protected Transform m_MyTargetBodys = null;
+    public Transform MyTargetBodys => m_MyTargetBodys;
     // ==================== SerializeField ===========================================
 
+    public override EObjType ObjType() { return EObjType.eEnemy; }
     public override EActorType MyActorType() { return EActorType.eEnemy; }
+    public override EMovableType MyMovableType() { return EMovableType.eEnemy; }
     abstract public EEnemyType MyEnemyType();
 
     protected override void AddInitState()

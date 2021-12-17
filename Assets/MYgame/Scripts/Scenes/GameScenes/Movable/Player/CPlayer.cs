@@ -55,7 +55,9 @@ public class CPlayer : CActor
     public const float CsLightScaleMinZ             = 0.04f;
     public const float CsLightScaleOverallRatioZ    = CsLightScaleMaxZ - CsLightScaleMinZ;
 
+    public override EObjType ObjType() { return EObjType.ePlayer; }
     public override EActorType MyActorType() { return EActorType.ePlayer; }
+    public override EMovableType MyMovableType() { return EMovableType.ePlayer; }
     //public override EMovableType MyMovableType() { return EMovableType.ePlayer; }
 
     protected float m_MaxMoveDirSize = 5.0f;

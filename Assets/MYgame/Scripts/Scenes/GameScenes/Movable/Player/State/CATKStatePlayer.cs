@@ -41,7 +41,9 @@ public class CATKStatePlayer : CPlayerStateBase
                     lTempSparkTransform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
                     CBulletFlyObj lTempBulletFlyObj = lTempBulletFlyObjTransform.GetComponent<CBulletFlyObj>();
-                    lTempBulletFlyObj.Target = m_MyPlayerMemoryShare.m_TargetBuffer.transform;
+                    lTempBulletFlyObj.Target = m_MyPlayerMemoryShare.m_TargetBuffer.MyTargetBodys;
+                    lTempBulletFlyObj.TargetTag = StaticGlobalDel.TagEnemy;
+                    lTempBulletFlyObj.Launcher = m_MyPlayerMemoryShare.m_MyPlayer;
                     lTempBulletFlyObj.SetChangState(EMovableState.eMove);
                 }
             }

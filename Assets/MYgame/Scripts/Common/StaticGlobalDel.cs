@@ -51,7 +51,7 @@ public static class StaticGlobalDel
     public const string TagFloor                = "Floor";
     public const string TagEnemy                = "Enemy";
     public const string TagBullet               = "Bullet";
-    public const string TagEnemyBullet          = "EnemyBullet";
+    public const string TagEnemyBullet          = "EnemyBulet";
 
 
     public const int g_FloorMask                    = 1 << (int)ELayerIndex.eFloor;
