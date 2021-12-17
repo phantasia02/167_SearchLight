@@ -85,31 +85,28 @@ public abstract class CMovableBase : CGameObjBas
 
     public virtual void SetChangState(CMovableStatePototype.EMovableState state, int changindex = -1)
     {
-        if (m_OldState == CMovableStatePototype.EMovableState.eHit)
-        {
-            if (state == CMovableStatePototype.EMovableState.eAtk || state == CMovableStatePototype.EMovableState.eMove)
-            {
-                int diughdasiuog = 0;
-            }
-        }
 
         if (LockChangState != CMovableStatePototype.EMovableState.eMax && LockChangState != state)
             return;
 
-        if (changindex != -1)
+        if (state == CMovableStatePototype.EMovableState.eMax)
+            return;
+
+        if (m_ChangState != CMovableStatePototype.EMovableState.eMax)
         {
             DataState lTempChangDataState = m_AllState[(int)state];
             if (lTempChangDataState.AllThisState.Count <= changindex)
                 return;
 
-            int CurPriority = 0;
-            if (m_ChangState != CMovableStatePototype.EMovableState.eMax)
-            {
-                DataState lTempCurDataState = m_AllState[(int)m_ChangState];
-                CurPriority = lTempCurDataState.AllThisState[lTempCurDataState.index].Priority;
-            }
+            int ChangPriority = -1;
+            int CurPriority = -1;
 
-            if (CurPriority > lTempChangDataState.AllThisState[changindex].Priority)
+            ChangPriority = lTempChangDataState.AllThisState[changindex == -1 ? lTempChangDataState.index : changindex].Priority;
+
+            DataState lTempCurDataState = m_AllState[(int)m_ChangState];
+            CurPriority = lTempCurDataState.AllThisState[m_ChangStateinndex == -1 ? lTempCurDataState.index : m_ChangStateinndex].Priority;
+            
+            if (CurPriority > ChangPriority)
                 return;
         }
 

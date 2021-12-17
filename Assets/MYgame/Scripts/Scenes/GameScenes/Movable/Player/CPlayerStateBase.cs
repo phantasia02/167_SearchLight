@@ -62,7 +62,7 @@ public abstract class CPlayerStateBase : CStateActor
                     lTempEnemyBase.SetChangState( EMovableState.eHit);
                     m_MyPlayerMemoryShare.m_TargetBuffer = lTempEnemyBase;
                     lTempCheckIrradiateEnemy = true;
-                    m_MyPlayerMemoryShare.m_MyMovable.LockChangState = EMovableState.eAtk;
+                   // m_MyPlayerMemoryShare.m_MyMovable.LockChangState = EMovableState.eAtk;
                     m_MyPlayerMemoryShare.m_MyMovable.SetChangState(EMovableState.eAtk);
                 }
             }
