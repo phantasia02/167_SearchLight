@@ -22,4 +22,12 @@ public abstract class CStateActor : CMovableStatePototype
             m_MyActorMemoryShare.m_MyActor.AnimatorStateCtl.AnimatorSpeed = Speed;
         }
     }
+
+    protected override void OutState()
+    {
+        base.OutState();
+
+        if (m_MyActorMemoryShare.m_MyActor.AnimatorStateCtl != null)
+            m_MyActorMemoryShare.m_MyActor.AnimatorStateCtl.m_KeyFramMessageCallBack = null;
+    }
 }

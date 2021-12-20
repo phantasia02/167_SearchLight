@@ -63,6 +63,7 @@ public class CATKStateEnemyBase : CEnemyStateBase
                 lTempBulletFlyObj.SetChangState( EMovableState.eMove);
 
                 Transform lTempSparkEffect = StaticGlobalDel.NewOtherObjAddParentShow(lLauncherPointTransform, CGGameSceneData.EOtherObj.eSpark);
+                lTempSparkEffect.parent = null;
                 lTempSparkEffect.up = lLauncherPointTransform.forward;
                 lTempSparkEffect.position = lLauncherPointTransform.position;
                 lTempSparkEffect.localScale = Vector3.one * 5.0f;

@@ -38,7 +38,8 @@ public abstract class CEnemyBase : CActor
 {
     public enum EEnemyType
     {
-        eEnemyRifle = 0,
+        eEnemyRifle         = 0,
+        eEnemyMachineGunner = 1,
         eMax
     };
 
@@ -64,8 +65,6 @@ public abstract class CEnemyBase : CActor
 
     public override void SetChangState(CMovableStatePototype.EMovableState state, int changindex = -1)
     {
-
-
         if (state == CMovableStatePototype.EMovableState.eHit && WasFound)
             return;
 
@@ -73,12 +72,14 @@ public abstract class CEnemyBase : CActor
     }
 
     // ==================== SerializeField ===========================================
-    [SerializeField] protected Image[]                          m_AllEmoticons          = null;
-    [SerializeField] protected List<CEnemyBaseRendererMat>      m_AllChangRendererMat   = new List<CEnemyBaseRendererMat>();
-    [SerializeField] protected SDataListGameObj[]               m_StateShowObj          = null;
+    [SerializeField] protected Image[]                          m_AllEmoticons              = null;
+    [SerializeField] protected List<CEnemyBaseRendererMat>      m_AllChangRendererMat       = new List<CEnemyBaseRendererMat>();
+    [SerializeField] protected SDataListGameObj[]               m_StateShowObj              = null;
 
     [SerializeField] protected Transform m_MyTargetBodys = null;
     public Transform MyTargetBodys => m_MyTargetBodys;
+
+    [SerializeField] protected Transform                        m_MyBodyDeformationSystem   = null;
     // ==================== SerializeField ===========================================
 
     public override EObjType ObjType() { return EObjType.eEnemy; }
@@ -127,6 +128,7 @@ public abstract class CEnemyBase : CActor
     {
         base.Start();
 
+        m_MyEnemyBaseMemoryShare.m_MyBodyDeformationSystem = m_MyBodyDeformationSystem;
         m_MyEnemyBaseMemoryShare.m_AllPlayerLightShowMesh = this.GetComponentsInChildren<CPlayerLightShowMesh>();
 
         foreach (CPlayerLightShowMesh CPLSM in m_MyEnemyBaseMemoryShare.m_AllPlayerLightShowMesh)
