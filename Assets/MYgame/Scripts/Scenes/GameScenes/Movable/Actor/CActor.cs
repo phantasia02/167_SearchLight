@@ -86,11 +86,9 @@ public abstract class CActor : CMovableBase
         AnimatorStateCtl = this.GetComponentInChildren<CAnimatorStateCtl>();
 
         if (AnimatorStateCtl != null)
-        {
             AnimatorStateCtl.Init();
-            m_MyActorMemoryShare.m_MyActorCollider = AnimatorStateCtl.GetComponentsInChildren<Collider>(true);
-            m_MyActorMemoryShare.m_MyActorRigidbody = AnimatorStateCtl.GetComponentsInChildren<Rigidbody>(true);
-        }
+
+        InitSetActorCR();
 
         Transform lTempTag = this.transform.Find("Tag");
         if (lTempTag != null)
@@ -100,6 +98,14 @@ public abstract class CActor : CMovableBase
         EnabledRagdoll(false);
     }
 
+    protected virtual void InitSetActorCR()
+    {
+        if (AnimatorStateCtl != null)
+        {
+            m_MyActorMemoryShare.m_MyActorCollider = AnimatorStateCtl.GetComponentsInChildren<Collider>(true);
+            m_MyActorMemoryShare.m_MyActorRigidbody = AnimatorStateCtl.GetComponentsInChildren<Rigidbody>(true);
+        }
+    }
 
     protected override void Start()
     {

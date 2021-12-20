@@ -135,4 +135,13 @@ public abstract class CEnemyBase : CActor
         this.SetChangState(CMovableStatePototype.EMovableState.eWait);
     }
 
+    protected override void InitSetActorCR()
+    {
+        if (m_AllObj != null)
+        {
+            m_MyActorMemoryShare.m_MyActorCollider = m_AllObj.GetComponentsInChildren<Collider>(true);
+            m_MyActorMemoryShare.m_MyActorRigidbody = m_AllObj.GetComponentsInChildren<Rigidbody>(true);
+        }
+    }
+
 }
