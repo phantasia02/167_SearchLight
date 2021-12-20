@@ -30,6 +30,7 @@ public class CATKStateEnemyBase : CEnemyStateBase
         {
             SetAnimationState(CAnimatorStateCtl.EState.eAtk);
             m_MyActorMemoryShare.m_MyActor.AnimatorStateCtl.m_KeyFramMessageCallBack = AnimationATKCallBack;
+            m_MyEnemyBaseMemoryShare.m_MyEnemyBase.Hidden = false;
         };
     }
 
@@ -40,6 +41,7 @@ public class CATKStateEnemyBase : CEnemyStateBase
 
     protected override void OutState()
     {
+        m_MyEnemyBaseMemoryShare.m_MyEnemyBase.Hidden = true;
         if (m_RotateTween != null)
             m_RotateTween.Kill();
     }

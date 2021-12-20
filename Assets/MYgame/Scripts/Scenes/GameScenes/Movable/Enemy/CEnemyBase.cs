@@ -51,8 +51,16 @@ public abstract class CEnemyBase : CActor
     };
 
     protected CEnemyBaseMemoryShare m_MyEnemyBaseMemoryShare = null;
-    public bool WasFound {get => m_MyEnemyBaseMemoryShare.m_WasFound;}
-    public bool Hidden { get => m_MyEnemyBaseMemoryShare.m_hidden; }
+    public bool WasFound
+    {
+        set => m_MyEnemyBaseMemoryShare.m_WasFound = value;
+        get => m_MyEnemyBaseMemoryShare.m_WasFound;
+    }
+    public bool Hidden
+    {
+        set => m_MyEnemyBaseMemoryShare.m_hidden = value;
+        get => m_MyEnemyBaseMemoryShare.m_hidden;
+    }
     public void AddCurDiscoveryTime(float addTime)
     {
         m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime += addTime;
