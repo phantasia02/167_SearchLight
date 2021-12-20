@@ -31,18 +31,23 @@ public class CPlayerLightShowMesh : MonoBehaviour
 
     private void Awake()
     {
+
         m_MyMeshRenderer = this.GetComponent<Renderer>();
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    //void Start()
+    //{
+    //    CPlayer lTempPlayer = GameObject.FindObjectOfType<CPlayer>();
+    //    PlayerLight = lTempPlayer.PlayCtrlLight;
+    //}
 
     // Update is called once per frame
     void Update()
     {
+        if (m_PlayerLight == null)
+            return;
+
         Mpb.SetVector(PlayerPos, m_PlayerLight.position);
         m_MyMeshRenderer.SetPropertyBlock(Mpb);
     }

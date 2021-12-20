@@ -288,13 +288,15 @@ public abstract class CMovableBase : CGameObjBas
             if (m_AllCreateList[i] == null)
                 m_AllCreateList[i] = m_NullDelCreateFunc[i];
         }
+
+        m_MyGameManager.AddMovableBaseListData(this);
     }
 
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        m_MyGameManager.AddMovableBaseListData(this);
+        
         base.Start();
     }
 

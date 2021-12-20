@@ -113,6 +113,8 @@ public class CGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
+
         Observable.EveryUpdate().First(_ => Input.GetMouseButtonDown(0)).Subscribe(
         OnNext =>
         {
@@ -124,7 +126,7 @@ public class CGameManager : MonoBehaviour
                 if (lTempCReadyGameWindow && lTempCReadyGameWindow.GetShow())
                     lTempCReadyGameWindow.CloseShowUI();
 
-                CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
+                
                 if (lTempGameSceneWindow)
                 {
 
@@ -134,6 +136,15 @@ public class CGameManager : MonoBehaviour
         OnCompleted => { Debug.Log("OK"); }
         ).AddTo(this);
 
+
+        if (lTempGameSceneWindow)
+        {
+            CGameObjBasListData lTempEnemyGameObjBasListData = m_AllGameObjBas[(int)CGameObjBas.EObjType.eEnemy];
+            for (int i = 0; i < lTempEnemyGameObjBasListData.m_GameObjBasListData.Count; i++)
+                lTempGameSceneWindow.GameAllEnemyUI.AddEnemy();
+
+            lTempGameSceneWindow.GameAllEnemyUI.UpdateLayout();
+        }
 
     }
 
@@ -331,6 +342,7 @@ public class CGameManager : MonoBehaviour
             return;
 
         int lTempTypeIndex = (int)addGameObjBas.ObjType();
+
         addGameObjBas.GameObjBasIndex = m_AllGameObjBas[lTempTypeIndex].m_GameObjBasListData.Count;
         m_AllGameObjBas[lTempTypeIndex].m_GameObjBasListData.Add(addGameObjBas);
         m_AllGameObjBas[lTempTypeIndex].m_GameObjBasHashtable.Add(addGameObjBas.GetInstanceID(), addGameObjBas);
@@ -352,6 +364,14 @@ public class CGameManager : MonoBehaviour
             lTempGameObjBasList[i].GameObjBasIndex = i;
 
         m_AllGameObjBas[lTempTypeIndex].m_GameObjBasHashtable.Remove(addGameObjBas.GetInstanceID());
+
+        if (addGameObjBas.ObjType() == CGameObjBas.EObjType.eEnemy)
+        {
+            CGameSceneWindow lTempGameSceneWindow = CGameSceneWindow.SharedInstance;
+            if (lTempGameSceneWindow)
+                lTempGameSceneWindow.GameAllEnemyUI.RemoveEnemy();
+
+        }
     }
 
     public void AddMovableBaseListData(CMovableBase addMovableBase)

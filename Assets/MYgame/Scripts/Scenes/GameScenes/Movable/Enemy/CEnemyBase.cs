@@ -108,6 +108,7 @@ public abstract class CEnemyBase : CActor
 
     protected override void CreateMemoryShare()
     {
+        m_MyGameManager.AddEnemyBaseListData(this);
         m_MyEnemyBaseMemoryShare = new CEnemyBaseMemoryShare();
         m_MyMemoryShare = m_MyEnemyBaseMemoryShare;
 
@@ -124,8 +125,6 @@ public abstract class CEnemyBase : CActor
     // Start is called before the first frame update
     protected override void Start()
     {
-        m_MyGameManager.AddEnemyBaseListData(this);
-
         base.Start();
 
         m_MyEnemyBaseMemoryShare.m_AllPlayerLightShowMesh = this.GetComponentsInChildren<CPlayerLightShowMesh>();

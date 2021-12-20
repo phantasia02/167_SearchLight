@@ -71,11 +71,29 @@ public class CPlayer : CActor
 
     [SerializeField] protected GameObject   m_SearchlightRLObj  = null;
     [SerializeField] protected GameObject   m_SearchlightTDObj  = null;
-    public GameObject SearchlightTDObj { get { return m_MyPlayerMemoryShare.m_SearchlightTDObj; } }
+    public GameObject SearchlightTDObj
+    {
+        get
+        {
+            if (m_MyPlayerMemoryShare == null)
+                return m_SearchlightTDObj;
+            
+            return m_MyPlayerMemoryShare.m_SearchlightTDObj;
+        }
+    }
     [SerializeField] protected Transform    m_LightTDObj        = null;
     [SerializeField] protected Transform    m_PlayCtrlLight     = null;
     [SerializeField] protected PlayerFortData[]  m_RLFortData            = null;
-    public Transform PlayCtrlLight{get { return m_MyPlayerMemoryShare.m_PlayCtrlLight; }}
+    public Transform PlayCtrlLight
+    {
+        get
+        {
+            if (m_MyPlayerMemoryShare == null)
+                return m_PlayCtrlLight;
+
+            return m_MyPlayerMemoryShare.m_PlayCtrlLight;
+        }
+    }
     // ==================== SerializeField ===========================================
 
     public override float DefSpeed { get { return 5.0f; } }

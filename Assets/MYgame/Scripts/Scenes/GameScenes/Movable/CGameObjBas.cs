@@ -37,13 +37,13 @@ public abstract class CGameObjBas : MonoBehaviour
             m_MyGameManager = GameObject.FindObjectOfType<CGameManager>();
 
         m_OriginalParent = gameObject.transform.parent;
-        
+        m_MyGameManager.AddGameObjBasListData(this);
     }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        m_MyGameManager.AddGameObjBasListData(this);
+        
     }
 
     public virtual void Init()

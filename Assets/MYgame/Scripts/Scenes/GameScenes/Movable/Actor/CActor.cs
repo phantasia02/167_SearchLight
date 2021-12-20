@@ -76,6 +76,7 @@ public abstract class CActor : CMovableBase
 
     protected override void CreateMemoryShare()
     {
+        m_MyGameManager.AddActorBaseListData(this);
         m_MyActorMemoryShare = (CActorMemoryShare)m_MyMemoryShare;
         m_MyActorMemoryShare.m_AllObj               = m_AllObj;
         m_MyActorMemoryShare.m_MyActor              = this;
@@ -102,7 +103,7 @@ public abstract class CActor : CMovableBase
 
     protected override void Start()
     {
-        m_MyGameManager.AddActorBaseListData(this);
+        
         base.Start();
     }
 

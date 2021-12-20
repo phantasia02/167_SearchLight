@@ -17,13 +17,14 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
     }
 
     CChangeScenes m_ChangeScenes = new CChangeScenes();
-    [SerializeField] GameObject m_ShowObj           = null;
-    [SerializeField] Button m_ResetButton           = null;
-    [SerializeField] Button m_GoButton              = null;
-    [SerializeField] Image m_FragmentSprogressRate  = null;
+    [SerializeField] protected GameObject m_ShowObj           = null;
+    [SerializeField] protected Button m_ResetButton           = null;
+    [SerializeField] protected Button m_GoButton              = null;
+    [SerializeField] protected Image m_FragmentSprogressRate  = null;
 
-    [SerializeField] Text m_CurLevelText = null;
-
+    [SerializeField] protected Text m_CurLevelText = null;
+    protected CAllEnemyUI m_GameAllEnemyUI   = null;
+    public CAllEnemyUI GameAllEnemyUI => m_GameAllEnemyUI;
     //const float
     protected float m_CurFever      = 0.0f;
     protected float m_TargetFever   = 0.0f;
@@ -39,6 +40,8 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
 
     private void Awake()
     {
+        m_GameAllEnemyUI = this.GetComponentInChildren<CAllEnemyUI>();
+
         m_ResetButton.onClick.AddListener(() => {
             m_ChangeScenes.ResetScene();
         });
