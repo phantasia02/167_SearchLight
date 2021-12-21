@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Cinemachine;
 using UniRx;
+using DG.Tweening;
 
 public class CGameManager : MonoBehaviour
 {
@@ -40,8 +41,8 @@ public class CGameManager : MonoBehaviour
     [Header("Result OBJ")]
     [SerializeField] protected GameObject m_WinObjAnima     = null;
     [SerializeField] protected GameObject m_OverObjAnima    = null;
-    [SerializeField] protected Transform m_AllBulletParent  = null;
-    public Transform AllBulletParent => m_AllBulletParent;
+    
+    
     // ==================== SerializeField ===========================================
 
     // ==================== All ObjData  ===========================================
@@ -60,6 +61,14 @@ public class CGameManager : MonoBehaviour
 
     // ==================== All ObjData ===========================================
 
+    protected Transform m_AllBulletParent = null;
+    public Transform AllBulletParent => m_AllBulletParent;
+
+    protected Transform m_AllEnemyParent = null;
+    public Transform AllEnemyParent => m_AllEnemyParent;
+
+    public Light m_DirectionalLight = null;
+    public Light DirectionalLight => m_DirectionalLight;
 
     protected bool isApplicationQuitting = false;
     public bool GetisApplicationQuitting { get { return isApplicationQuitting; } }
@@ -91,7 +100,11 @@ public class CGameManager : MonoBehaviour
             m_MyResultUI.OverButton.onClick.AddListener(OnReset);
         }
 
-        m_AllBulletParent = this.transform.Find("AllBulletParent");
+        m_AllBulletParent   = this.transform.Find("AllBulletParent");
+        m_AllEnemyParent    = this.transform.Find("AllEnemy");
+
+        GameObject lTempGameObject = GameObject.Find("Directional Light");
+        m_DirectionalLight = lTempGameObject.GetComponent<Light>();
 
         GameObject lTempCameraObj = GameObject.FindGameObjectWithTag("MainCamera");
         if (lTempCameraObj != null)
@@ -108,6 +121,25 @@ public class CGameManager : MonoBehaviour
 
         for (int i = 0; i < m_AllEnemyBase.Length; i++)
             m_AllEnemyBase[i] = new CEnemyBaseListData();
+
+        CGGameSceneData lTempGGameSceneData = CGGameSceneData.SharedInstance;
+        if (lTempGGameSceneData != null)
+        {
+            GameObject lTempOtherObj = null;
+            Vector3 lTempinitPos = Vector3.zero;
+            foreach (CStageData.DataCreateEnemy DCE in m_MyStageData.DataAllCreateEnemyCount)
+            {
+                for (int i = 0; i < DCE.Count; i++)
+                {
+                    lTempinitPos.x = Random.Range(-StaticGlobalDel.g_CsLightDisMaxX, StaticGlobalDel.g_CsLightDisMaxX);
+                    lTempinitPos.y = 0.0f;
+                    lTempinitPos.z = Random.Range(-StaticGlobalDel.g_CsLightDisMinZ, StaticGlobalDel.g_CsLightDisMaxZ);
+
+                    lTempOtherObj = GameObject.Instantiate(lTempGGameSceneData.m_AllCEnemyTypeObj[(int)DCE.m_EnemyType], AllEnemyParent);
+                    lTempOtherObj.transform.position = lTempinitPos;
+                }
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -126,10 +158,11 @@ public class CGameManager : MonoBehaviour
                 if (lTempCReadyGameWindow && lTempCReadyGameWindow.GetShow())
                     lTempCReadyGameWindow.CloseShowUI();
 
-                
-                if (lTempGameSceneWindow)
-                {
 
+                foreach (CActorBaseListData AAB in m_AllActorBase)
+                {
+                    foreach (CActor lTempActor in AAB.m_ActorBaseListData)
+                        lTempActor.SetChangState(CMovableStatePototype.EMovableState.eWait);
                 }
             }
         },
@@ -249,10 +282,12 @@ public class CGameManager : MonoBehaviour
                     {
                        // lTempGameSceneWindow.ShowObj(false);
                     }
+                    Player.SetChangState(CMovableStatePototype.EMovableState.eWin);
 
-                  //  m_AllGroupQuestionHole[0].ChangeQuestionHoleState( CQuestionHole.ECurShowState.eFinish);
-                  //  ChangeQuestionHoleState
-                    m_MyResultUI.ShowSuccessUI(0.0f);
+                    Color lTempColor = DirectionalLight.color;
+                    Tween lTempTween  = DOTween.To(() => lTempColor, x => lTempColor = x, Color.white, 1.0f);
+                    lTempTween.OnUpdate(() => {DirectionalLight.color = lTempColor;});
+                    lTempTween.OnComplete(() => { m_MyResultUI.ShowSuccessUI(0.0f); });
                 }
                 break;
             case EState.eGameOver:
@@ -371,6 +406,9 @@ public class CGameManager : MonoBehaviour
             if (lTempGameSceneWindow)
                 lTempGameSceneWindow.GameAllEnemyUI.RemoveEnemy();
 
+
+            if (m_AllGameObjBas[lTempTypeIndex].m_GameObjBasListData.Count == 0)
+                SetState( EState.eWinUI);
         }
     }
 

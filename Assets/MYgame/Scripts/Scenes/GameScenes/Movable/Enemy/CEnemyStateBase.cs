@@ -29,28 +29,7 @@ public abstract class CEnemyStateBase : CStateActor
         //}
     }
 
-    public void ATKShowObj(CEnemyBase.EATKShowObj showType)
-    {
 
-        void showobj(SDataListGameObj allobj, bool show)
-        {
-            if (allobj != null)
-            {
-                for (int x = 0; x < allobj.m_ListObj.Count; x++)
-                    allobj.m_ListObj[x].SetActive(show);
-            }
-        }
-
-        SDataListGameObj lTempSDataListGameObj = null;
-        for (int i = 0; i < m_MyEnemyBaseMemoryShare.m_StateShowObj.Length; i++)
-        {
-            lTempSDataListGameObj = m_MyEnemyBaseMemoryShare.m_StateShowObj[i];
-            showobj(lTempSDataListGameObj, false);
-        }
-
-        lTempSDataListGameObj = m_MyEnemyBaseMemoryShare.m_StateShowObj[(int)showType];
-        showobj(lTempSDataListGameObj, true);
-    }
 
     public override void OnTriggerEnter(Collider other)
     {
@@ -73,9 +52,39 @@ public abstract class CEnemyStateBase : CStateActor
 
     public void UpdateDiscoveryTime()
     {
-        if (m_MyEnemyBaseMemoryShare.m_OldDiscoveryTime >= m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime)
+        m_MyEnemyBaseMemoryShare.m_IsShow = m_MyEnemyBaseMemoryShare.m_OldDiscoveryTime < m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime;
+        if (!m_MyEnemyBaseMemoryShare.m_IsShow)
             m_MyEnemyBaseMemoryShare.m_MyEnemyBase.AddCurDiscoveryTime(-(Time.deltaTime * 0.5f));
 
         m_MyEnemyBaseMemoryShare.m_OldDiscoveryTime = m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime;
+    }
+
+    public void NormalAnimationATKCallBack(CAnimatorStateCtl.cAnimationCallBackPar Paramete)
+    {
+        if (m_MyEnemyBaseMemoryShare.m_MyActor.ChangState != EMovableState.eMax)
+            return;
+
+        if (Paramete.iIndex == 0)
+        {
+            Transform lLauncherPointTransform = m_MyEnemyBaseMemoryShare.m_AllOtherTransform[0];
+            if (lLauncherPointTransform != null)
+            {
+                Transform lTempEnemyATKEffect = StaticGlobalDel.NewOtherObjAddParentShow(lLauncherPointTransform, CGGameSceneData.EOtherObj.eEnemyATKEffect);
+                lTempEnemyATKEffect.parent = m_MyGameManager.AllBulletParent;
+                CBulletFlyObj lTempBulletFlyObj = lTempEnemyATKEffect.GetComponent<CBulletFlyObj>();
+                lTempBulletFlyObj.Launcher = m_MyEnemyBaseMemoryShare.m_MyMovable;
+                lTempBulletFlyObj.TargetTag = StaticGlobalDel.TagPlayer;
+                lTempBulletFlyObj.Target = m_MyGameManager.Player.SearchlightTDObj.transform;
+                lTempBulletFlyObj.SetChangState(EMovableState.eMove);
+
+                Transform lTempSparkEffect = StaticGlobalDel.NewOtherObjAddParentShow(lLauncherPointTransform, CGGameSceneData.EOtherObj.eSpark);
+                lTempSparkEffect.parent = null;
+                lTempSparkEffect.up = lLauncherPointTransform.forward;
+                lTempSparkEffect.position = lLauncherPointTransform.position;
+                lTempSparkEffect.localScale = Vector3.one * 5.0f;
+            }
+        }
+        else if (Paramete.iIndex == 1)
+            m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(m_MyEnemyBaseMemoryShare.m_MyRandomStateList));
     }
 }

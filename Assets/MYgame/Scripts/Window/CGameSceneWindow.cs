@@ -50,9 +50,12 @@ public class CGameSceneWindow : CSingletonMonoBehaviour<CGameSceneWindow>
             SetGoButton( EButtonState.eHide);
         });
 
-        CSaveManager lTempCSaveManager = CSaveManager.SharedInstance;
-        if (lTempCSaveManager != null)
-            m_CurLevelText.text = $"{ GlobalData.g_ShowCurLevelNamePrefix + (SceneManager.GetActiveScene().buildIndex).ToString()}";
+        if (m_CurLevelText != null)
+        {
+            CSaveManager lTempCSaveManager = CSaveManager.SharedInstance;
+            if (lTempCSaveManager != null)
+                m_CurLevelText.text = $"{ GlobalData.g_ShowCurLevelNamePrefix + (SceneManager.GetActiveScene().buildIndex).ToString()}";
+        }
 
         CGameManager lTempGameManager = this.GetComponentInParent<CGameManager>();
         if (lTempGameManager == null)

@@ -30,8 +30,10 @@ public class CEnemyBaseMemoryShare : CActorMemoryShare
     public SDataListGameObj[]                           m_StateShowObj              = null;
     public float                                        m_CurDiscoveryTime          = 0.0f;
     public float                                        m_OldDiscoveryTime          = 0.0f;
+    public bool                                         m_IsShow                    = false;
     public List<CMovableStatePototype.EMovableState>    m_MyRandomStateList         = new List<CMovableStatePototype.EMovableState>();
     public Transform                                    m_MyBodyDeformationSystem   = null;
+    public CEnemyBase.EATKShowObj                       m_CurATKShowObj             = CEnemyBase.EATKShowObj.eNotATKShow;
 };
 
 public abstract class CEnemyBase : CActor
@@ -47,6 +49,7 @@ public abstract class CEnemyBase : CActor
     {
         eNotATKShow     = 0,
         eATKShow        = 1,
+        eGrenade        = 2,
         eMax
     };
 
@@ -129,6 +132,8 @@ public abstract class CEnemyBase : CActor
        // this.transform.FindChild();
 
         base.CreateMemoryShare();
+
+        ATKShowObj(CEnemyBase.EATKShowObj.eNotATKShow);
     }
 
     // Start is called before the first frame update
@@ -142,7 +147,7 @@ public abstract class CEnemyBase : CActor
         foreach (CPlayerLightShowMesh CPLSM in m_MyEnemyBaseMemoryShare.m_AllPlayerLightShowMesh)
             CPLSM.PlayerLight = m_MyGameManager.Player.PlayCtrlLight;
 
-        this.SetChangState(CMovableStatePototype.EMovableState.eWait);
+        //this.SetChangState(CMovableStatePototype.EMovableState.eWait);
     }
 
     protected override void InitSetActorCR()
@@ -154,4 +159,25 @@ public abstract class CEnemyBase : CActor
         }
     }
 
+    public void ATKShowObj(CEnemyBase.EATKShowObj showType)
+    {
+        void showobj(SDataListGameObj allobj, bool show)
+        {
+            if (allobj != null)
+            {
+                for (int x = 0; x < allobj.m_ListObj.Count; x++)
+                    allobj.m_ListObj[x].SetActive(show);
+            }
+        }
+
+        SDataListGameObj lTempSDataListGameObj = null;
+        for (int i = 0; i < m_MyEnemyBaseMemoryShare.m_StateShowObj.Length; i++)
+        {
+            lTempSDataListGameObj = m_MyEnemyBaseMemoryShare.m_StateShowObj[i];
+            showobj(lTempSDataListGameObj, false);
+        }
+
+        lTempSDataListGameObj = m_MyEnemyBaseMemoryShare.m_StateShowObj[(int)showType];
+        showobj(lTempSDataListGameObj, true);
+    }
 }

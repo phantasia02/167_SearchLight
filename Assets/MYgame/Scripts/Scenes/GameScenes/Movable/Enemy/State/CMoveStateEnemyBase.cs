@@ -14,18 +14,14 @@ public class CMoveStateEnemyBase : CEnemyStateBase
 
     protected override void InState()
     {
-        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
-        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eAtk);
-        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eWait);
-
-        ATKShowObj(CEnemyBase.EATKShowObj.eNotATKShow);
+        m_MyEnemyBaseMemoryShare.m_MyEnemyBase.ATKShowObj(CEnemyBase.EATKShowObj.eNotATKShow);
         SetAnimationState( CAnimatorStateCtl.EState.eRun);
 
         m_EndPoint = Vector3.zero;
         Vector3 lTempDir = Random.insideUnitSphere;
         lTempDir.y = 0.0f;
         lTempDir.Normalize();
-        m_EndPoint = m_MyEnemyBaseMemoryShare.m_MyActor.transform.position + lTempDir * Random.Range(3.0f, 6.0f);
+        m_EndPoint = m_MyEnemyBaseMemoryShare.m_MyActor.transform.position + lTempDir * Random.Range(1.0f, 4.0f);
         m_EndPoint.y = m_MyEnemyBaseMemoryShare.m_MyActor.transform.position.y;
 
         if (m_EndPoint.x < -StaticGlobalDel.g_CsLightDisMaxX)
@@ -39,8 +35,6 @@ public class CMoveStateEnemyBase : CEnemyStateBase
 
         if (m_EndPoint.z < StaticGlobalDel.g_CsLightDisMinZ)
             m_EndPoint.z = StaticGlobalDel.g_CsLightDisMinZ;
-
-
     }
 
     protected override void updataState()
@@ -58,7 +52,15 @@ public class CMoveStateEnemyBase : CEnemyStateBase
         lTempCheck.y = 0.0f;
 
         if (lTempCheck.sqrMagnitude <= 0.1f)
+        {
+            m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
+            m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eWait);
+
+            if (!m_MyEnemyBaseMemoryShare.m_IsShow)
+                m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eAtk);
+
             m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(m_MyEnemyBaseMemoryShare.m_MyRandomStateList));
+        }
     }
 
     protected override void OutState()

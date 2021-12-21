@@ -20,12 +20,16 @@ public class CChangeScenes
         //    GlobalData.g_LevelIndex = int.Parse(sArray[0]);
     }
 
-    public void LoadGameScenes()
+    public void LoadGameScenes(int LevelIndex = -1)
     {
         //if (lpLevelIndex < 0 || lpLevelIndex >= GlobalData.SharedInstance.LevelGameObj.Length)
         //    return;
+
         int lTempIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        if (lTempIndex == 4)
+        if (LevelIndex != -1)
+            lTempIndex = LevelIndex;
+
+        if (lTempIndex >= SceneManager.sceneCount + 1)
             lTempIndex = 1;
 
         GlobalData.g_CurSceneName = GlobalData.g_GameScenesName;

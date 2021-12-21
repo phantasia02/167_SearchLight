@@ -13,13 +13,11 @@ public class CWaitStateEnemyBase : CEnemyStateBase
 
     protected override void InState()
     {
-        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
-        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eAtk);
-        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
+
 
         SetAnimationState(CAnimatorStateCtl.EState.eIdle);
         m_MyEnemyBaseMemoryShare.m_StateTime = Random.Range(1.0f, 2.0f);
-        ATKShowObj(CEnemyBase.EATKShowObj.eNotATKShow);
+        m_MyEnemyBaseMemoryShare.m_MyEnemyBase.ATKShowObj(CEnemyBase.EATKShowObj.eNotATKShow);
     }
 
     protected override void updataState()
@@ -27,7 +25,15 @@ public class CWaitStateEnemyBase : CEnemyStateBase
         UpdateDiscoveryTime();
 
         if (MomentinTime(m_MyEnemyBaseMemoryShare.m_StateTime))
+        {
+            m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
+            m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
+
+            if (!m_MyEnemyBaseMemoryShare.m_IsShow)
+                m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eAtk);
+
             m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(m_MyEnemyBaseMemoryShare.m_MyRandomStateList));
+        }
     }
 
     protected override void OutState()

@@ -20,12 +20,12 @@ public class CBootScene : MonoBehaviour
 
         // Debug.Log("CExample_Internet.SharedInstance.ConnectionStatus() = " + CExample_Internet.SharedInstance.ConnectionStatus().ToString());
 
-        CSaveManager.m_status.m_LevelIndex = 0;
+        CSaveManager.m_status.m_LevelIndex = 1;
 #if UNITY_EDITOR
         CSaveManager.m_status.m_LevelIndex = m_InitLevelIndex;
 #endif
 
-        m_ChangeScenes.LoadGameScenes();
+        m_ChangeScenes.LoadGameScenes(CSaveManager.m_status.m_LevelIndex);
         //m_ChangeScenes.LoadTestScenes();
     }
 

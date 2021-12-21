@@ -168,7 +168,7 @@ public class CPlayer : CActor
         m_LightTDRenderer = m_LightTDObj.GetComponent<Renderer>();
         
 
-        SetCurState(CMovableStatePototype.EMovableState.eWait);
+       // SetCurState(CMovableStatePototype.EMovableState.eWait);
 
         UpdateHpVal().Subscribe(x => 
         {

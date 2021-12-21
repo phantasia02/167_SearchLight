@@ -1381,8 +1381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55a98a77fa0ee043967c24cc182938b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NextButton: {fileID: 0}
-  m_OverButton: {fileID: 0}
+  m_NextButton: {fileID: 6392863494752674526}
+  m_OverButton: {fileID: 6392863494503170481}
 --- !u!95 &8633074451548222956
 Animator:
   serializedVersion: 3

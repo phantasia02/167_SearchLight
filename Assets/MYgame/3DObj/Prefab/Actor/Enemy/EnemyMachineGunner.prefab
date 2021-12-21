@@ -3854,14 +3854,20 @@ MonoBehaviour:
   - m_flagName: MachineGunnerATK
     m_AnimationName: MachineGunnerATK
     m_AnimationStateName: MachineGunnerATK
+    m_Speed: 2
+    m_AnimationClip: {fileID: 0}
+    m_AnimationTime: 0
+  - m_flagName: GrenadeATK
+    m_AnimationName: GrenadeATK
+    m_AnimationStateName: GrenadeATK
     m_Speed: 1
     m_AnimationClip: {fileID: 0}
     m_AnimationTime: 0
   m_AllFleeAnima:
   - m_flagName: Flee
-    m_AnimationName: Flee
+    m_AnimationName: Move
     m_AnimationStateName: Flee
-    m_Speed: 1
+    m_Speed: 5
     m_AnimationClip: {fileID: 0}
     m_AnimationTime: 0
 --- !u!1 &8190754033841554943

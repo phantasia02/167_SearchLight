@@ -24,6 +24,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
 
     [SerializeField]  public GameObject[]    m_AllFX                 = null;
     [SerializeField]  public GameObject[]    m_AllOtherObj           = null;
+    [SerializeField]  public GameObject[]    m_AllCEnemyTypeObj      = null;
 
     private void Awake()
     {
