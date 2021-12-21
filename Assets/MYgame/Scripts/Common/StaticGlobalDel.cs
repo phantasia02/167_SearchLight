@@ -10,6 +10,8 @@ public class SDataListGameObj
 
 public static class StaticGlobalDel 
 {
+    public static readonly int _emissionColor = Shader.PropertyToID("_EmissionColor");
+    
     public enum EBoolState
     {
         eTrue           = 0,

@@ -87,10 +87,6 @@ public abstract class CMovableBase : CGameObjBas
 
     public virtual void SetChangState(CMovableStatePototype.EMovableState state, int changindex = -1)
     {
-
-        if (LockChangState != CMovableStatePototype.EMovableState.eMax && LockChangState != state)
-            return;
-
         if (state == CMovableStatePototype.EMovableState.eMax)
             return;
 
@@ -119,23 +115,9 @@ public abstract class CMovableBase : CGameObjBas
     protected CMovableStatePototype.EMovableState m_NextFramChangState = CMovableStatePototype.EMovableState.eMax;
     public CMovableStatePototype.EMovableState NextFramChangState
     {
-        set
-        {
-            if (LockChangState != CMovableStatePototype.EMovableState.eMax && LockChangState != value)
-                return;
-
-            m_NextFramChangState = value;
-        }
+        set{m_NextFramChangState = value;}
         get { return m_NextFramChangState; }
     }
-
-    protected CMovableStatePototype.EMovableState m_LockChangState = CMovableStatePototype.EMovableState.eMax;
-    public CMovableStatePototype.EMovableState LockChangState
-    {
-        set { m_LockChangState = value; }
-        get { return m_LockChangState; }
-    }
-
 
     protected bool m_SameStatusUpdate = false;
     public bool SameStatusUpdate

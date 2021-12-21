@@ -71,9 +71,9 @@ public abstract class CPlayerStateBase : CStateActor
 
     public override void OnTriggerEnter(Collider other)
     {
-
         if (other.tag == StaticGlobalDel.TagEnemyBullet)
         {
+            m_MyPlayerMemoryShare.m_Hp.Value -= 2;
         }
     }
 }

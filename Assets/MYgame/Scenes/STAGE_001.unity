@@ -8483,23 +8483,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4230001442910135168, guid: bf81ff32f0520f24f84db909c4554461, type: 3}
   m_PrefabInstance: {fileID: 1708409144}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1671826160 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 879208482655331382, guid: bd4451e0e23cd9141b12f44a85fab2ae, type: 3}
-  m_PrefabInstance: {fileID: 129591194889148466}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1671826161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671826160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b890006abb5f5d4baddfac04088e61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1680207748
 GameObject:
   m_ObjectHideFlags: 0
@@ -13851,9 +13834,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: custom_model_fortress
       objectReference: {fileID: 0}
-    - target: {fileID: 2499453593802624437, guid: 61d64d833ae838f4c8b1c41651e52fce, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
+    - target: {fileID: 4974577436499221735, guid: 61d64d833ae838f4c8b1c41651e52fce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0385
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d64d833ae838f4c8b1c41651e52fce, type: 3}

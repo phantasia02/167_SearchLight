@@ -16,7 +16,7 @@ public class CATKStateEnemyBase : CEnemyStateBase
     protected override void InState()
     {
         m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
-       // m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
+        m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
         m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eWait);
 
         ATKShowObj(CEnemyBase.EATKShowObj.eATKShow);

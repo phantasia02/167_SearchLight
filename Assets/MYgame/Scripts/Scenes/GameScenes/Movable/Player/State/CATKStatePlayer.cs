@@ -59,7 +59,6 @@ public class CATKStatePlayer : CPlayerStateBase
             TempSequence.AppendCallback(Launcher);
             TempSequence.AppendCallback(() => 
             {
-                m_MyPlayerMemoryShare.m_MyMovable.LockChangState = EMovableState.eMax;
                 m_MyPlayerMemoryShare.m_MyMovable.SetChangState(EMovableState.eWait);
             });
         }

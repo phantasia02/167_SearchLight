@@ -42,6 +42,12 @@ public class CPlayer : CActor
         EMax
     }
 
+    public enum EMpbType
+    {
+        ELightTD = 0,
+        EMax
+    }
+
     [System.Serializable]
     public class PlayerFortData
     {
@@ -51,9 +57,10 @@ public class CPlayer : CActor
 
 
     public const float CsLightDisOverallRatioZ      = StaticGlobalDel.g_CsLightDisMaxZ - StaticGlobalDel.g_CsLightDisMinZ;
-    public const float CsLightScaleMaxZ             = 0.08f;
+    public const float CsLightScaleMaxZ             = 0.1f;
     public const float CsLightScaleMinZ             = 0.04f;
     public const float CsLightScaleOverallRatioZ    = CsLightScaleMaxZ - CsLightScaleMinZ;
+    public const int   CSMaxHp                      = 100;
 
     public override EObjType ObjType() { return EObjType.ePlayer; }
     public override EActorType MyActorType() { return EActorType.ePlayer; }
@@ -94,14 +101,25 @@ public class CPlayer : CActor
             return m_MyPlayerMemoryShare.m_PlayCtrlLight;
         }
     }
+
+    [SerializeField] protected GameObject[] m_AllSearchlightLEVEL = null;
+    protected int m_ShowSearchlightLEVELIndex = 0;
     // ==================== SerializeField ===========================================
 
     public override float DefSpeed { get { return 5.0f; } }
 
     protected Vector3 m_OldMouseDragDir = Vector3.zero;
 
-    int m_MoveingHash = 0;
- 
+    protected Renderer m_LightTDRenderer = null;
+    MaterialPropertyBlock[] m_Allmpb = new MaterialPropertyBlock[(int)EMpbType.EMax];
+    public MaterialPropertyBlock GetMpb(EMpbType MpbType)
+    {
+        int lTempindex = (int)MpbType;
+        if (m_Allmpb[lTempindex] == null)
+            m_Allmpb[lTempindex] = new MaterialPropertyBlock();
+        return m_Allmpb[lTempindex];
+    }
+
 
     protected override void AddInitState()
     {
@@ -129,6 +147,7 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_SearchlightTDObj        = m_SearchlightTDObj;
         m_MyPlayerMemoryShare.m_PlayCtrlLight           = m_PlayCtrlLight;
         m_MyPlayerMemoryShare.m_AllPlayerFortData       = m_RLFortData;
+        m_MyPlayerMemoryShare.m_Hp.Value                = CSMaxHp;
 
 
         base.CreateMemoryShare();
@@ -145,21 +164,43 @@ public class CPlayer : CActor
     protected override void Start()
     {
         base.Start();
+
+        m_LightTDRenderer = m_LightTDObj.GetComponent<Renderer>();
+        
+
         SetCurState(CMovableStatePototype.EMovableState.eWait);
 
-        //UpdateAnimationVal().Subscribe(_ => {
-        //    UpdateAnimationChangVal();
-        //}).AddTo(this.gameObject);
-
-
+        UpdateHpVal().Subscribe(x => 
+        {
+            HpValUpdate(x);
+        }).AddTo(this.gameObject);
     }
 
-    public void UpdateAnimationChangVal()
+    public void HpValUpdate(int updatehp)
     {
-       // if (m_MyPlayerMemoryShare.m_isupdateAnimation)
-            m_AnimatorStateCtl.SetFloat(m_MoveingHash, m_MyPlayerMemoryShare.m_AnimationVal.Value);
+        float lTempHpratio = (float)updatehp / (float)CSMaxHp;
+
+        m_LightTDRenderer.material.EnableKeyword("_EMISSION");
+        MaterialPropertyBlock lTempMaterialPropertyBlock = GetMpb(EMpbType.ELightTD);
+        lTempMaterialPropertyBlock.SetColor(StaticGlobalDel._emissionColor, Color.Lerp(Color.black, Color.white, lTempHpratio));
+        m_LightTDRenderer.SetPropertyBlock(lTempMaterialPropertyBlock);
+
+        int lTempindex = 0;
+        if (updatehp < 60)
+            lTempindex = 1;
+        else
+            lTempindex = 0;
+
+        if (m_ShowSearchlightLEVELIndex != lTempindex)
+        {
+            m_ShowSearchlightLEVELIndex = lTempindex;
+            foreach (GameObject Obj in m_AllSearchlightLEVEL)
+                Obj.SetActive(false);
+
+            m_AllSearchlightLEVEL[m_ShowSearchlightLEVELIndex].SetActive(true);
+        }
     }
-   
+
 
     // Update is called once per frame
     protected override void Update()

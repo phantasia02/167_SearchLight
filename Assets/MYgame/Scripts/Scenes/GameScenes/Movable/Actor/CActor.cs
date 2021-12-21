@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class CActorBaseListData
 {
@@ -9,15 +10,16 @@ public class CActorBaseListData
 
 public class CActorMemoryShare : CMemoryShareBase
 {
-    public CActor           m_MyActor           = null;
-    public int              m_Hp                = 10;
-    public Vector3          m_DeathImpactDir    = Vector3.forward;
-    public GameObject       m_AllObj            = null;
-    public Rigidbody[]      m_MyActorRigidbody  = null;
-    public Collider[]       m_MyActorCollider   = null;
-    public Collider[]       m_MyActorTag        = null;
-    public bool             m_EnabledRagdoll    = false;
-    public Transform[]      m_AllOtherTransform = new Transform[10];
+    public CActor                               m_MyActor           = null;
+    //public int                                  m_Hp                = 10;
+    public UniRx.ReactiveProperty<int>          m_Hp                = new ReactiveProperty<int>(10);
+    public Vector3                              m_DeathImpactDir    = Vector3.forward;
+    public GameObject                           m_AllObj            = null;
+    public Rigidbody[]                          m_MyActorRigidbody  = null;
+    public Collider[]                           m_MyActorCollider   = null;
+    public Collider[]                           m_MyActorTag        = null;
+    public bool                                 m_EnabledRagdoll    = false;
+    public Transform[]                          m_AllOtherTransform = new Transform[10];
 };
 
 public abstract class CActor : CMovableBase
@@ -59,8 +61,8 @@ public abstract class CActor : CMovableBase
 
     public int ActorTypeDataHp
     {
-        set { m_MyActorMemoryShare.m_Hp = value; }
-        get { return m_MyActorMemoryShare.m_Hp; }
+        set { m_MyActorMemoryShare.m_Hp.Value = value; }
+        get { return m_MyActorMemoryShare.m_Hp.Value; }
     }
 
     public Vector3 DeathImpactDir
@@ -171,4 +173,13 @@ public abstract class CActor : CMovableBase
         foreach (Rigidbody rb in m_MyActorMemoryShare.m_MyActorRigidbody)
             rb.AddExplosionForce(explosionForce, explosionPosition, Radius);
     }
+
+    // ===================== UniRx ======================
+
+    public UniRx.ReactiveProperty<int> UpdateHpVal()
+    {
+        return m_MyActorMemoryShare.m_Hp ?? (m_MyActorMemoryShare.m_Hp = new ReactiveProperty<int>(10));
+    }
+
+    // ===================== UniRx ======================
 }
