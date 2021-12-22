@@ -5,7 +5,7 @@ using UnityEngine;
 public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
 {
     public override EMovableState StateType() { return EMovableState.eMove; }
-   // float m_TargetYAddMove = 0.0f;
+    CActor m_TargetActor = null;
 
     public CMoveStateBulletFlyObj(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -18,6 +18,7 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
         //    m_TargetYAddMove = 0.0f;
         //else if (m_MyBulletFlyObjMemoryShare.m_Launcher.ObjType() == CGameObjBas.EObjType.ePlayer)
         //    m_TargetYAddMove = 2.0f;
+        m_TargetActor = m_MyBulletFlyObjMemoryShare.m_Target.GetComponentInParent<CActor>();
     }
 
     protected override void updataState()
@@ -25,13 +26,18 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
         if (m_MyBulletFlyObjMemoryShare.m_Target == null)
             Debug.LogError("Null m_Target ");
 
-        Vector3 lTempTargetPos = m_MyBulletFlyObjMemoryShare.m_Target.position;
-       // lTempTargetPos.y += m_TargetYAddMove;
-        Vector3 lTempDir = lTempTargetPos - m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.position;
-        //lTempDir.y = 0.0f;
-        lTempDir.Normalize();
+        if (m_TargetActor != null)
+        {
+            if (m_TargetActor.CurState == EMovableState.eDeath)
+                m_TargetActor = null;
 
-        m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.forward = Vector3.Lerp(m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.forward, lTempDir, 20.0f * Time.deltaTime);
+            Vector3 lTempTargetPos = m_MyBulletFlyObjMemoryShare.m_Target.position;
+            Vector3 lTempDir = lTempTargetPos - m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.position;
+            lTempDir.Normalize();
+
+            m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.forward = Vector3.Lerp(m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.forward, lTempDir, 20.0f * Time.deltaTime);
+        }
+
         m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.Translate(new Vector3(0.0f, 0.0f, m_MyBulletFlyObjMemoryShare.m_TotleSpeed.Value * Time.deltaTime));
     }
 

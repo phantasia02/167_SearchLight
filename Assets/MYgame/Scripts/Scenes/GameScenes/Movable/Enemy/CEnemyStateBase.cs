@@ -61,7 +61,7 @@ public abstract class CEnemyStateBase : CStateActor
 
     public void NormalAnimationATKCallBack(CAnimatorStateCtl.cAnimationCallBackPar Paramete)
     {
-        if (m_MyEnemyBaseMemoryShare.m_MyActor.ChangState != EMovableState.eMax)
+        if (m_MyEnemyBaseMemoryShare.m_MyActor.ChangState != EMovableState.eMax || m_MyEnemyBaseMemoryShare.m_MyActor.CurState != EMovableState.eAtk)
             return;
 
         if (Paramete.iIndex == 0)

@@ -292,10 +292,16 @@ public class CGameManager : MonoBehaviour
                 break;
             case EState.eGameOver:
                 {
-                    //if (lTempGameSceneWindow)
-                    //    lTempGameSceneWindow.ShowObj(false);
-                  
-                    m_MyResultUI.ShowFailedUI(1.0f);
+                    CActorBaseListData lTempActorBaseListData = GetTypeActorBaseListData(CActor.EActorType.eEnemy);
+                    foreach (CActor lTempActor in lTempActorBaseListData.m_ActorBaseListData)
+                        lTempActor.SetChangState(CMovableStatePototype.EMovableState.eWin);
+
+                    Color lTempColor = DirectionalLight.color;
+                    Tween lTempTween = DOTween.To(() => lTempColor, x => lTempColor = x, Color.white, 1.0f);
+                    lTempTween.OnUpdate(() => { DirectionalLight.color = lTempColor; });
+                    lTempTween.OnComplete(() => { m_MyResultUI.ShowFailedUI(0.0f); });
+
+                    //m_MyResultUI.ShowFailedUI(1.0f);
                 }
                 break;
         }
@@ -327,17 +333,17 @@ public class CGameManager : MonoBehaviour
         }
 
     }
-    private GUIStyle guiStyle = new GUIStyle(); //create a new variable
-    List<string> testbugtext = new List<string>();
-    private void OnGUI()
-    {
-        string test = "";
-        for (int i = testbugtext.Count - 1; i >= 0; i--)
-            test += $"{testbugtext[i]}\n";
+    //private GUIStyle guiStyle = new GUIStyle(); //create a new variable
+    //List<string> testbugtext = new List<string>();
+    //private void OnGUI()
+    //{
+    //    string test = "";
+    //    for (int i = testbugtext.Count - 1; i >= 0; i--)
+    //        test += $"{testbugtext[i]}\n";
 
-        guiStyle.fontSize = 60; //change the font size
-        GUI.Label(new Rect(10, 10, 1000, 2000), test, guiStyle);
-    }
+    //    guiStyle.fontSize = 60; //change the font size
+    //    GUI.Label(new Rect(10, 10, 1000, 2000), test, guiStyle);
+    //}
 
     public void InputRay()
     {

@@ -29,6 +29,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public Transform                        m_PlayCtrlLight             = null;
     public CPlayer.PlayerFortData[]         m_AllPlayerFortData         = new CPlayer.PlayerFortData[(int)CPlayer.EFortRL.EMax];
     public CEnemyBase                       m_TargetBuffer              = null;
+    public CPlayer.CDateSearchlightSmoke[]  m_AllDateSearchlightSmoke   = null;
     
     // public float                            m_LauncherSpeed             = 0.2f;
 };
@@ -55,6 +56,20 @@ public class CPlayer : CActor
         public Transform m_LauncherPoint = null;
     }
 
+    [System.Serializable]
+    public class CDateSearchlightLEVEL
+    {
+        public GameObject m_ShowSearchlightLEVEL = null;
+        [HideInInspector] public int m_ShowHp = 100;
+    }
+
+    [System.Serializable]
+    public class CDateSearchlightSmoke
+    {
+        public GameObject m_SmokeSearchlightLEVELObj = null;
+        [HideInInspector] public ParticleSystem m_SmokeParticleSystem = null;
+        public float m_HpRatio = 0.9f;
+    }
 
     public const float CsLightDisOverallRatioZ      = StaticGlobalDel.g_CsLightDisMaxZ - StaticGlobalDel.g_CsLightDisMinZ;
     public const float CsLightScaleMaxZ             = 0.1f;
@@ -102,8 +117,12 @@ public class CPlayer : CActor
         }
     }
 
-    [SerializeField] protected GameObject[] m_AllSearchlightLEVEL = null;
-    protected int m_ShowSearchlightLEVELIndex = 0;
+    [SerializeField] protected CDateSearchlightLEVEL[] m_AllSearchlightLEVEL = null;
+    protected int m_ShowSearchlightLEVELIndex = -1;
+
+    [SerializeField] protected CDateSearchlightSmoke[] m_AllDateSearchlightSmoke = null;
+    
+    // [SerializeField] protected GameObject[] m_AllSearchlightLEVEL = null;
     // ==================== SerializeField ===========================================
 
     public override float DefSpeed { get { return 5.0f; } }
@@ -148,7 +167,7 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_PlayCtrlLight           = m_PlayCtrlLight;
         m_MyPlayerMemoryShare.m_AllPlayerFortData       = m_RLFortData;
         m_MyPlayerMemoryShare.m_Hp.Value                = CSMaxHp;
-
+        m_MyPlayerMemoryShare.m_AllDateSearchlightSmoke = m_AllDateSearchlightSmoke;
 
         base.CreateMemoryShare();
 
@@ -158,6 +177,27 @@ public class CPlayer : CActor
         m_MaxMoveDirSize = m_MaxMoveDirSize / 5.0f;
 
         UpdateSearchLightDir();
+
+        int lTempSearchlightLEVELAddNumber = CSMaxHp / (m_AllSearchlightLEVEL.Length - 1);
+        int lTempCurSearchlightLEVELHp = CSMaxHp;
+
+        for (int i = 0; i < m_AllSearchlightLEVEL.Length; i++)
+        {
+            if (i == 0)
+                m_AllSearchlightLEVEL[0].m_ShowHp = CSMaxHp;
+            else if (i == m_AllSearchlightLEVEL.Length - 1)
+                m_AllSearchlightLEVEL[m_AllSearchlightLEVEL.Length - 1].m_ShowHp = 0;
+            else
+            {
+                lTempCurSearchlightLEVELHp -= lTempSearchlightLEVELAddNumber;
+                m_AllSearchlightLEVEL[i].m_ShowHp = lTempCurSearchlightLEVELHp;
+            }
+        }
+
+        for (int i = 0; i < m_AllDateSearchlightSmoke.Length; i++)
+            m_AllDateSearchlightSmoke[i].m_SmokeParticleSystem = m_AllDateSearchlightSmoke[i].m_SmokeSearchlightLEVELObj.GetComponentInChildren<ParticleSystem>();
+
+        UpdateShowSearchLightIndex(0);
     }
 
     // Start is called before the first frame update
@@ -179,6 +219,7 @@ public class CPlayer : CActor
     public void HpValUpdate(int updatehp)
     {
         float lTempHpratio = (float)updatehp / (float)CSMaxHp;
+        float lTempReverseHpratio = 1.0f - lTempHpratio;
 
         m_LightTDRenderer.material.EnableKeyword("_EMISSION");
         MaterialPropertyBlock lTempMaterialPropertyBlock = GetMpb(EMpbType.ELightTD);
@@ -186,21 +227,51 @@ public class CPlayer : CActor
         m_LightTDRenderer.SetPropertyBlock(lTempMaterialPropertyBlock);
 
         int lTempindex = 0;
-        if (updatehp < 60)
-            lTempindex = 1;
-        else
-            lTempindex = 0;
-
-        if (m_ShowSearchlightLEVELIndex != lTempindex)
+        for (int i = m_AllSearchlightLEVEL.Length - 1; i >= 0; i--)
         {
-            m_ShowSearchlightLEVELIndex = lTempindex;
-            foreach (GameObject Obj in m_AllSearchlightLEVEL)
-                Obj.SetActive(false);
+            if (m_AllSearchlightLEVEL[i].m_ShowHp >= updatehp)
+            {
+                lTempindex = i;
+                break;
+            }
+        }
 
-            m_AllSearchlightLEVEL[m_ShowSearchlightLEVELIndex].SetActive(true);
+        CPlayer.CDateSearchlightSmoke[] TempSearchlightSmoke = m_MyPlayerMemoryShare.m_AllDateSearchlightSmoke;
+
+        const float MaxRateOverTime = 40.0f;
+        for (int i = 0; i < TempSearchlightSmoke.Length; i++)
+        {
+            if (TempSearchlightSmoke[i].m_HpRatio >= lTempHpratio)
+            {
+
+                if (!TempSearchlightSmoke[i].m_SmokeSearchlightLEVELObj.activeSelf)
+                    TempSearchlightSmoke[i].m_SmokeSearchlightLEVELObj.SetActive(true);
+
+                var Tempemission = TempSearchlightSmoke[i].m_SmokeParticleSystem.emission;
+               Tempemission.rateOverTime = MaxRateOverTime * lTempReverseHpratio * (1 - TempSearchlightSmoke[i].m_HpRatio);
+            }
+        }
+       
+        UpdateShowSearchLightIndex(lTempindex);
+
+        if (updatehp == 0 && m_MyGameManager.CurState == CGameManager.EState.ePlay)
+        {
+            SetChangState(CMovableStatePototype.EMovableState.eDeath);
+            m_MyGameManager.SetState( CGameManager.EState.eGameOver);
         }
     }
 
+    public void UpdateShowSearchLightIndex(int Index)
+    {
+        if (m_ShowSearchlightLEVELIndex == Index)
+            return;
+        
+        m_ShowSearchlightLEVELIndex = Index;
+        foreach (CDateSearchlightLEVEL DSL in m_AllSearchlightLEVEL)
+            DSL.m_ShowSearchlightLEVEL.SetActive(false);
+
+        m_AllSearchlightLEVEL[m_ShowSearchlightLEVELIndex].m_ShowSearchlightLEVEL.SetActive(true);
+    }
 
     // Update is called once per frame
     protected override void Update()
@@ -209,8 +280,6 @@ public class CPlayer : CActor
 
         //if (m_MyGameManager.CurState == CGameManager.EState.ePlay || m_MyGameManager.CurState == CGameManager.EState.eReady)
         InputUpdata();
-
-
     }
 
     public override void InputUpdata()
@@ -231,14 +300,6 @@ public class CPlayer : CActor
 
     public void PlayerMouseDown()
     {
-        //if (!PlayerCtrl())
-        //{
-        //    if (m_CurState != StaticGlobalDel.EMovableState.eNull && m_AllState[(int)m_CurState] != null)
-        //    {
-        //        m_AllState[(int)m_CurState].MouseDown();
-        //    }
-        //}
-
         DataState lTempDataState = m_AllState[(int)CurState];
         if (m_CurState != CMovableStatePototype.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
             lTempDataState.AllThisState[lTempDataState.index].MouseDown();
@@ -272,18 +333,6 @@ public class CPlayer : CActor
             m_MyPlayerMemoryShare.m_bDown = false;
             m_MyPlayerMemoryShare.m_OldMouseDownPos = Vector3.zero;
         }
-    }
-
-    public void GameOver()
-    {
-     //   float lTempResultPercent = 1.0f - (float)m_MyPlayerMemoryShare.m_PlayerFollwer.result.percent;
-        //float lTempFeverScoreRatio = (float)m_MyPlayerMemoryShare.m_UpdateFeverScore.Value / (float)StaticGlobalDel.g_MaxFever;
-        //float lTempResult = lTempFeverScoreRatio;
-
-        //CAllScoringBox lTempAllScoringBox = CAllScoringBox.SharedInstance;
-        //m_MyPlayerMemoryShare.m_EndIndex = (int)(lTempResult * (float)lTempAllScoringBox.AllScoringBox.Count - 1);
-
-        //m_MyPlayerMemoryShare.m_MyMovable.ChangState = StaticGlobalDel.EMovableState.eWin;
     }
 
     public void UpdateDrag()
@@ -348,6 +397,8 @@ public class CPlayer : CActor
             m_MyPlayerMemoryShare.m_AllPlayerFortData[i].m_Fort.rotation = rot;
         }
     }
+
+
 
     // ===================== UniRx ======================
 
