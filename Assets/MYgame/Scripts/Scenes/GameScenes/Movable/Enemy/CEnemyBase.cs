@@ -42,6 +42,7 @@ public abstract class CEnemyBase : CActor
     {
         eEnemyRifle         = 0,
         eEnemyMachineGunner = 1,
+        eBoxEnemyRifle      = 2,
         eMax
     };
 

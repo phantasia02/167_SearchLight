@@ -1648,6 +1648,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2038138231049247128, guid: a772768ddd2f33d4297a70cc698b9bb6, type: 3}
+      propertyPath: m_AllCEnemyTypeObj.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038138231049247128, guid: a772768ddd2f33d4297a70cc698b9bb6, type: 3}
+      propertyPath: m_AllCEnemyTypeObj.Array.data[2]
+      value: 
+      objectReference: {fileID: 7364730236234362603, guid: 619cfb39683d9af45bd2d61f664a2166, type: 3}
     - target: {fileID: 5350464374810277997, guid: a772768ddd2f33d4297a70cc698b9bb6, type: 3}
       propertyPath: m_Name
       value: CGGameSceneData
@@ -5495,7 +5503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4775b7c7b817e2442b6f5e8fe09ddfb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MyStageData: {fileID: 11400000, guid: eac46f4d9c1cbec44bb53e3f1bf918b9, type: 2}
+  m_MyStageData: {fileID: 11400000, guid: fe19a105467933549b614c474844bba9, type: 2}
   m_WinObjAnima: {fileID: 0}
   m_OverObjAnima: {fileID: 0}
   m_DirectionalLight: {fileID: 0}
