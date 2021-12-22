@@ -18,8 +18,12 @@ public class CDeathStatePlayer : CPlayerStateBase
 
         foreach (CPlayer.CDateSearchlightSmoke DSLS in m_MyPlayerMemoryShare.m_AllDateSearchlightSmoke)
             DSLS.m_SmokeSearchlightLEVELObj.SetActive(false);
-    
-        //EnabledCollisionTag(false);
+
+        Vector3 lTempExplosion = m_MyPlayerMemoryShare.m_MyActor.AnimatorStateCtl.transform.position;
+        lTempExplosion.y -= 2.0f;
+       // lTempExplosion.z -= 2.0f;
+        m_MyPlayerMemoryShare.m_MyActor.EnabledRagdoll(true);
+        m_MyPlayerMemoryShare.m_MyActor.AddRagdolldForce(1000.0f, lTempExplosion, 50.0f);
     }
 
     protected override void updataState()
