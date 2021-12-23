@@ -8,7 +8,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
 
     public enum EAllFXType
     {
-        eExplodePos         = 0,
+        eExplosionA         = 0,
 
         eMax,
     };
@@ -19,6 +19,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
         eSpark              = 1,
         eEnemyATKEffect     = 2,
         eOneEnemyIcon       = 3,
+        eEnemyGrenade       = 4,
         eMax,
     };
 

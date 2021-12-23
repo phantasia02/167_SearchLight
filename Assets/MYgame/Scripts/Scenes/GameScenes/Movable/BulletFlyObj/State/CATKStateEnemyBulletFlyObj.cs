@@ -53,22 +53,22 @@ public class CATKStateEnemyBulletFlyObj : CStateBulletFlyObjBase
         lTempEndCo.b = m_color.b;
         lTempEndCo.a = 0.0f;
 
-        CEnemyBulletFlyObj lTempPlayerBulletFlyObj = (CEnemyBulletFlyObj)m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj;
-        AnimationCurve lTempAnimationCurve = lTempPlayerBulletFlyObj.curve;
+        //CEnemyBulletFlyObj lTempPlayerBulletFlyObj = (CEnemyBulletFlyObj)m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj;
+        //AnimationCurve lTempAnimationCurve = lTempPlayerBulletFlyObj.curve;
 
-        Tween lTempTween = null;
-        lTempTween = DOTween.To(
-         () => m_color, x => m_color = x,
-         lTempEndCo, 0.5f);
+        //Tween lTempTween = null;
+        //lTempTween = DOTween.To(
+        // () => m_color, x => m_color = x,
+        // lTempEndCo, 0.5f);
 
-        lTempTween.SetEase(lTempAnimationCurve);
-        lTempTween.OnUpdate(
-            ()=> {
-                m_MaterialProperty.SetColor(_BaseColor, m_color);
-                m_RendererMesh.SetPropertyBlock(m_MaterialProperty);
-            });
+        //lTempTween.SetEase(lTempAnimationCurve);
+        //lTempTween.OnUpdate(
+        //    ()=> {
+        //        m_MaterialProperty.SetColor(_BaseColor, m_color);
+        //        m_RendererMesh.SetPropertyBlock(m_MaterialProperty);
+        //    });
 
-      //  lTempTween.onComplete = () => {m_MyBulletFlyObjMemoryShare.m_MyMovable.DestroyObj();};
+
     }
 
     protected override void updataState()

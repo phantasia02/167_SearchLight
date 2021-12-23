@@ -5,7 +5,6 @@ using UnityEngine;
 public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
 {
     public override EMovableState StateType() { return EMovableState.eMove; }
-    CActor m_TargetActor = null;
 
     public CMoveStateBulletFlyObj(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -14,10 +13,6 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
 
     protected override void InState()
     {
-        //if (m_MyBulletFlyObjMemoryShare.m_Launcher.ObjType() == CGameObjBas.EObjType.eEnemy)
-        //    m_TargetYAddMove = 0.0f;
-        //else if (m_MyBulletFlyObjMemoryShare.m_Launcher.ObjType() == CGameObjBas.EObjType.ePlayer)
-        //    m_TargetYAddMove = 2.0f;
         m_TargetActor = m_MyBulletFlyObjMemoryShare.m_Target.GetComponentInParent<CActor>();
     }
 
@@ -50,11 +45,6 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
     {
         if (other.tag == m_MyBulletFlyObjMemoryShare.m_TargetTag || other.tag == StaticGlobalDel.TagFloor)
         {
-            //if (m_MyBulletFlyObjMemoryShare.m_TargetTag == StaticGlobalDel.TagPlayer)
-            //{
-
-            //}
-
             Transform lTempSparkEffect = StaticGlobalDel.NewOtherObjAddParentShow(m_MyBulletFlyObjMemoryShare.m_MyMovable.transform, CGGameSceneData.EOtherObj.eSpark);
             lTempSparkEffect.parent = null;
             lTempSparkEffect.up = -m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.forward;

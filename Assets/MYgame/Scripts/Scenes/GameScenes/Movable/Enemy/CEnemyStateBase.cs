@@ -87,4 +87,29 @@ public abstract class CEnemyStateBase : CStateActor
         else if (Paramete.iIndex == 1)
             m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(m_MyEnemyBaseMemoryShare.m_MyRandomStateList));
     }
+
+
+    public void GrenadeAnimationATKCallBack(CAnimatorStateCtl.cAnimationCallBackPar Paramete)
+    {
+        if (m_MyEnemyBaseMemoryShare.m_MyActor.ChangState != EMovableState.eMax || m_MyEnemyBaseMemoryShare.m_MyActor.CurState != EMovableState.eAtk)
+            return;
+
+        if (Paramete.iIndex == 0)
+        {
+            Transform lLauncherPointTransform = m_MyEnemyBaseMemoryShare.m_AllOtherTransform[1];
+            if (lLauncherPointTransform != null)
+            {
+                Transform lTempEnemyATKEffect = StaticGlobalDel.NewOtherObjAddParentShow(lLauncherPointTransform, CGGameSceneData.EOtherObj.eEnemyGrenade);
+                lTempEnemyATKEffect.parent = m_MyGameManager.AllBulletParent;
+
+                CBulletFlyObj lTempBulletFlyObj = lTempEnemyATKEffect.GetComponent<CBulletFlyObj>();
+                lTempBulletFlyObj.Launcher = m_MyEnemyBaseMemoryShare.m_MyMovable;
+                lTempBulletFlyObj.TargetTag = StaticGlobalDel.TagPlayer;
+                lTempBulletFlyObj.Target = m_MyGameManager.Player.SearchlightTDObj.transform;
+                lTempBulletFlyObj.SetChangState(EMovableState.eMove);
+            }
+        }
+        else if (Paramete.iIndex == 1)
+            m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(m_MyEnemyBaseMemoryShare.m_MyRandomStateList));
+    }
 }

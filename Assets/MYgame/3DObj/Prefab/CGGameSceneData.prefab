@@ -43,12 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354a63f2da176f84380871f546f07075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllFX: []
+  m_AllFX:
+  - {fileID: 2200916522594258871, guid: c14c7e197982a03488d36a9e83d4d2d6, type: 3}
   m_AllOtherObj:
   - {fileID: 8491079825844394989, guid: 1d70901139c1e364cb39034557a0b925, type: 3}
   - {fileID: 1491359990764140, guid: fa74098a0cb08cb409fe6a3b164f2010, type: 3}
   - {fileID: 6999039969134453979, guid: 4ee51a6db3b968548925d94eabf6a6ef, type: 3}
   - {fileID: 4148873290249046326, guid: 0bc78b8c8ae47044ca9a43ee8769ebb4, type: 3}
+  - {fileID: 9039508198601176514, guid: 2fa3e420d3e5b514593a3a3c926ce6f0, type: 3}
   m_AllCEnemyTypeObj:
   - {fileID: 5519541278464012809, guid: bd4451e0e23cd9141b12f44a85fab2ae, type: 3}
   - {fileID: 1322423827101997039, guid: 3b02723eee2c4e44588301e037829c99, type: 3}
+  - {fileID: 7364730236234362603, guid: 619cfb39683d9af45bd2d61f664a2166, type: 3}

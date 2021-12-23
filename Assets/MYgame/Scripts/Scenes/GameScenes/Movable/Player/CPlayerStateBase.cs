@@ -73,7 +73,9 @@ public abstract class CPlayerStateBase : CStateActor
     {
         if (other.tag == StaticGlobalDel.TagEnemyBullet)
         {
-            m_MyPlayerMemoryShare.m_Hp.Value -= 2;
+            CBulletFlyObj lTempBulletFlyObj = other.GetComponentInParent<CBulletFlyObj>();
+
+            m_MyPlayerMemoryShare.m_Hp.Value -= lTempBulletFlyObj.Damages;
         }
     }
 }

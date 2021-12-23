@@ -254,7 +254,7 @@ public class CPlayer : CActor
        
         UpdateShowSearchLightIndex(lTempindex);
 
-        if (updatehp == 0 && m_MyGameManager.CurState == CGameManager.EState.ePlay)
+        if (updatehp <= 0 && m_MyGameManager.CurState == CGameManager.EState.ePlay)
         {
             SetChangState(CMovableStatePototype.EMovableState.eDeath);
             m_MyGameManager.SetState( CGameManager.EState.eGameOver);

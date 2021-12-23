@@ -2479,6 +2479,50 @@ Transform:
   m_Father: {fileID: 6001615063291205020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4292009432750048456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5895895854007134731}
+  - component: {fileID: 2584046334886213572}
+  m_Layer: 8
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5895895854007134731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4292009432750048456}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.113, y: 0.043, z: -0.147}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 2208006021167057406}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2584046334886213572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4292009432750048456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a855904e8f893fb46bafbf9319cf1505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SetOtherIndex: 1
 --- !u!1 &4464377703285978057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,7 +2666,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 184a468fed12d934f8732c324cb3d512, type: 2}
+  - {fileID: 2100000, guid: 5461420b28cd29b4fb9e68ddaad9dec9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2814,7 +2858,7 @@ MonoBehaviour:
   m_AllChangRendererMat:
   - m_RendererObj: {fileID: 1099805899567390209}
     m_DeathMat: {fileID: 2100000, guid: 5461420b28cd29b4fb9e68ddaad9dec9, type: 2}
-    m_NormalMat: {fileID: 2100000, guid: 184a468fed12d934f8732c324cb3d512, type: 2}
+    m_NormalMat: {fileID: 2100000, guid: 5461420b28cd29b4fb9e68ddaad9dec9, type: 2}
   - m_RendererObj: {fileID: 6420453335957855040}
     m_DeathMat: {fileID: 2100000, guid: 3f24f59e72757264bb130bda5dbf5071, type: 2}
     m_NormalMat: {fileID: 2100000, guid: 900eac9cba0b1474a850eeae83339e10, type: 2}

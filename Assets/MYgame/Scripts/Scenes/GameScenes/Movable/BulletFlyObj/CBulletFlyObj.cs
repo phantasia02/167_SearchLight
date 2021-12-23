@@ -10,9 +10,20 @@ public class CBulletFlyObjMemoryShare : CMemoryShareBase
     public string           m_TargetTag         = "";
 };
 
-public class CBulletFlyObj : CMovableBase
+public abstract class CBulletFlyObj : CMovableBase
 {
+    public enum EBulletArms
+    {
+        eNormalBullet   = 0,
+        eGrenade        = 1,
+        eMax
+    };
+
     public override EMovableType MyMovableType() { return EMovableType.eBulletFlyObj; }
+    abstract public EBulletArms MyBulletArms();
+
+    protected int m_Damages = 2;
+    public int Damages => m_Damages;
 
     protected CBulletFlyObjMemoryShare m_MyBulletFlyObjMemoryShare = null;
 
@@ -22,10 +33,7 @@ public class CBulletFlyObj : CMovableBase
 
     public override float DefSpeed { get { return 20.0f; } }
 
-    protected override void AddInitState()
-    {
-        m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CMoveStateBulletFlyObj(this));
-    }
+
 
     protected override void CreateMemoryShare()
     {

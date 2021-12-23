@@ -31,6 +31,7 @@ public class CEnemyBaseMemoryShare : CActorMemoryShare
     public float                                        m_CurDiscoveryTime          = 0.0f;
     public float                                        m_OldDiscoveryTime          = 0.0f;
     public bool                                         m_IsShow                    = false;
+    public CBulletFlyObj.EBulletArms                    m_AtkType                   = CBulletFlyObj.EBulletArms.eNormalBullet;
     public List<CMovableStatePototype.EMovableState>    m_MyRandomStateList         = new List<CMovableStatePototype.EMovableState>();
     public Transform                                    m_MyBodyDeformationSystem   = null;
     public CEnemyBase.EATKShowObj                       m_CurATKShowObj             = CEnemyBase.EATKShowObj.eNotATKShow;
@@ -148,6 +149,8 @@ public abstract class CEnemyBase : CActor
         foreach (CPlayerLightShowMesh CPLSM in m_MyEnemyBaseMemoryShare.m_AllPlayerLightShowMesh)
             CPLSM.PlayerLight = m_MyGameManager.Player.PlayCtrlLight;
 
+
+        this.transform.forward = Vector3.back;
         //this.SetChangState(CMovableStatePototype.EMovableState.eWait);
     }
 
