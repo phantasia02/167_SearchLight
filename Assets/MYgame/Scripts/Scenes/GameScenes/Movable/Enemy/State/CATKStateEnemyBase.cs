@@ -48,7 +48,7 @@ public class CATKStateEnemyBase : CEnemyStateBase
 
     protected override void OutState()
     {
-        m_MyEnemyBaseMemoryShare.m_AtkType =  CBulletFlyObj.EBulletArms.eNormalBullet;
+       // m_MyEnemyBaseMemoryShare.m_AtkType =  CBulletFlyObj.EBulletArms.eNormalBullet;
         m_MyEnemyBaseMemoryShare.m_MyEnemyBase.Hidden = true;
         if (m_RotateTween != null)
             m_RotateTween.Kill();
