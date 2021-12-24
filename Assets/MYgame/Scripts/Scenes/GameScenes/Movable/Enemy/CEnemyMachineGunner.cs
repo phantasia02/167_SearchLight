@@ -10,5 +10,6 @@ public class CEnemyMachineGunner : CEnemyBase
     protected override void AddInitState()
     {
         base.AddInitState();
+        //m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CMoveStateEnemyBase(this));
     }
 }

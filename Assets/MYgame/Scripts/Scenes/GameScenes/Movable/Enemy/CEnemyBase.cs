@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.AI;
+using Pathfinding;
 
 public class CEnemyBaseListData
 {
@@ -35,6 +36,8 @@ public class CEnemyBaseMemoryShare : CActorMemoryShare
     public List<CMovableStatePototype.EMovableState>    m_MyRandomStateList         = new List<CMovableStatePototype.EMovableState>();
     public Transform                                    m_MyBodyDeformationSystem   = null;
     public CEnemyBase.EATKShowObj                       m_CurATKShowObj             = CEnemyBase.EATKShowObj.eNotATKShow;
+    public Seeker                                       m_seeker                    = null;
+    public IAstarAI                                     m_AiMove                    = null;
 };
 
 public abstract class CEnemyBase : CActor
@@ -93,6 +96,8 @@ public abstract class CEnemyBase : CActor
     public Transform MyTargetBodys => m_MyTargetBodys;
 
     [SerializeField] protected Transform                        m_MyBodyDeformationSystem   = null;
+
+    [SerializeField] protected CBulletFlyObj.EBulletArms m_AtkType = CBulletFlyObj.EBulletArms.eNormalBullet;
     // ==================== SerializeField ===========================================
 
     public override EObjType ObjType() { return EObjType.eEnemy; }
@@ -110,8 +115,8 @@ public abstract class CEnemyBase : CActor
 
         m_AllState[(int)CMovableStatePototype.EMovableState.eAtk].AllThisState.Add(new CATKStateEnemyBase(this));
 
-        m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CMoveStateEnemyBase(this));
-
+        //m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CMoveStateEnemyBase(this));
+        m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CAIStateEnemyBase(this));
 
         //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));
         //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateBase(this));
@@ -130,7 +135,9 @@ public abstract class CEnemyBase : CActor
         m_MyEnemyBaseMemoryShare.m_AllEmoticons         = m_AllEmoticons;
         m_MyEnemyBaseMemoryShare.m_AllChangRendererMat  = m_AllChangRendererMat;
         m_MyEnemyBaseMemoryShare.m_StateShowObj         = m_StateShowObj;
-
+        m_MyEnemyBaseMemoryShare.m_AtkType              = m_AtkType;
+        m_MyEnemyBaseMemoryShare.m_seeker               = this.GetComponent<Seeker>();
+        m_MyEnemyBaseMemoryShare.m_AiMove               = this.GetComponent<IAstarAI>();
        // this.transform.FindChild();
 
         base.CreateMemoryShare();

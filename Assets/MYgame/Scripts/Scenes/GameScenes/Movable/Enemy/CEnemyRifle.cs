@@ -10,7 +10,7 @@ public class CEnemyRifle : CEnemyBase
     protected override void AddInitState()
     {
         base.AddInitState();
-
+      
         //m_AllState[(int)CMovableStatePototype.EMovableState.eAtk].AllThisState.Add(new CATKStateEnemyBase(this));
     }
 }

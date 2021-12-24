@@ -27,7 +27,7 @@ public class CATKStateEnemyBase : CEnemyStateBase
         Vector3 MytoPlayCtrlLightDir = m_MyGameManager.Player.SearchlightTDObj.transform.position - m_MyEnemyBaseMemoryShare.m_MyMovable.transform.position;
         MytoPlayCtrlLightDir.Normalize();
 
-        m_RotateTween = m_MyEnemyBaseMemoryShare.m_MyMovable.transform.DOLookAt(m_MyGameManager.Player.SearchlightTDObj.transform.position, 0.5f, AxisConstraint.Y).SetEase( Ease.Linear);
+        m_RotateTween = m_MyEnemyBaseMemoryShare.m_MyMovable.transform.DOLookAt(m_MyGameManager.Player.SearchlightTDObj.transform.position, 1.0f, AxisConstraint.Y).SetEase( Ease.Linear);
         m_RotateTween.onComplete = () =>
         {
             SetAnimationState(CAnimatorStateCtl.EState.eAtk, 1, (int)m_MyEnemyBaseMemoryShare.m_AtkType);

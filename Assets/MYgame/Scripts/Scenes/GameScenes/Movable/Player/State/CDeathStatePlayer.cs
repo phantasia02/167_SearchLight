@@ -24,6 +24,9 @@ public class CDeathStatePlayer : CPlayerStateBase
        // lTempExplosion.z -= 2.0f;
         m_MyPlayerMemoryShare.m_MyActor.EnabledRagdoll(true);
         m_MyPlayerMemoryShare.m_MyActor.AddRagdolldForce(1000.0f, lTempExplosion, 50.0f);
+
+        m_MyPlayerMemoryShare.m_PlayCtrlLight.gameObject.SetActive(false);
+        m_MyPlayerMemoryShare.m_LightTDObj.SetActive(false);
     }
 
     protected override void updataState()

@@ -22,10 +22,11 @@ public class CGrenadeMoveStateBulletFlyObj : CStateBulletFlyObjBase
         Vector3 lTempTargetToMy = m_MyBulletFlyObjMemoryShare.m_Target.position - m_MyBulletFlyObjMemoryShare.m_MyMovable.transform.position;
 
         float lTempDoTime = 0.5f + lTempTargetToMy.magnitude * 0.2f;
-        float lTempDoScaleTime = lTempDoTime * 0.8f;
-        m_lmemTween = m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.DOJump(m_MyBulletFlyObjMemoryShare.m_Target.position, m_MyBulletFlyObjMemoryShare.m_Target.position.y + 3.0f, 1, lTempDoTime);
+        float lTempDoScaleTime = lTempDoTime * 0.95f;
+        m_lmemTween = m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.DOJump(m_MyBulletFlyObjMemoryShare.m_Target.position, m_MyBulletFlyObjMemoryShare.m_Target.position.y + 3.0f, 1, lTempDoTime).SetEase( Ease.Linear);
         m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.DOScale(Vector3.one * 3.0f, lTempDoScaleTime).SetEase(Ease.Linear);
-        m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.DOLocalRotate(new Vector3(RandomA(), RandomA(), RandomA()), lTempDoScaleTime, RotateMode.LocalAxisAdd);
+        m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.DOLocalRotate(new Vector3(RandomA(), 0.0f, RandomA()), lTempDoScaleTime, RotateMode.LocalAxisAdd);
+        //m_MyBulletFlyObjMemoryShare.m_MyBulletFlyObj.transform.DOLocalRotate(new Vector3(RandomA(), , 0.0f), lTempDoScaleTime, RotateMode.LocalAxisAdd);
 
         m_lmemTween.onComplete = EndOK;
     }

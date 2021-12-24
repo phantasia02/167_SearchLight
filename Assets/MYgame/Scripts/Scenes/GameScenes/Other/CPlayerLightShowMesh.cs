@@ -17,6 +17,7 @@ public class CPlayerLightShowMesh : MonoBehaviour
     public Transform PlayerLight { set { m_PlayerLight = value; } }
 
     protected Renderer m_MyMeshRenderer = null;
+    protected CGameManager m_MyGameManager = null;
 
     MaterialPropertyBlock mpb;
     public MaterialPropertyBlock Mpb
@@ -31,6 +32,10 @@ public class CPlayerLightShowMesh : MonoBehaviour
 
     private void Awake()
     {
+        m_MyGameManager = GetComponentInParent<CGameManager>();
+
+        if (m_MyGameManager == null)
+            m_MyGameManager = GameObject.FindObjectOfType<CGameManager>();
 
         m_MyMeshRenderer = this.GetComponent<Renderer>();
     }
@@ -50,5 +55,8 @@ public class CPlayerLightShowMesh : MonoBehaviour
 
         Mpb.SetVector(PlayerPos, m_PlayerLight.position);
         m_MyMeshRenderer.SetPropertyBlock(Mpb);
+
+        if (m_MyGameManager.CurState == CGameManager.EState.eGameOver)
+            Destroy(this);
     }
 }

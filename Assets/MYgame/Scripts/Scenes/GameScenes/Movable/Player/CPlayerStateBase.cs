@@ -75,7 +75,7 @@ public abstract class CPlayerStateBase : CStateActor
         {
             CBulletFlyObj lTempBulletFlyObj = other.GetComponentInParent<CBulletFlyObj>();
 
-            m_MyPlayerMemoryShare.m_Hp.Value -= lTempBulletFlyObj.Damages;
+            //m_MyPlayerMemoryShare.m_Hp.Value -= lTempBulletFlyObj.Damages;
         }
     }
 }

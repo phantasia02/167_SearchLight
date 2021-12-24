@@ -26,6 +26,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public GameObject                       m_TagBox                    = null;
     public GameObject                       m_SearchlightRLObj          = null;
     public GameObject                       m_SearchlightTDObj          = null;
+    public GameObject                       m_LightTDObj                = null;
     public Transform                        m_PlayCtrlLight             = null;
     public CPlayer.PlayerFortData[]         m_AllPlayerFortData         = new CPlayer.PlayerFortData[(int)CPlayer.EFortRL.EMax];
     public CEnemyBase                       m_TargetBuffer              = null;
@@ -168,7 +169,7 @@ public class CPlayer : CActor
         m_MyPlayerMemoryShare.m_AllPlayerFortData       = m_RLFortData;
         m_MyPlayerMemoryShare.m_Hp.Value                = CSMaxHp;
         m_MyPlayerMemoryShare.m_AllDateSearchlightSmoke = m_AllDateSearchlightSmoke;
-
+        m_MyPlayerMemoryShare.m_LightTDObj              = m_LightTDObj.gameObject;
         base.CreateMemoryShare();
 
         SetBaseMemoryShare();

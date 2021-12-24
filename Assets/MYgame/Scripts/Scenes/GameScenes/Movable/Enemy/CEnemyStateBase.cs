@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using Pathfinding;
 
 public abstract class CEnemyStateBase : CStateActor
 {
@@ -112,4 +114,14 @@ public abstract class CEnemyStateBase : CStateActor
         else if (Paramete.iIndex == 1)
             m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(m_MyEnemyBaseMemoryShare.m_MyRandomStateList));
     }
+
+
+    public void OnPathComplete(Path p)
+    {
+
+        if (p.error)
+            Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
+
+    }
+
 }

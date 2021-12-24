@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _DataAllCreateEnemyCount:
   - m_EnemyType: 0
-    Count: 3
+    Count: 5
   - m_EnemyType: 1
     Count: 2
   - m_EnemyType: 2
