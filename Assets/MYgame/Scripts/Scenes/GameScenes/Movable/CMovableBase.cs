@@ -340,46 +340,7 @@ public abstract class CMovableBase : CGameObjBas
         if (m_CurState != CMovableStatePototype.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
             lTempDataState.AllThisState[lTempDataState.index].LateUpdate();
     }
-
-    //public void SetStateIndex(StaticGlobalDel.EMovableState pamState, int index)
-    //{
-
-    //    DataState lTempDataState = m_AllState[(int)pamState];
-    //    if (lTempDataState == null)
-    //        return;
-
-    //    if (m_AllState[(int)pamState].AllThisState.Count <= index)
-    //        return;
-
-    //    if (m_AllState[(int)pamState].AllThisState[index] == null)
-    //        return;
-
-    //    int lTempOldIndex = m_AllState[(int)pamState].index;
-
-    //    if (lTempOldIndex == index)
-    //        return;
-
-    //    m_AllState[(int)pamState].index = index;
-
-    //    if (pamState == CurState && m_ChangState == StaticGlobalDel.EMovableState.eMax)
-    //    {
-    //        if (CurState != StaticGlobalDel.EMovableState.eNull)
-    //        {
-    //            if (lTempDataState != null && lTempDataState.AllThisState[lTempOldIndex] != null)
-    //                lTempDataState.AllThisState[lTempOldIndex].OutMovableState();
-    //        }
-
-    //        if (lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
-    //            lTempDataState.AllThisState[lTempDataState.index].InMovableState();
-
-    //        m_MyMemoryShare.m_OldDataState.AllThisState = m_AllState[(int)CurState].AllThisState;
-    //        m_MyMemoryShare.m_OldDataState.index = lTempOldIndex;
-
-    //        if (CurState != StaticGlobalDel.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
-    //            lTempDataState.AllThisState[lTempDataState.index].updataMovableState();
-    //    }
-    //}
-
+   
     public virtual void SetCurState(CMovableStatePototype.EMovableState pamState, int stateindex = -1)
     {
         if (pamState == CurState && !SameStatusUpdate)
