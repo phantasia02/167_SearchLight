@@ -27,6 +27,7 @@ public static class StaticGlobalDel
         eNotLightObj        = 7,
         eEnemy              = 8,
         ePlayer             = 9,
+        eEnemyNotFloor      = 10,
 
         eMax
     }
@@ -60,6 +61,7 @@ public static class StaticGlobalDel
     public const int g_NotLightObjMask              = 1 << (int)ELayerIndex.eNotLightObj;
     public const int g_EnemyMask                    = 1 << (int)ELayerIndex.eEnemy;
     public const int g_ePlayerMask                  = 1 << (int)ELayerIndex.ePlayer;
+    public const int g_eEnemyNotFloorMask           = 1 << (int)ELayerIndex.eEnemyNotFloor;
 
 
     public const int g_MaxFever         = 100;

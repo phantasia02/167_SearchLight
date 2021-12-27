@@ -47,6 +47,7 @@ public abstract class CEnemyBase : CActor
         eEnemyRifle         = 0,
         eEnemyMachineGunner = 1,
         eBoxEnemyRifle      = 2,
+        eEnemyDiver         = 3,
         eMax
     };
 
@@ -118,10 +119,7 @@ public abstract class CEnemyBase : CActor
         //m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CMoveStateEnemyBase(this));
         m_AllState[(int)CMovableStatePototype.EMovableState.eMove].AllThisState.Add(new CAIStateEnemyBase(this));
 
-        //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStatePlayer(this));
-        //m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateBase(this));
 
-        //m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
         m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => {return new CEnemySurprisBuff(this);};
     }
 

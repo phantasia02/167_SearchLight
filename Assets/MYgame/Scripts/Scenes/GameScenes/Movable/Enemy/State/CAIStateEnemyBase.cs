@@ -22,7 +22,7 @@ public class CAIStateEnemyBase : CEnemyStateBase
 
     protected override void updataState()
     {
-        if (m_MyEnemyBaseMemoryShare.m_AiMove.reachedEndOfPath)
+        if (m_MyEnemyBaseMemoryShare.m_AiMove.reachedEndOfPath || m_MyEnemyBaseMemoryShare.m_AiMove.reachedDestination)
         {
             m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
             m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eWait);
