@@ -189,4 +189,15 @@ public abstract class CEnemyBase : CActor
         lTempSDataListGameObj = m_MyEnemyBaseMemoryShare.m_StateShowObj[(int)showType];
         showobj(lTempSDataListGameObj, true);
     }
+
+    protected override void Update()
+    {
+        int hdsiughduio = 0;
+        base.Update();
+    }
+
+    public override void SetCurState(CMovableStatePototype.EMovableState pamState, int stateindex = -1)
+    {
+        base.SetCurState(pamState, stateindex);
+    }
 }

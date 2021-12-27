@@ -29,7 +29,7 @@ public class CWaitStateEnemyBase : CEnemyStateBase
             m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
             m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
 
-            if (!m_MyEnemyBaseMemoryShare.m_IsShow && Random.Range(0, 10) < 3)
+            if (!m_MyEnemyBaseMemoryShare.m_IsShow && Random.Range(0, 10) < 1)
                  m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eAtk);
             
             m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(m_MyEnemyBaseMemoryShare.m_MyRandomStateList));

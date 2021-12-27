@@ -16,8 +16,8 @@ public class CDiverWaitStateEnemyBase : CWaitStateEnemyBase
     {
         Vector3 lTempMyPosition = m_MyEnemyBaseMemoryShare.m_MyMovable.transform.position;
         
-        if (lTempMyPosition.y > -1.9f)
-            m_MyEnemyBaseMemoryShare.m_MyMovable.transform.DOMoveY(-2.0f, 1.0f).SetEase(Ease.Linear);
+        if (lTempMyPosition.y > CEnemyDiver.CsYDifMoveBuff)
+            m_MyEnemyBaseMemoryShare.m_MyMovable.transform.DOMoveY(CEnemyDiver.CsYDifMove, 1.0f).SetEase(Ease.Linear);
 
         base.InState();
     }

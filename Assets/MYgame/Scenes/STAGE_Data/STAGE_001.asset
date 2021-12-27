@@ -17,5 +17,3 @@ MonoBehaviour:
     Count: 5
   - m_EnemyType: 1
     Count: 2
-  - m_EnemyType: 2
-    Count: 4
