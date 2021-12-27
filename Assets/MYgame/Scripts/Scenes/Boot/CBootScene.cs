@@ -29,9 +29,4 @@ public class CBootScene : MonoBehaviour
         //m_ChangeScenes.LoadTestScenes();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

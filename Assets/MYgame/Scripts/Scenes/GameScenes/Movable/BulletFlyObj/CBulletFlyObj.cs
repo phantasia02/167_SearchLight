@@ -6,6 +6,7 @@ public class CBulletFlyObjMemoryShare : CMemoryShareBase
 {
     public CBulletFlyObj    m_MyBulletFlyObj    = null;
     public Transform        m_Target            = null;
+    public Vector3          m_TargetPoint       = Vector3.zero;
     public CGameObjBas      m_Launcher          = null;
     public string           m_TargetTag         = "";
 };
@@ -28,6 +29,7 @@ public abstract class CBulletFlyObj : CMovableBase
     protected CBulletFlyObjMemoryShare m_MyBulletFlyObjMemoryShare = null;
 
     public Transform Target{set => m_MyBulletFlyObjMemoryShare.m_Target = value;}
+    public Vector3 TargetPoint{set => m_MyBulletFlyObjMemoryShare.m_TargetPoint = value;}
     public string TargetTag { set => m_MyBulletFlyObjMemoryShare.m_TargetTag = value;}
     public CGameObjBas Launcher { set => m_MyBulletFlyObjMemoryShare.m_Launcher = value;}
 

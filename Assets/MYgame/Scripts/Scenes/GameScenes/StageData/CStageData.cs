@@ -13,15 +13,11 @@ public class CStageData : ScriptableObject
     {
         public CEnemyBase.EEnemyType m_EnemyType = CEnemyBase.EEnemyType.eEnemyRifle;
         public int Count = 0;
+        public CBulletFlyObj.EBulletArms m_ARMS = CBulletFlyObj.EBulletArms.eNormalBullet;
     }
 
     [SerializeField] protected List<DataCreateEnemy> _DataAllCreateEnemyCount = new List<DataCreateEnemy>();
 
-
-    //[SerializeField]private StaticGlobalDel.EBrickColor[] _brickColors;
-    //[SerializeField]private BuildingRecipeData[] _buildings;
-    //[SerializeField]private TweenHDRColorEaseCurve _creatarchitecture;
-    // [SerializeField] protected GameObject m_GameSceneData;
 
     public List<DataCreateEnemy> DataAllCreateEnemyCount => _DataAllCreateEnemyCount;
 }

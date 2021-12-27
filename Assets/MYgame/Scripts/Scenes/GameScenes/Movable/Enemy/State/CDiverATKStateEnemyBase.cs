@@ -17,8 +17,8 @@ public class CDiverATKStateEnemyBase : CATKStateEnemyBase
     {
         Vector3 lTempMyPosition = m_MyEnemyBaseMemoryShare.m_MyMovable.transform.position;
 
-        if (lTempMyPosition.y < -0.6f)
-            m_MyEnemyBaseMemoryShare.m_MyMovable.transform.DOMoveY(-0.5f, 1.0f).SetEase(Ease.Linear);
+        if (lTempMyPosition.y <= -0.3f)
+            m_MyEnemyBaseMemoryShare.m_MyMovable.transform.DOMoveY(-0.2f, 1.0f).SetEase(Ease.Linear);
 
         m_MyEnemyBaseMemoryShare.m_MyEnemyBase.Hidden = false;
         base.InState();

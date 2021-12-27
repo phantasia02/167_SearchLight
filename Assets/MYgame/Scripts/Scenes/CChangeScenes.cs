@@ -28,10 +28,11 @@ public class CChangeScenes
         int lTempIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (LevelIndex != -1)
             lTempIndex = LevelIndex;
-
-        if (lTempIndex >= SceneManager.sceneCount + 1)
-            lTempIndex = 1;
-
+        else
+        {
+            if (lTempIndex >= SceneManager.sceneCountInBuildSettings)
+                lTempIndex = 1;
+        }
         GlobalData.g_CurSceneName = GlobalData.g_GameScenesName;
        // CSaveManager.m_status.m_LevelIndex = SceneManager.GetActiveScene().buildIndex;
         

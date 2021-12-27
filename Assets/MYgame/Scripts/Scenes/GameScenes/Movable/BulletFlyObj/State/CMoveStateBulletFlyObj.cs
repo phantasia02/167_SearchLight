@@ -14,6 +14,13 @@ public class CMoveStateBulletFlyObj : CStateBulletFlyObjBase
     protected override void InState()
     {
         m_TargetActor = m_MyBulletFlyObjMemoryShare.m_Target.GetComponentInParent<CActor>();
+        if (m_MyBulletFlyObjMemoryShare.m_Launcher.ObjType() == CGameObjBas.EObjType.ePlayer)
+        {
+            Vector3 lTempTargetDir = m_MyBulletFlyObjMemoryShare.m_TargetPoint - m_MyBulletFlyObjMemoryShare.m_MyMovable.transform.position;
+            lTempTargetDir.Normalize();
+            m_MyBulletFlyObjMemoryShare.m_MyMovable.transform.forward = lTempTargetDir;
+
+        }
     }
 
     protected override void updataState()

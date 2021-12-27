@@ -99,6 +99,11 @@ public abstract class CEnemyBase : CActor
     [SerializeField] protected Transform                        m_MyBodyDeformationSystem   = null;
 
     [SerializeField] protected CBulletFlyObj.EBulletArms m_AtkType = CBulletFlyObj.EBulletArms.eNormalBullet;
+    public CBulletFlyObj.EBulletArms AtkType
+    {
+        set => m_AtkType = value;
+        get => m_AtkType;
+    }
     // ==================== SerializeField ===========================================
 
     public override EObjType ObjType() { return EObjType.eEnemy; }

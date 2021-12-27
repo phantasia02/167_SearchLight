@@ -25,6 +25,8 @@ public class CATKStatePlayer : CPlayerStateBase
 
         if (MomentinTime(0.3f))
         {
+            Vector3 lTempTargetPoint = m_MyPlayerMemoryShare.m_TargetBuffer.MyTargetBodys.position;
+
             void Launcher()
             {
                 for (int i = 0; i < m_MyPlayerMemoryShare.m_AllPlayerFortData.Length; i++)
@@ -43,6 +45,7 @@ public class CATKStatePlayer : CPlayerStateBase
                     CBulletFlyObj lTempBulletFlyObj = lTempBulletFlyObjTransform.GetComponent<CBulletFlyObj>();
                     lTempBulletFlyObj.Target = m_MyPlayerMemoryShare.m_TargetBuffer.MyTargetBodys;
                     lTempBulletFlyObj.TargetTag = StaticGlobalDel.TagEnemy;
+                    lTempBulletFlyObj.TargetPoint = lTempTargetPoint;
                     lTempBulletFlyObj.Launcher = m_MyPlayerMemoryShare.m_MyPlayer;
                     lTempBulletFlyObj.SetChangState(EMovableState.eMove);
                 }

@@ -125,6 +125,7 @@ public class CGameManager : MonoBehaviour
         CGGameSceneData lTempGGameSceneData = CGGameSceneData.SharedInstance;
         if (lTempGGameSceneData != null)
         {
+            CEnemyBase lTempEnemyBase = null;
             GameObject lTempOtherObj = null;
             Vector3 lTempinitPos = Vector3.zero;
             foreach (CStageData.DataCreateEnemy DCE in m_MyStageData.DataAllCreateEnemyCount)
@@ -137,6 +138,9 @@ public class CGameManager : MonoBehaviour
 
                     lTempOtherObj = GameObject.Instantiate(lTempGGameSceneData.m_AllCEnemyTypeObj[(int)DCE.m_EnemyType], AllEnemyParent);
                     lTempOtherObj.transform.position = lTempinitPos;
+
+                    lTempEnemyBase = lTempOtherObj.GetComponent<CEnemyBase>();
+                    lTempEnemyBase.AtkType = DCE.m_ARMS;
                 }
             }
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CEnemyDiver : CEnemyBase
 {
-    public const float CsYDifMove = -2.2f;
+    public const float CsYDifMove = -0.6f;
     public const float CsYDifMoveBuff = CsYDifMove + 0.1f;
 
     public override EEnemyType MyEnemyType() { return EEnemyType.eEnemyDiver; }
