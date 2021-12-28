@@ -43,6 +43,7 @@ public abstract class CPlayerStateBase : CStateActor
         Vector3 lTempPlayCtrlLightToEnemyV3 = Vector3.zero;
         CEnemyBase lTempEnemyBase = null;
         bool lTempCheckIrradiateEnemy = false;
+        bool lTempResetSpeed = true;
 
         for (int i = 0; i < lTempActorBaseListData.m_ActorBaseListData.Count; i++)
         {
@@ -53,7 +54,10 @@ public abstract class CPlayerStateBase : CStateActor
             //    lTempEnemyBase.SetChangState(EMovableState.eHit);
 
             if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 1.0f)
+            {
                 lTempEnemyBase.AddCurDiscoveryTime(Time.deltaTime);
+                lTempResetSpeed = false;
+            }
 
             if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 0.5f)
             {
@@ -65,8 +69,14 @@ public abstract class CPlayerStateBase : CStateActor
                    // m_MyPlayerMemoryShare.m_MyMovable.LockChangState = EMovableState.eAtk;
                     m_MyPlayerMemoryShare.m_MyMovable.SetChangState(EMovableState.eAtk);
                 }
+
+                if (!m_MyPlayerMemoryShare.m_SpeedDown)
+                    HitSpeedDown(true);
             }
         }
+
+        if (lTempResetSpeed && m_MyPlayerMemoryShare.m_SpeedDown)
+            HitSpeedDown(false);
     }
 
     public override void OnTriggerEnter(Collider other)
@@ -77,5 +87,16 @@ public abstract class CPlayerStateBase : CStateActor
 
             m_MyPlayerMemoryShare.m_Hp.Value -= lTempBulletFlyObj.Damages;
         }
+    }
+
+    public void HitSpeedDown(bool down)
+    {
+        if (down)
+            m_MyPlayerMemoryShare.m_MyMovable.SetMoveBuff( CMovableBase.ESpeedBuff.eHit, 0.1f);
+        else
+            m_MyPlayerMemoryShare.m_MyMovable.ResetMoveBuff();
+
+
+        m_MyPlayerMemoryShare.m_SpeedDown = down;
     }
 }

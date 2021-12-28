@@ -31,7 +31,7 @@ public class CPlayerMemoryShare : CActorMemoryShare
     public CPlayer.PlayerFortData[]         m_AllPlayerFortData         = new CPlayer.PlayerFortData[(int)CPlayer.EFortRL.EMax];
     public CEnemyBase                       m_TargetBuffer              = null;
     public CPlayer.CDateSearchlightSmoke[]  m_AllDateSearchlightSmoke   = null;
-    
+    public bool                             m_SpeedDown                 = false;
     // public float                            m_LauncherSpeed             = 0.2f;
 };
 
@@ -345,9 +345,7 @@ public class CPlayer : CActor
         Vector3 lTempMouseDrag = Input.mousePosition - m_MyPlayerMemoryShare.m_OldMouseDownPos;
         lTempMouseDrag.z = lTempMouseDrag.y;
         lTempMouseDrag.y = 0.0f;
-        //  float lTempScreenDragProportion = lTempMouseDrag.magnitude / m_MinScreenSize;
-        //if (lTempScreenDragProportion >= 0.01f)
-        // {
+
         SetChangState(CMovableStatePototype.EMovableState.eMove);
         m_OldMouseDragDir += lTempMouseDrag * 5.0f;
         m_OldMouseDragDir.y = 0.0f;
@@ -361,7 +359,6 @@ public class CPlayer : CActor
             return;
 
         m_MyPlayerMemoryShare.m_PlayCtrlLight.forward = m_MyPlayerMemoryShare.m_OldMouseDragDirNormal;
-      //  m_MyPlayerMemoryShare.m_MyRigidbody.velocity = m_MyPlayerMemoryShare.m_OldMouseDragDirNormal;
     }
 
     public void UpdateSearchLightDir()

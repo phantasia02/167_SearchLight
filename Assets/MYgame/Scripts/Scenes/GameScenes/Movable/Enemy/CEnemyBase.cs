@@ -126,6 +126,8 @@ public abstract class CEnemyBase : CActor
 
 
         m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => {return new CEnemySurprisBuff(this);};
+
+       
     }
 
     protected override void CreateMemoryShare()
@@ -195,14 +197,6 @@ public abstract class CEnemyBase : CActor
         showobj(lTempSDataListGameObj, true);
     }
 
-    protected override void Update()
-    {
-        int hdsiughduio = 0;
-        base.Update();
-    }
 
-    public override void SetCurState(CMovableStatePototype.EMovableState pamState, int stateindex = -1)
-    {
-        base.SetCurState(pamState, stateindex);
-    }
+    public virtual void ShowOther1(bool show){}
 }

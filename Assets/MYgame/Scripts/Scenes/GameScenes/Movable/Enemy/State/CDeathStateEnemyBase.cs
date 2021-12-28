@@ -23,12 +23,7 @@ public class CDeathStateEnemyBase : CEnemyStateBase
                 GameObject.Destroy(TempPLSM);
 
 
-            CEnemyBaseRendererMat lTempCEnemyBaseRendererMat = null;
-            for (int i = 0; i < m_MyEnemyBaseMemoryShare.m_AllChangRendererMat.Count; i++)
-            {
-                lTempCEnemyBaseRendererMat = m_MyEnemyBaseMemoryShare.m_AllChangRendererMat[i];
-                lTempCEnemyBaseRendererMat.m_RendererObj.material = lTempCEnemyBaseRendererMat.m_DeathMat;
-            }
+            ShowMat(true);
         }
         
 

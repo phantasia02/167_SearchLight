@@ -61,6 +61,21 @@ public abstract class CEnemyStateBase : CStateActor
         m_MyEnemyBaseMemoryShare.m_OldDiscoveryTime = m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime;
     }
 
+    public void ShowMat(bool show)
+    {
+
+        CEnemyBaseRendererMat lTempCEnemyBaseRendererMat = null;
+        for (int i = 0; i < m_MyEnemyBaseMemoryShare.m_AllChangRendererMat.Count; i++)
+        {
+            lTempCEnemyBaseRendererMat = m_MyEnemyBaseMemoryShare.m_AllChangRendererMat[i];
+
+            if (show)
+                lTempCEnemyBaseRendererMat.m_RendererObj.material = lTempCEnemyBaseRendererMat.m_DeathMat;
+            else
+                lTempCEnemyBaseRendererMat.m_RendererObj.material = lTempCEnemyBaseRendererMat.m_NormalMat;
+        }
+    }
+
     public void NormalAnimationATKCallBack(CAnimatorStateCtl.cAnimationCallBackPar Paramete)
     {
         if (m_MyEnemyBaseMemoryShare.m_MyActor.ChangState != EMovableState.eMax || m_MyEnemyBaseMemoryShare.m_MyActor.CurState != EMovableState.eAtk)

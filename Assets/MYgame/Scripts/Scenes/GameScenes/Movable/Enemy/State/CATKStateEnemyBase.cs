@@ -15,6 +15,7 @@ public class CATKStateEnemyBase : CEnemyStateBase
 
     protected override void InState()
     {
+        ShowMat(true);
         m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
         m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
         m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eWait);
@@ -52,6 +53,10 @@ public class CATKStateEnemyBase : CEnemyStateBase
         m_MyEnemyBaseMemoryShare.m_MyEnemyBase.Hidden = true;
         if (m_RotateTween != null)
             m_RotateTween.Kill();
+
+
+        if (m_MyEnemyBaseMemoryShare.m_MyEnemyBase.CurState != EMovableState.eHit)
+            ShowMat(false);
     }
 
    

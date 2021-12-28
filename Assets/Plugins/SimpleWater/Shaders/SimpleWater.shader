@@ -93,7 +93,7 @@ Shader "Custom/SimpleWater"
                 IN.uv.y = repeat(IN.uv.y + _Time.x * _FlowDirectionY, 1);
 
                 half4 color = SAMPLE_TEXTURE2D(_WaterTex, sampler_WaterTex, IN.uv);
-                color = lerp(_WaterColor, half4(1, 1, 1, 1), color.r);
+                color = lerp(_WaterColor, half4(0.3, 0.3, 0.3, 0.01), color.r);
 
                 VertexPositionInputs vertexInput = (VertexPositionInputs)0;
                 vertexInput.positionWS = IN.positionWS;

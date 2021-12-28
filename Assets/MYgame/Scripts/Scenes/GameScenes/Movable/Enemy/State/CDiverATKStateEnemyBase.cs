@@ -22,6 +22,8 @@ public class CDiverATKStateEnemyBase : CATKStateEnemyBase
 
         m_MyEnemyBaseMemoryShare.m_MyEnemyBase.Hidden = false;
         base.InState();
+
+        m_MyEnemyBaseMemoryShare.m_MyEnemyBase.ShowOther1(false);
     }
 
     protected override void updataState()
@@ -32,5 +34,8 @@ public class CDiverATKStateEnemyBase : CATKStateEnemyBase
     protected override void OutState()
     {
         base.OutState();
+
+        if (m_MyEnemyBaseMemoryShare.m_MyEnemyBase.CurState != EMovableState.eHit)
+            m_MyEnemyBaseMemoryShare.m_MyEnemyBase.ShowOther1(true);
     }
 }

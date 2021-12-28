@@ -3,6 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public class CDataRendererMat
+{
+    public Renderer m_Renderer = null;
+    protected MaterialPropertyBlock m_mpb = null;
+    public MaterialPropertyBlock Mpb
+    {
+        get
+        {
+            if (m_mpb == null)
+                m_mpb = new MaterialPropertyBlock();
+            return m_mpb;
+        }
+    }
+}
+
+[System.Serializable]
 public class SDataListGameObj
 {
     public List<GameObject> m_ListObj = new List<GameObject>();
@@ -11,6 +27,7 @@ public class SDataListGameObj
 public static class StaticGlobalDel 
 {
     public static readonly int _emissionColor = Shader.PropertyToID("_EmissionColor");
+    public static readonly int _baseColor = Shader.PropertyToID("_BaseColor");
     
     public enum EBoolState
     {

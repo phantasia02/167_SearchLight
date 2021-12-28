@@ -16,6 +16,8 @@ public class CATKStatePlayer : CPlayerStateBase
     protected override void InState()
     {
         //EnabledCollisionTag(false);
+        HitSpeedDown(false);
+
     }
 
     protected override void updataState()
