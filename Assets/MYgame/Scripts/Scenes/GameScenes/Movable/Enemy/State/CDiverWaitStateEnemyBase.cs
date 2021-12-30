@@ -6,6 +6,7 @@ using DG.Tweening;
 public class CDiverWaitStateEnemyBase : CWaitStateEnemyBase
 {
     Tween m_TweenBuff = null;
+    public override int m_RandomMinOK => 5;
 
     public CDiverWaitStateEnemyBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {

@@ -14,9 +14,10 @@ public class CEnemyBaseListData
 [System.Serializable]
 public class CEnemyBaseRendererMat
 {
-    public Renderer m_RendererObj = null;
-    public Material m_DeathMat = null;
-    public Material m_NormalMat = null;
+    public Renderer m_RendererObj   = null;
+    public Material m_DeathMat      = null;
+    public Material m_NormalMat     = null;
+    public Material m_DeathMat2     = null;
 }
 
 public class CEnemyBaseMemoryShare : CActorMemoryShare
@@ -70,7 +71,7 @@ public abstract class CEnemyBase : CActor
         set => m_MyEnemyBaseMemoryShare.m_hidden = value;
         get => m_MyEnemyBaseMemoryShare.m_hidden;
     }
-    public void AddCurDiscoveryTime(float addTime)
+    public virtual bool AddCurDiscoveryTime(float addTime)
     {
         m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime += addTime;
         if (m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime >= 1.0f)
@@ -78,6 +79,8 @@ public abstract class CEnemyBase : CActor
 
         if (m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime <= 0.0f)
             m_MyEnemyBaseMemoryShare.m_CurDiscoveryTime = 0.0f;
+
+        return true;
     }
 
     public override void SetChangState(CMovableStatePototype.EMovableState state, int changindex = -1)

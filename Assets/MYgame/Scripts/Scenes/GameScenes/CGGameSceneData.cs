@@ -26,16 +26,10 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
     [SerializeField]  public GameObject[]    m_AllFX                 = null;
     [SerializeField]  public GameObject[]    m_AllOtherObj           = null;
     [SerializeField]  public GameObject[]    m_AllCEnemyTypeObj      = null;
+    [SerializeField]  public Material        m_DeathMat              = null;
 
     private void Awake()
     {
-        //for (int i = 0; i < (int)EArmsType.eMax; i++)
-        //{
-        //    m_CurNewArmsCount = i;
-        //    m_AllArmsPool[i] = new CObjPool<GameObject>();
-        //    m_AllArmsPool[i].NewObjFunc = NewArms;
-        //    m_AllArmsPool[i].RemoveObjFunc = RemoveArms;
-        //    m_AllArmsPool[i].InitDefPool(10);
-        //}
+    
     }
 }

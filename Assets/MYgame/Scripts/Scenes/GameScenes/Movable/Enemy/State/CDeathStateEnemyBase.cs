@@ -23,7 +23,7 @@ public class CDeathStateEnemyBase : CEnemyStateBase
                 GameObject.Destroy(TempPLSM);
 
 
-            ShowMat(true);
+            DeathMat();
         }
         
 

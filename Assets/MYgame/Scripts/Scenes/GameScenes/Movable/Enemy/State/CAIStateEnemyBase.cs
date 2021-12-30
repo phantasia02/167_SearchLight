@@ -6,6 +6,8 @@ public class CAIStateEnemyBase : CEnemyStateBase
 {
     public override EMovableState StateType() { return EMovableState.eMove; }
     protected Vector3 m_EndPoint = Vector3.zero;
+    public virtual int m_RandomMinOK => 1;
+
 
     public CAIStateEnemyBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -27,7 +29,7 @@ public class CAIStateEnemyBase : CEnemyStateBase
             m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
             m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eWait);
 
-            if (!m_MyEnemyBaseMemoryShare.m_IsShow && Random.Range(0, 10) < 3)
+            if (!m_MyEnemyBaseMemoryShare.m_IsShow && Random.Range(0, 10) < m_RandomMinOK)
                 m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eAtk);
 
 

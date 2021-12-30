@@ -55,8 +55,9 @@ public abstract class CPlayerStateBase : CStateActor
 
             if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 1.0f)
             {
-                lTempEnemyBase.AddCurDiscoveryTime(Time.deltaTime);
-                lTempResetSpeed = false;
+                bool lTempAddCurDiscoveryTimeOK = lTempEnemyBase.AddCurDiscoveryTime(Time.deltaTime);
+                if (lTempAddCurDiscoveryTimeOK)
+                    lTempResetSpeed = false;
             }
 
             if (lTempPlayCtrlLightToEnemyV3.sqrMagnitude < 0.5f)

@@ -601,6 +601,7 @@ MonoBehaviour:
   - m_RendererObj: {fileID: 6001141170168751858}
     m_DeathMat: {fileID: 2100000, guid: ecd6d992d80afc943950b4059e5777ae, type: 2}
     m_NormalMat: {fileID: 2100000, guid: 5eed3881259f70b40a258d6670a10064, type: 2}
+    m_DeathMat2: {fileID: 2100000, guid: 963f04034bb3f6e45b11d6ed865cf26c, type: 2}
   m_StateShowObj:
   - m_ListObj: []
   - m_ListObj: []

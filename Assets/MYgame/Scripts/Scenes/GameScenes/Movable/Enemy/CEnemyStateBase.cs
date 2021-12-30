@@ -63,7 +63,6 @@ public abstract class CEnemyStateBase : CStateActor
 
     public void ShowMat(bool show)
     {
-
         CEnemyBaseRendererMat lTempCEnemyBaseRendererMat = null;
         for (int i = 0; i < m_MyEnemyBaseMemoryShare.m_AllChangRendererMat.Count; i++)
         {
@@ -73,6 +72,18 @@ public abstract class CEnemyStateBase : CStateActor
                 lTempCEnemyBaseRendererMat.m_RendererObj.material = lTempCEnemyBaseRendererMat.m_DeathMat;
             else
                 lTempCEnemyBaseRendererMat.m_RendererObj.material = lTempCEnemyBaseRendererMat.m_NormalMat;
+        }
+    }
+
+    public void DeathMat()
+    {
+        CEnemyBaseRendererMat lTempCEnemyBaseRendererMat = null;
+        for (int i = 0; i < m_MyEnemyBaseMemoryShare.m_AllChangRendererMat.Count; i++)
+        {
+            lTempCEnemyBaseRendererMat = m_MyEnemyBaseMemoryShare.m_AllChangRendererMat[i];
+
+            if (lTempCEnemyBaseRendererMat.m_DeathMat2 != null)
+                lTempCEnemyBaseRendererMat.m_RendererObj.material = lTempCEnemyBaseRendererMat.m_DeathMat2;
         }
     }
 

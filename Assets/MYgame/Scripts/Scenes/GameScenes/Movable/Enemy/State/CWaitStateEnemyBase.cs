@@ -5,6 +5,8 @@ using UnityEngine;
 public class CWaitStateEnemyBase : CEnemyStateBase
 {
     public override EMovableState StateType() { return EMovableState.eWait; }
+    public virtual int m_RandomMinOK => 3;
+
 
     public CWaitStateEnemyBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -29,7 +31,7 @@ public class CWaitStateEnemyBase : CEnemyStateBase
             m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Clear();
             m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eMove);
 
-            if (!m_MyEnemyBaseMemoryShare.m_IsShow && Random.Range(0, 10) < 1)
+            if (!m_MyEnemyBaseMemoryShare.m_IsShow && Random.Range(0, 10) < m_RandomMinOK)
                  m_MyEnemyBaseMemoryShare.m_MyRandomStateList.Add(EMovableState.eAtk);
             
             m_MyEnemyBaseMemoryShare.m_MyActor.SetChangState(RandomState(m_MyEnemyBaseMemoryShare.m_MyRandomStateList));

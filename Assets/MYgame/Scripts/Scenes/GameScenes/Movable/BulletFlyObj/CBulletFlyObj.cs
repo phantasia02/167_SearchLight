@@ -24,7 +24,12 @@ public abstract class CBulletFlyObj : CMovableBase
     abstract public EBulletArms MyBulletArms();
 
     protected int m_Damages = 2;
-    public int Damages => m_Damages;
+    public int Damages
+    {
+        set => m_Damages = value;
+        get => m_Damages;
+    }
+
 
     protected CBulletFlyObjMemoryShare m_MyBulletFlyObjMemoryShare = null;
 

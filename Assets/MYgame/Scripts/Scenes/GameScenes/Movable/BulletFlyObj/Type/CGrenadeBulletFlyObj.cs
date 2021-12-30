@@ -13,7 +13,7 @@ public class CGrenadeBulletFlyObj : CBulletFlyObj
 
     protected override void Start()
     {
-        m_Damages = 10;
+        m_Damages = 5;
         base.Start();
     }
 }

@@ -19,6 +19,8 @@ public class CEnemyDiver : CEnemyBase
     // ==================== SerializeField ===========================================
     Tween m_ShadowTweenBuff = null;
 
+    public override bool AddCurDiscoveryTime(float addTime){return false;}
+
     protected override void AddInitState()
     {
         m_AllState[(int)CMovableStatePototype.EMovableState.eWait].AllThisState.Add(new CDiverWaitStateEnemyBase(this));

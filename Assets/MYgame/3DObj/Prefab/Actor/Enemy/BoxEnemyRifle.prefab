@@ -2876,9 +2876,11 @@ MonoBehaviour:
   - m_RendererObj: {fileID: 8004404910808461989}
     m_DeathMat: {fileID: 2100000, guid: 5461420b28cd29b4fb9e68ddaad9dec9, type: 2}
     m_NormalMat: {fileID: 2100000, guid: 184a468fed12d934f8732c324cb3d512, type: 2}
+    m_DeathMat2: {fileID: 2100000, guid: 963f04034bb3f6e45b11d6ed865cf26c, type: 2}
   - m_RendererObj: {fileID: 5463225116176268218}
     m_DeathMat: {fileID: 2100000, guid: 3f24f59e72757264bb130bda5dbf5071, type: 2}
     m_NormalMat: {fileID: 2100000, guid: 900eac9cba0b1474a850eeae83339e10, type: 2}
+    m_DeathMat2: {fileID: 0}
   m_StateShowObj:
   - m_ListObj:
     - {fileID: 5971941004276388608}

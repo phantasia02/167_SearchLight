@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class CDiverMoveStateEnemyBase : CAIStateEnemyBase
 {
+    public override int m_RandomMinOK => 5;
+
     public CDiverMoveStateEnemyBase(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
 

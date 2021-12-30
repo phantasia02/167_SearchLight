@@ -55,3 +55,4 @@ MonoBehaviour:
   - {fileID: 5519541278464012809, guid: bd4451e0e23cd9141b12f44a85fab2ae, type: 3}
   - {fileID: 1322423827101997039, guid: 3b02723eee2c4e44588301e037829c99, type: 3}
   - {fileID: 7364730236234362603, guid: 619cfb39683d9af45bd2d61f664a2166, type: 3}
+  m_DeathMat: {fileID: 2100000, guid: 963f04034bb3f6e45b11d6ed865cf26c, type: 2}
